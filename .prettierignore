@@ -1,0 +1,13 @@
+node_modules
+.next
+pnpm-lock.yaml
+*.html
+*.md
+.claude
+.vercel
+.remember
+favicon
+migrations/*.json
+migrations/index.ts
+src/app/(payload)/admin/importMap.js
+src/shared/payload-types.ts
