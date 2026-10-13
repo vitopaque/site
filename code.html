@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vit'Opaque — Orfèvrerie du Vitrage Architectural &amp; Prestige</title>
+<!-- Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Script -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration strictly mapped from Theme Guidance -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-high": "#262a33",
+            "on-tertiary-fixed": "#111c2d",
+            "secondary": "#7bd0ff",
+            "tertiary-container": "#b6c1d9",
+            "on-tertiary-container": "#444f63",
+            "surface-container": "#1c2028",
+            "tertiary-fixed-dim": "#bcc7de",
+            "carbon-base": "#0B0F17",
+            "on-surface": "#dfe2ee",
+            "outline-variant": "#3c494e",
+            "on-secondary-container": "#00374d",
+            "on-tertiary-fixed-variant": "#3c475a",
+            "on-background": "#dfe2ee",
+            "on-error-container": "#ffdad6",
+            "surface": "#0f131c",
+            "secondary-fixed": "#c4e7ff",
+            "surface-container-highest": "#31353e",
+            "carbon-surface": "#111827",
+            "on-primary-fixed-variant": "#004e60",
+            "cyan-glow": "rgba(0, 210, 255, 0.15)",
+            "secondary-fixed-dim": "#7bd0ff",
+            "on-error": "#690005",
+            "error-container": "#93000a",
+            "on-surface-variant": "#bbc9cf",
+            "glass-panel": "rgba(17, 24, 39, 0.72)",
+            "frost-text": "#E2E8F0",
+            "outline": "#859399",
+            "primary-container": "#00d2ff",
+            "electric-cyan": "#00D2FF",
+            "surface-container-lowest": "#0a0e16",
+            "inverse-surface": "#dfe2ee",
+            "on-secondary": "#00354a",
+            "on-tertiary": "#263143",
+            "glass-border": "rgba(226, 232, 240, 0.08)",
+            "on-primary": "#003543",
+            "surface-dim": "#0f131c",
+            "inverse-primary": "#00677f",
+            "surface-bright": "#353942",
+            "primary-fixed-dim": "#47d6ff",
+            "surface-variant": "#31353e",
+            "error": "#ffb4ab",
+            "on-secondary-fixed-variant": "#004c69",
+            "on-primary-fixed": "#001f28",
+            "tertiary": "#d2ddf5",
+            "tertiary-fixed": "#d8e3fb",
+            "slate-border": "#1E293B",
+            "surface-container-low": "#181c24",
+            "background": "#0f131c",
+            "on-primary-container": "#00566a",
+            "secondary-container": "#00a6e0",
+            "primary-fixed": "#b6ebff",
+            "on-secondary-fixed": "#001e2c",
+            "inverse-on-surface": "#2c3039",
+            "surface-tint": "#47d6ff",
+            "primary": "#a5e7ff",
+            "pure-white": "#FFFFFF"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-3xl": "6rem",
+            "gutter": "1.5rem",
+            "space-2xl": "4rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "margin-mobile": "1.25rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "margin": "3rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .pdlc-glass-translucent {
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+    }
+  </style>
+</head>
+<body class="bg-carbon-base text-on-surface font-body-md text-body-md antialiased overflow-x-hidden selection:bg-electric-cyan selection:text-carbon-base">
+<!-- ================= TOP APP BAR (From Shared Component JSON) ================= -->
+<header class="fixed top-0 left-0 w-full z-50 bg-carbon-surface/80 backdrop-blur-md border-b border-glass-border">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-carbon-base border border-electric-cyan/40 flex items-center justify-center relative overflow-hidden group-hover:border-electric-cyan transition-all duration-300">
+<div class="absolute inset-0 bg-gradient-to-tr from-electric-cyan/20 to-transparent"></div>
+<span class="material-symbols-outlined text-electric-cyan text-sm">filter_hdr</span>
+</div>
+<span class="font-headline-md text-headline-md tracking-wider font-semibold text-pure-white uppercase">Vit'Opaque</span>
+</a>
+<!-- Desktop Navigation Links from JSON -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-electric-cyan font-medium border-b-2 border-electric-cyan pb-1 font-label-md text-label-md transition-all duration-200" href="#solutions-batiment">Solutions Bâtiment</a>
+<a class="text-on-surface-variant hover:text-frost-text transition-colors duration-200 font-label-md text-label-md" href="#auto-prestige">Auto &amp; Prestige</a>
+<a class="text-on-surface-variant hover:text-frost-text transition-colors duration-200 font-label-md text-label-md" href="#technologie-pdlc">Innovation PDLC</a>
+<a class="text-on-surface-variant hover:text-frost-text transition-colors duration-200 font-label-md text-label-md" href="#etudes-cas">Réalisations</a>
+<a class="text-on-surface-variant hover:text-frost-text transition-colors duration-200 font-label-md text-label-md" href="#expertise">Expertise</a>
+</nav>
+<!-- Trailing Action Cluster from JSON -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center gap-2 px-3 py-2 text-on-surface-variant hover:text-electric-cyan transition-colors duration-200 font-label-md text-label-md" href="tel:0612441442">
+<span class="material-symbols-outlined text-base">call</span>
+<span>Contact Atelier</span>
+</a>
+<a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-electric-cyan text-carbon-base font-semibold font-label-md text-label-md hover:shadow-[0_0_20px_rgba(0,210,255,0.45)] active:scale-[0.98] transition-all duration-200" href="#contact">
+<span class="material-symbols-outlined text-lg">tune</span>
+<span>Demander un devis d'orfèvre</span>
+</a>
+</div>
+</div>
+</header>
+<main class="pt-24 lg:pt-28">
+<!-- ================= HERO SECTION WITH DUAL PORTAL & PDLC INTERACTIVE SIMULATION ================= -->
+<section class="relative min-h-[942px] flex items-center justify-center px-6 lg:px-12 py-16 overflow-hidden">
+<!-- Architectural Ambient Grid & Glows -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-electric-cyan/10 rounded-full blur-[140px]"></div>
+<div class="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
+</div>
+<div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Hero Copy -->
+<div class="lg:col-span-7 flex flex-col items-start space-y-6">
+<div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-carbon-surface border border-electric-cyan/30 text-electric-cyan font-label-caps text-label-caps tracking-widest uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-electric-cyan animate-pulse"></span>
+            Orfèvrerie du Vitrage Architectural &amp; Automobile
+          </div>
+<h1 class="hidden lg:block font-display-hero text-display-hero text-pure-white tracking-tight">
+            Sublimez vos espaces.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-cyan to-secondary">Maîtrisez la lumière.</span>
+</h1>
+<h1 class="block lg:hidden font-display-hero-mobile text-display-hero-mobile text-pure-white tracking-tight">
+            Sublimez vos espaces.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-cyan to-secondary">Maîtrisez la lumière.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+            Solutions expertes en vitres teintées, intimité et films technologiques pour l'architecture et l'automobile de prestige. Révélez la pureté de votre patrimoine sous une protection thermique sans compromis.
+          </p>
+<!-- Double Stratégie d'Entrée B2B / B2C -->
+<div class="w-full pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+<a class="group relative p-4 rounded-xl bg-carbon-surface/90 border border-glass-border hover:border-electric-cyan/50 transition-all duration-300" href="#solutions-batiment">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-wider">ENTRÉE B2B &amp; HABITAT</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-electric-cyan group-hover:translate-x-1 transition-all">apartment</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-pure-white">Solutions Bâtiment &amp; Pro</div>
+<p class="text-xs text-outline mt-1">Bureaux d'architecte, villas contemporaines, rejet thermique &amp; cloisons switchables.</p>
+</a>
+<a class="group relative p-4 rounded-xl bg-carbon-surface/90 border border-glass-border hover:border-electric-cyan/50 transition-all duration-300" href="#auto-prestige">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-secondary tracking-wider">ENTRÉE PRESTIGE</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary group-hover:translate-x-1 transition-all">directions_car</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-pure-white">Solutions Auto &amp; Bateau</div>
+<p class="text-xs text-outline mt-1">Berlines d'exception, yachts méditerranéens, protection UV 99% &amp; filtration totale.</p>
+</a>
+</div>
+<!-- Micro Metric Proofs -->
+<div class="flex flex-wrap items-center gap-6 pt-3 text-sm text-outline border-t border-glass-border w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-cyan text-base">verified</span>
+<span>Garantie 10 Ans Sérénité</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-cyan text-base">star</span>
+<span>Note Google 4.9/5 (Avis Vérifiés)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-cyan text-base">shield_lock</span>
+<span>Certifié Armorcoat &amp; Graffitigard</span>
+</div>
+</div>
+</div>
+<!-- Hero Glass Simulator Card (Interactive Wahou Module) -->
+<div class="lg:col-span-5 relative">
+<div class="relative rounded-2xl bg-carbon-surface/75 border border-glass-border pdlc-glass-translucent p-5 shadow-[0_0_50px_-15px_rgba(0,210,255,0.18)]">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-glass-border">
+<div class="flex items-center gap-2.5">
+<div class="w-2.5 h-2.5 rounded-full bg-electric-cyan animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-frost-text tracking-widest">SIMULATEUR DE CLOISON PDLC</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-carbon-base text-electric-cyan border border-electric-cyan/40 text-xs font-mono" id="pdlc-state-badge">OPACITÉ: ACTIVE (OFF)</span>
+</div>
+<!-- Viewport Image with Dynamic Opaque Layer -->
+<div class="relative h-80 rounded-xl overflow-hidden border border-slate-border">
+<!-- Underneath architectural interior -->
+<img class="w-full h-full object-cover" data-alt="An ultra-luxurious modern penthouse living space with massive floor-to-ceiling panoramic glass windows overlooking the Mediterranean skyline at dusk. Sleek minimalist black furniture, polished concrete surfaces, atmospheric ambient cyan lighting, and dark obsidian carbon aesthetics creating an elite architectural atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsgVq8WEPMyfuiaQW7ZeJvyIJIQN7P3LLLzSaQA8Rqm3Yys5teRnRVwsy83cRriJ9u--oyVav3fh__5G6QCIZvDod-V5o4EKz-md3RsPsv0viLH6XHLH3l_-fBavhAYDdq_AcVqLbVDfqrwJOBqG6N_ndeXhuAvP5Rz8qI2UxoplRvirInvxu8wghptzmAC4YSeoctIBMi7utSM7bhj54fJ2mid5FCPBLhwZgooIpO"/>
+<!-- Switchable Glass Simulation Film -->
+<div class="absolute inset-0 bg-slate-900/80 backdrop-blur-[24px] transition-all duration-700 flex flex-col items-center justify-center p-6 text-center" id="pdlc-overlay">
+<span class="material-symbols-outlined text-4xl text-electric-cyan mb-2">lock</span>
+<p class="font-headline-sm text-headline-sm text-pure-white mb-1">Confidentialité Maximale</p>
+<p class="text-xs text-on-surface-variant max-w-xs">Film à cristaux liquides en mode repos : diffusion lumineuse sans vue passante.</p>
+</div>
+<!-- Badges over Viewport -->
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-center z-10 pointer-events-none">
+<span class="bg-carbon-base/80 backdrop-blur-md px-3 py-1 rounded text-xs text-frost-text border border-glass-border font-mono">Rejet IR: 88%</span>
+<span class="bg-carbon-base/80 backdrop-blur-md px-3 py-1 rounded text-xs text-frost-text border border-glass-border font-mono">Filtration UV: 99.9%</span>
+</div>
+</div>
+<!-- Interactive Controller Switch -->
+<div class="mt-4 pt-3 flex items-center justify-between">
+<div>
+<div class="text-sm font-semibold text-pure-white">Interrupteur Nanotechnologique</div>
+<div class="text-xs text-outline">Simuler l'impulsion électrique 24V</div>
+</div>
+<button class="px-4 py-2 rounded-lg bg-carbon-base border border-electric-cyan/50 text-electric-cyan font-label-md text-label-md hover:bg-electric-cyan hover:text-carbon-base transition-all duration-200 flex items-center gap-2" id="pdlc-toggle-btn">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span id="btn-label-text">Activer Transparence</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= DOUBLE ENTRÉE STRATÉGIQUE & SILOS THÉMATIQUES ================= -->
+<section class="py-24 border-t border-glass-border relative" id="solutions-batiment">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div>
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-widest uppercase">SILO ARCHITECTURE &amp; ENTREPRISE</span>
+<h2 class="font-headline-lg text-headline-lg text-pure-white mt-2">Solutions Bâtiment &amp; Haute Performance</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Des films de pointe calibrés pour les exigences thermiques de la métropole d'Occitanie, réduisant jusqu'à 82% la chaleur solaire.
+          </p>
+</div>
+<!-- 3-Column Architectural Cards Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1: Films Solaires -->
+<div class="rounded-2xl bg-carbon-surface/70 border border-glass-border p-8 hover:border-electric-cyan/40 transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-carbon-base border border-glass-border flex items-center justify-center text-electric-cyan mb-6 group-hover:border-electric-cyan transition-colors">
+<span class="material-symbols-outlined text-2xl">sunny</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline tracking-wider">CONFORT THERMIQUE &amp; ÉNERGIE</span>
+<h3 class="font-headline-sm text-headline-sm text-pure-white mt-1 mb-3">Films Solaires Haute Performance</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Neutralisez l'effet de serre sous vos baies vitrées et verrières sans obscurcir vos pièces. Réduction drastique des coûts de climatisation et arrêt de l'éblouissement.
+              </p>
+<ul class="mt-6 space-y-2 text-xs text-outline border-t border-glass-border pt-4">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-electric-cyan text-sm">check</span> Rejet thermique jusqu'à -82%</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-electric-cyan text-sm">check</span> Préservation de la luminosité naturelle</li>
+</ul>
+</div>
+<a class="mt-8 inline-flex items-center text-sm font-semibold text-electric-cyan hover:underline gap-1" href="#contact">
+              Configurer ce film <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Card 2: Films Sécurité Armorcoat -->
+<div class="rounded-2xl bg-carbon-surface/70 border border-glass-border p-8 hover:border-electric-cyan/40 transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-carbon-base border border-glass-border flex items-center justify-center text-electric-cyan mb-6 group-hover:border-electric-cyan transition-colors">
+<span class="material-symbols-outlined text-2xl">security</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline tracking-wider">PROTECTION CIVILE &amp; COMMERCE</span>
+<h3 class="font-headline-sm text-headline-sm text-pure-white mt-1 mb-3">Films Armorcoat Anti-Effraction</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Bouclier invisible maintenant le verre en place face aux chocs violents, tentatives d'intrusion et déflagrations. Solutions Graffitigard anti-vandalisme et rayures.
+              </p>
+<ul class="mt-6 space-y-2 text-xs text-outline border-t border-glass-border pt-4">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-electric-cyan text-sm">check</span> Normes EN 12600 &amp; retardateur certifié</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-electric-cyan text-sm">check</span> Protection anti-éclats &amp; graffitis</li>
+</ul>
+</div>
+<a class="mt-8 inline-flex items-center text-sm font-semibold text-electric-cyan hover:underline gap-1" href="#contact">
+              Découvrir les normes <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Card 3: Films PDLC Cristaux Liquides -->
+<div class="rounded-2xl bg-carbon-surface/90 border border-electric-cyan/30 p-8 shadow-[0_0_40px_-10px_rgba(0,210,255,0.12)] flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-electric-cyan/10 rounded-full blur-2xl"></div>
+<div>
+<div class="w-12 h-12 rounded-xl bg-carbon-base border border-electric-cyan/60 flex items-center justify-center text-electric-cyan mb-6">
+<span class="material-symbols-outlined text-2xl">sensors</span>
+</div>
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-wider">TECHNOLOGIE EXCLUSIVE</span>
+<h3 class="font-headline-sm text-headline-sm text-pure-white mt-1 mb-3">Films Cristaux Liquides Switchables</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                L'intimité à la demande. Transformez vos cloisons de verre en un clin d'œil d'une simple impulsion électrique. Idéal salles de conseil, cabinets médicaux et suites de maître.
+              </p>
+<ul class="mt-6 space-y-2 text-xs text-frost-text border-t border-glass-border pt-4">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-electric-cyan text-sm">check</span> Commutation 0.1 seconde par télécommande</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-electric-cyan text-sm">check</span> Rétroprojection vidéo 4K possible en mode opaque</li>
+</ul>
+</div>
+<a class="mt-8 inline-flex items-center text-sm font-semibold text-electric-cyan hover:underline gap-1" href="#technologie-pdlc">
+              Explorer le protocole PDLC <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SILO VÉHICULE & PRESTIGE AUTOMOBILE ================= -->
+<section class="py-24 bg-surface-container-lowest border-t border-glass-border relative" id="auto-prestige">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-6 space-y-6">
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">AUTOMOBILE D'EXCEPTION &amp; YACHTING</span>
+<h2 class="font-headline-lg text-headline-lg text-pure-white">Vitres Teintées, Carrosserie &amp; Ébénisterie Vitrée</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              À l'Atelier de Vendargues, chaque véhicule est traité comme une pièce d'orfèvrerie. Nous garantissons une découpe robotisée sur mesure, sans démontage hasardeux des garnitures intérieures, dans le strict respect des réglementations en vigueur.
+            </p>
+<div class="space-y-4 pt-2">
+<div class="flex items-start gap-4 p-4 rounded-xl bg-carbon-surface/60 border border-glass-border">
+<span class="material-symbols-outlined text-electric-cyan mt-1">verified_user</span>
+<div>
+<h4 class="font-title-md text-title-md text-pure-white">Homologation 100% Conforme Code de la Route</h4>
+<p class="text-xs text-outline mt-1">Respect strict du TLV 70% à l'avant, certification délivrée après chaque pose pour vos contrôles techniques.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl bg-carbon-surface/60 border border-glass-border">
+<span class="material-symbols-outlined text-electric-cyan mt-1">shield</span>
+<div>
+<h4 class="font-title-md text-title-md text-pure-white">Films Céramique &amp; Infrarouge Haut de Gamme</h4>
+<p class="text-xs text-outline mt-1">Barrière thermique absolue préservant la sellerie cuir des agressions solaires du Sud de la France.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl bg-carbon-surface/60 border border-glass-border">
+<span class="material-symbols-outlined text-electric-cyan mt-1">directions_boat</span>
+<div>
+<h4 class="font-title-md text-title-md text-pure-white">Bateaux &amp; Bateaux de Plaisance</h4>
+<p class="text-xs text-outline mt-1">Traitement spécialisé verre marin anti-salin pour vitrages de cabine, timonerie et superstructures.</p>
+</div>
+</div>
+</div>
+<div class="pt-4 flex gap-4">
+<a class="px-6 py-3 rounded-lg bg-carbon-surface border border-electric-cyan/40 text-frost-text hover:text-electric-cyan font-label-md text-label-md transition-all" href="#contact">
+                Prendre rendez-vous à l'Atelier
+              </a>
+</div>
+</div>
+<!-- Vehicle Showcase Image Frame -->
+<div class="lg:col-span-6">
+<div class="relative rounded-2xl overflow-hidden border border-slate-border group">
+<img class="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A high-end luxury matte black Porsche Taycan parked inside a modern pristine detailing atelier in Montpellier with mirror polished dark floor tiles. The car features perfectly tinted dark ceramic windows reflecting sharp architectural cyan light beams, showcasing flawless nano-ceramic film installation craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrLaSlKk3bRfLt07kRwgsDBjNdMMw-YEsDIQ5xIqUipw8c6aRC_-3lA9B0_3eNg2yXJYp1swZhAGyXF1cGaCBpcsAy63vzAjL62jU7gdJsYpj-1WmbpCf0uxHsa5KuVPXUb0gqCVv5106aZ9f8V-2tqCTJtQLE6GBT97xCXCsn_FzVwU6ue3ElS7mjSaIpbr4uq6tE_-IReD9rr2sYfxDZqYJUXdLOKdKxD5qgHeiS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-carbon-base via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-6 rounded-xl bg-carbon-surface/85 pdlc-glass-translucent border border-glass-border">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-electric-cyan">ATELIER VENDARGUES — OCCITANIE</span>
+<h3 class="font-headline-sm text-headline-sm text-pure-white">Porsche Taycan 4S — Traitement Intégral Céramique</h3>
+</div>
+<span class="text-xs font-mono text-secondary px-3 py-1 rounded bg-carbon-base border border-secondary/30">UV: -99%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SLIDER INTERACTIF AVANT / APRÈS (RENDRE L'INVISIBLE PALPABLE) ================= -->
+<section class="py-24 border-t border-glass-border relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-widest uppercase">EXPÉRIENCE THERMIQUE &amp; VISUELLE</span>
+<h2 class="font-headline-lg text-headline-lg text-pure-white mt-2">Comparez l'effet immédiat du vitrage traité</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3">
+            Déplacez le curseur pour mesurer la disparition de l'éblouissement solaire et le barrage thermique appliqué aux baies vitrées.
+          </p>
+</div>
+<!-- Before / After Visual Container -->
+<div class="max-w-4xl mx-auto relative h-[450px] rounded-2xl overflow-hidden border border-glass-border select-none shadow-2xl">
+<!-- Background: Treated State (After) -->
+<div class="absolute inset-0 w-full h-full">
+<img class="w-full h-full object-cover" data-alt="Contemporary architect villa living room bathed in gentle cool ambient light with treated solar tinted expansive glass panels overlooking a sunny Mediterranean garden. The indoor atmosphere is perfectly tempered, serene, deep contrast, with zero blinding glare and subtle cyan hue reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsa6Cve0v3bDucDaMxLGIMbTEz6nQ86eyps9-2OvstZF-snBs8Pku1WK0GGfQ2uepki_VKthABzhlJygdW_ymNMRAE1NFEcb8w-3sp7qAHn2YjIis4yVonng1gEQRmOabIsraTMgKiuu4Eg4omKoTxlTt_ModxV4O4RIYjjYCsvZEHMFt_NJXIlU3732NAhenWpYsfk9MM2zZAvIZAkWkDS1yUArdLsNCDllvGQB2J"/>
+<div class="absolute top-6 right-6 bg-carbon-base/80 backdrop-blur-md px-4 py-2 rounded-lg border border-electric-cyan/40 text-xs font-mono text-electric-cyan">
+              AVEC VIT'OPAQUE (23°C / ZÉRO ÉBLOUISSEMENT)
+            </div>
+</div>
+<!-- Foreground: Untreated State (Before) with Clip Path -->
+<div class="absolute inset-0 w-full h-full overflow-hidden" id="before-image-layer" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);">
+<img class="w-full h-full object-cover" data-alt="The identical contemporary villa living room during a scorching summer day without window tinting, severely overexposed by blinding sun glare through the glass windows, harsh heavy shadows, washed out contrast and palpable heat effect inside the room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2fTLwfw7gucyQYwxLAsG_jmAaoomwo_cIcnMXuvddRQK1tycace8IMRMEQeE9pQ0nwAmdZ2YUvzztwpviCx3Euf6P4atoNygxLBczhYlzNRst4N9XFOvNbNl3T3NlggEWmICEIBWPzI4qHf22t_kV0EJu97lIO945SS67Yrxid2k9OTPsfK1DXbiGIzfPAoM2dxirro2d5ldn2QRA2u9kghbFZXLvticquqIkxo-b"/>
+<div class="absolute top-6 left-6 bg-carbon-base/80 backdrop-blur-md px-4 py-2 rounded-lg border border-red-500/40 text-xs font-mono text-red-400">
+              SANS FILM (34°C / SURCHAUFFE ET ÉBLOUISSEMENT)
+            </div>
+</div>
+<!-- Interactive Divider Handle -->
+<div class="absolute top-0 bottom-0 left-1/2 w-1 bg-electric-cyan shadow-[0_0_15px_#00D2FF] cursor-ew-resize flex items-center justify-center -translate-x-1/2" id="slider-handle">
+<div class="w-9 h-9 rounded-full bg-carbon-base border-2 border-electric-cyan flex items-center justify-center text-electric-cyan shadow-lg">
+<span class="material-symbols-outlined text-sm">unfold_more</span>
+</div>
+</div>
+<input aria-label="Curseur comparatif avant après" class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30" id="comparison-range" max="100" min="0" type="range" value="50"/>
+</div>
+<!-- Quantitative Indicator Dashboard -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-8">
+<div class="p-4 rounded-xl bg-carbon-surface/60 border border-glass-border text-center">
+<div class="font-headline-md text-headline-md text-electric-cyan font-bold">-7°C à -10°C</div>
+<div class="text-xs text-outline mt-1">Température ambiante ressentie</div>
+</div>
+<div class="p-4 rounded-xl bg-carbon-surface/60 border border-glass-border text-center">
+<div class="font-headline-md text-headline-md text-electric-cyan font-bold">99.9%</div>
+<div class="text-xs text-outline mt-1">Rayons UV nocifs bloqués</div>
+</div>
+<div class="p-4 rounded-xl bg-carbon-surface/60 border border-glass-border text-center">
+<div class="font-headline-md text-headline-md text-electric-cyan font-bold">-84%</div>
+<div class="text-xs text-outline mt-1">Atténuation de l'éblouissement</div>
+</div>
+<div class="p-4 rounded-xl bg-carbon-surface/60 border border-glass-border text-center">
+<div class="font-headline-md text-headline-md text-electric-cyan font-bold">30%</div>
+<div class="text-xs text-outline mt-1">Économie sur la climatisation</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= ÉTUDES DE CAS CONCRÈTES (DÉFI / SOLUTION / RÉSULTAT) ================= -->
+<section class="py-24 bg-carbon-surface/40 border-t border-glass-border" id="etudes-cas">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-widest uppercase">RÉALISATIONS DU SUD DE LA FRANCE</span>
+<h2 class="font-headline-lg text-headline-lg text-pure-white mt-2">Études de Cas &amp; Résultats Chiffrés</h2>
+</div>
+<span class="text-sm text-outline">Projets certifiés livrés à Montpellier, Castelnau-le-Lez et Nîmes</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Case 1 -->
+<div class="p-8 rounded-2xl bg-carbon-surface border border-glass-border flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<span class="px-3 py-1 rounded bg-carbon-base text-electric-cyan border border-glass-border text-xs font-mono">TERTIAIRE &amp; BUREAUX</span>
+<span class="text-xs text-outline">Montpellier Millénaire</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-pure-white mb-4">Siège Entreprise Tech — 420m² de Façade Vitrée Plein Sud</h3>
+<div class="space-y-3 text-sm">
+<div class="p-3 rounded-lg bg-surface-container-low border border-glass-border">
+<span class="text-xs font-bold text-red-400 uppercase tracking-wider block">Défi Initial :</span>
+<span class="text-on-surface-variant">Effet de serre culminant à +36°C en open-space dès le mois de juin, reflets sur écrans rendant le travail impossible et surconsommation des groupes froids.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-glass-border">
+<span class="text-xs font-bold text-electric-cyan uppercase tracking-wider block">Solution Vit'Opaque :</span>
+<span class="text-on-surface-variant">Application extérieure de films nano-céramique neutre haute réjection infrarouge sans effet miroir dégradant pour le cahier des charges d'architecte.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-glass-border">
+<span class="text-xs font-bold text-green-400 uppercase tracking-wider block">Résultats Mesurés :</span>
+<span class="text-on-surface-variant">Baisse immédiate de 6.2°C à l'intérieur, suppression intégrale de l'éblouissement, économie énergétique de 24% sur la saison estivale.</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-glass-border flex justify-between items-center">
+<span class="text-xs text-outline">Garantie fabricant 10 ans appliquée</span>
+<a class="text-xs font-semibold text-electric-cyan hover:underline" href="#contact">Consulter ce protocole →</a>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="p-8 rounded-2xl bg-carbon-surface border border-glass-border flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<span class="px-3 py-1 rounded bg-carbon-base text-secondary border border-glass-border text-xs font-mono">HABITAT D'EXCEPTION</span>
+<span class="text-xs text-outline">Castelnau-le-Lez</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-pure-white mb-4">Villa Contemporaine — Suite Parentale &amp; Salons Traversants</h3>
+<div class="space-y-3 text-sm">
+<div class="p-3 rounded-lg bg-surface-container-low border border-glass-border">
+<span class="text-xs font-bold text-red-400 uppercase tracking-wider block">Défi Initial :</span>
+<span class="text-on-surface-variant">Vis-à-vis gênant côté terrasse et décoloration progressive du parquet en chêne massif sous les rayons ultraviolets directs.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-glass-border">
+<span class="text-xs font-bold text-electric-cyan uppercase tracking-wider block">Solution Vit'Opaque :</span>
+<span class="text-on-surface-variant">Combinaison de films Switchables PDLC sur la salle d'eau et pose de films anti-UV 99.9% spectralement sélectifs sur les baies du séjour.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low border border-glass-border">
+<span class="text-xs font-bold text-green-400 uppercase tracking-wider block">Résultats Mesurés :</span>
+<span class="text-on-surface-variant">Intimité activable par télécommande domotique, arrêt total de la dégradation des matériaux et confort thermique préservé toute l'année.</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-glass-border flex justify-between items-center">
+<span class="text-xs text-outline">Intégration domotique KNX réussie</span>
+<a class="text-xs font-semibold text-electric-cyan hover:underline" href="#contact">Consulter ce protocole →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= CONSEILS & EXPERTISE (SILOS SEO & GUIDES TECHNIQUES) ================= -->
+<section class="py-24 border-t border-glass-border" id="expertise">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-widest uppercase">CONNAISSANCE DU VITRAGE</span>
+<h2 class="font-headline-lg text-headline-lg text-pure-white mt-2">Guides Experts &amp; Décryptages Réglementaires</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Des réponses claires rédigées par nos maîtres poseurs pour orienter vos choix architecturaux et automobiles.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Article 1 -->
+<article class="p-6 rounded-xl bg-carbon-surface/60 border border-glass-border hover:border-electric-cyan/40 transition-all flex flex-col justify-between">
+<div>
+<div class="text-xs font-mono text-outline mb-2">GUIDE TECHNIQUE BÂTIMENT</div>
+<h3 class="font-title-md text-title-md text-pure-white mb-3">Réduire la chaleur estivale sous verrière : Guide des films adhésifs</h3>
+<p class="text-sm text-on-surface-variant">
+                Comprendre la différence entre absorption thermique et réflexion solaire pour éviter tout choc thermique sur verre trempé.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-glass-border flex items-center justify-between text-xs text-outline">
+<span>Lecture 5 min</span>
+<span class="text-electric-cyan font-semibold">Lire le dossier →</span>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="p-6 rounded-xl bg-carbon-surface/60 border border-glass-border hover:border-electric-cyan/40 transition-all flex flex-col justify-between">
+<div>
+<div class="text-xs font-mono text-outline mb-2">RÉGLEMENTATION LÉGALE</div>
+<h3 class="font-title-md text-title-md text-pure-white mb-3">Réglementation vitres teintées 2024 : TLV 70% et conformité homologuée</h3>
+<p class="text-sm text-on-surface-variant">
+                Ce que stipule l'article R316-3 du Code de la route pour les vitres avant et les tolérances accordées sur l'arrière des véhicules.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-glass-border flex items-center justify-between text-xs text-outline">
+<span>Lecture 4 min</span>
+<span class="text-electric-cyan font-semibold">Lire le dossier →</span>
+</div>
+</article>
+<!-- Article 3 -->
+<article class="p-6 rounded-xl bg-carbon-surface/60 border border-glass-border hover:border-electric-cyan/40 transition-all flex flex-col justify-between">
+<div>
+<div class="text-xs font-mono text-outline mb-2">INNOVATION NANOTECH</div>
+<h3 class="font-title-md text-title-md text-pure-white mb-3">Films PDLC Switchables : Consommation électrique et longévité</h3>
+<p class="text-sm text-on-surface-variant">
+                Combien consomme une cloison à cristaux liquides ? Analyse du transformateur 48V/24V et du cycle de 80 000 000 commutations.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-glass-border flex items-center justify-between text-xs text-outline">
+<span>Lecture 6 min</span>
+<span class="text-electric-cyan font-semibold">Lire le dossier →</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ================= PREUVE SOCIALE & AVIS GOOGLE CARROUSEL ================= -->
+<section class="py-20 bg-carbon-surface/80 border-t border-glass-border">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row items-center justify-between pb-12 border-b border-glass-border gap-6">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl bg-carbon-base border border-electric-cyan/30 flex items-center justify-center text-electric-cyan">
+<span class="material-symbols-outlined text-3xl">star</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-pure-white">4.9 / 5</span>
+<div class="flex text-amber-400 text-sm">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="text-xs text-outline">Basé sur plus de 120 avis vérifiés Google &amp; Professionnels</div>
+</div>
+</div>
+<a class="px-5 py-2.5 rounded-lg bg-carbon-base border border-glass-border hover:border-electric-cyan/40 text-frost-text text-sm transition-all flex items-center gap-2" href="https://share.google/q9IteRyKsNkY6rBpC" rel="noopener noreferrer" target="_blank">
+<span>Consulter les avis certifiés Google</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
+<!-- Review 1 -->
+<div class="p-6 rounded-xl bg-carbon-base/70 border border-glass-border">
+<div class="flex items-center justify-between mb-3">
+<div class="font-semibold text-pure-white text-sm">Cabinet d'Architectes M.</div>
+<span class="text-xs text-outline">Il y a 2 semaines</span>
+</div>
+<p class="text-sm text-on-surface-variant italic">
+              "Intervention remarquable sur une villa de 300m² à Castelnau. Le film solaire a totalement réglé le problème de chaleur sans dénaturer la clarté du vitrage. Des techniciens minutieux, discrets et un atelier d'une propreté exemplaire."
+            </p>
+<div class="mt-4 flex items-center gap-2 text-xs text-electric-cyan">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span>Projet Architectural Tertiaire</span>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="p-6 rounded-xl bg-carbon-base/70 border border-glass-border">
+<div class="flex items-center justify-between mb-3">
+<div class="font-semibold text-pure-white text-sm">Alexandre B. — Porsche GT3</div>
+<span class="text-xs text-outline">Il y a 1 mois</span>
+</div>
+<p class="text-sm text-on-surface-variant italic">
+              "Pose parfaite des vitres teintées et d'un film de protection carrosserie à Vendargues. Aucune bulle, aucune trace sur les plastiques intérieurs. On sent immédiatement la passion du détail et le respect du véhicule."
+            </p>
+<div class="mt-4 flex items-center gap-2 text-xs text-secondary">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span>Véhicule Prestige</span>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="p-6 rounded-xl bg-carbon-base/70 border border-glass-border">
+<div class="flex items-center justify-between mb-3">
+<div class="font-semibold text-pure-white text-sm">Clinique &amp; Espace Santé</div>
+<span class="text-xs text-outline">Il y a 2 mois</span>
+</div>
+<p class="text-sm text-on-surface-variant italic">
+              "L'installation des films switchables PDLC sur nos cloisons de consultation est un succès total auprès de nos praticiens et patients. Basculer de clair à opaque d'un clic donne une modernité incroyable."
+            </p>
+<div class="mt-4 flex items-center gap-2 text-xs text-electric-cyan">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span>Technologie PDLC Switchable</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= CONVERSION / DEVIS D'ORFÈVRE & ATELIER VENDARGUES ================= -->
+<section class="py-24 border-t border-glass-border relative" id="contact">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Contact Left Info & Local SEO -->
+<div class="lg:col-span-5 space-y-6">
+<span class="font-label-caps text-label-caps text-electric-cyan tracking-widest uppercase">ATELIER &amp; ÉTUDE SUR-MESURE</span>
+<h2 class="font-headline-lg text-headline-lg text-pure-white">Confiez votre vitrage aux orfèvres</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Nos maîtres poseurs vous reçoivent à l'Atelier de Vendargues ou se déplacent sur site à Montpellier et dans toute la région Occitanie pour réaliser un audit thermique et sécuritaire gratuit.
+            </p>
+<div class="space-y-4 pt-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-carbon-surface border border-glass-border flex items-center justify-center text-electric-cyan shrink-0">
+<span class="material-symbols-outlined text-xl">location_on</span>
+</div>
+<div>
+<div class="text-sm font-semibold text-pure-white">Atelier Principal de Vendargues</div>
+<p class="text-xs text-outline mt-0.5">RM Station esso, M610, 202 route de Sommières, 34740 Vendargues</p>
+<a class="text-xs text-electric-cyan hover:underline inline-block mt-1" href="https://www.google.com/maps/dir//RM+Station+esso,+202,+610+route+de+sommieres,+34740+Vendargues/@43.5837967,3.833856,2862m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x12b6add4dd0d5dd1:0xb7b8052e326c0e0d!2m2!1d3.9620736!2d43.6552768" rel="noopener noreferrer" target="_blank">Ouvrir dans Google Maps →</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-carbon-surface border border-glass-border flex items-center justify-center text-electric-cyan shrink-0">
+<span class="material-symbols-outlined text-xl">schedule</span>
+</div>
+<div>
+<div class="text-sm font-semibold text-pure-white">Horaires d'Ouverture</div>
+<p class="text-xs text-outline mt-0.5">Du lundi au vendredi de 8h30 à 18h30</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-carbon-surface border border-glass-border flex items-center justify-center text-electric-cyan shrink-0">
+<span class="material-symbols-outlined text-xl">call</span>
+</div>
+<div>
+<div class="text-sm font-semibold text-pure-white">Ligne Directe Atelier</div>
+<a class="text-sm font-mono text-electric-cyan hover:underline" href="tel:0612441442">06 12 44 14 42</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Conversion Form -->
+<div class="lg:col-span-7">
+<div class="p-8 rounded-2xl bg-carbon-surface border border-glass-border shadow-xl relative">
+<h3 class="font-headline-sm text-headline-sm text-pure-white mb-2">Demander une étude personnalisée</h3>
+<p class="text-xs text-outline mb-6">Réponse technique circonstanciée sous 24h ouvrées.</p>
+<form class="space-y-4" onsubmit="event.preventDefault(); alert('Votre demande a été transmise aux maîtres poseurs de Vit\'Opaque. Nous vous contacterons sous 24h.');">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-semibold text-frost-text mb-1.5 uppercase font-label-caps">Votre Nom / Société</label>
+<input class="w-full h-12 px-4 rounded bg-carbon-base border border-slate-border text-pure-white placeholder-outline focus:border-electric-cyan focus:ring-1 focus:ring-electric-cyan text-sm" placeholder="Ex: M. Laurent ou SARL..." required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-frost-text mb-1.5 uppercase font-label-caps">Téléphone joignable</label>
+<input class="w-full h-12 px-4 rounded bg-carbon-base border border-slate-border text-pure-white placeholder-outline focus:border-electric-cyan focus:ring-1 focus:ring-electric-cyan text-sm" placeholder="06 00 00 00 00" required="" type="tel"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-semibold text-frost-text mb-1.5 uppercase font-label-caps">Adresse E-mail</label>
+<input class="w-full h-12 px-4 rounded bg-carbon-base border border-slate-border text-pure-white placeholder-outline focus:border-electric-cyan focus:ring-1 focus:ring-electric-cyan text-sm" placeholder="contact@domaine.com" required="" type="email"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-frost-text mb-1.5 uppercase font-label-caps">Type de Projet</label>
+<select class="w-full h-12 px-4 rounded bg-carbon-base border border-slate-border text-pure-white focus:border-electric-cyan focus:ring-1 focus:ring-electric-cyan text-sm">
+<option>Bâtiment &amp; Villa (Films Solaires)</option>
+<option>Technologie PDLC Cristaux Liquides</option>
+<option>Bâtiment (Films Sécurité Armorcoat)</option>
+<option>Automobile Prestige / Vitres Teintées</option>
+<option>Yacht &amp; Bateau Méditerranée</option>
+<option>Enseignes, Vitrophanie &amp; Signalétique</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-frost-text mb-1.5 uppercase font-label-caps">Description du besoin &amp; dimensions estimées</label>
+<textarea class="w-full p-4 rounded bg-carbon-base border border-slate-border text-pure-white placeholder-outline focus:border-electric-cyan focus:ring-1 focus:ring-electric-cyan text-sm" placeholder="Surface vitrée approximative, orientation solaire, contraintes spécifiques..." rows="3"></textarea>
+</div>
+<div class="pt-2">
+<button class="w-full py-3.5 rounded-lg bg-electric-cyan text-carbon-base font-semibold font-label-md text-label-md hover:shadow-[0_0_20px_rgba(0,210,255,0.45)] transition-all" type="submit">
+                    Transmettre ma demande d'étude
+                  </button>
+<p class="text-[11px] text-outline text-center mt-2.5">
+                    Aucun démarchage commercial intrusif. Vos données restent strictement confidentielles.
+                  </p>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ================= FOOTER (From Shared Component JSON) ================= -->
+<footer class="w-full border-t border-glass-border bg-carbon-base px-6 lg:px-12 py-12 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+<div class="md:col-span-5 space-y-4">
+<a class="inline-flex items-center gap-3" href="#">
+<div class="w-7 h-7 rounded bg-carbon-surface border border-electric-cyan/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-electric-cyan text-sm">filter_hdr</span>
+</div>
+<span class="font-headline-sm text-headline-sm tracking-widest font-bold text-pure-white uppercase">Vit'Opaque</span>
+</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+          Orfèvrerie du Vitrage Architectural &amp; Automobile Prestige. Pose de films haute technologie, rejet thermique et intimité connectée.
+        </p>
+<div class="flex gap-4 pt-2">
+<a aria-label="Facebook" class="w-8 h-8 rounded bg-carbon-surface border border-glass-border flex items-center justify-center text-outline hover:text-electric-cyan hover:border-electric-cyan transition-colors" href="https://www.facebook.com/vit.opaque" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a aria-label="Instagram" class="w-8 h-8 rounded bg-carbon-surface border border-glass-border flex items-center justify-center text-outline hover:text-electric-cyan hover:border-electric-cyan transition-colors" href="https://www.instagram.com/vit.opaque/" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</a>
+<a aria-label="LinkedIn" class="w-8 h-8 rounded bg-carbon-surface border border-glass-border flex items-center justify-center text-outline hover:text-electric-cyan hover:border-electric-cyan transition-colors" href="https://www.linkedin.com/company/vit-opaque/" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm">business_center</span>
+</a>
+</div>
+</div>
+<!-- Links from JSON -->
+<div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6">
+<div>
+<div class="font-label-caps text-label-caps text-pure-white mb-3 tracking-wider uppercase">Silos Solutions</div>
+<ul class="space-y-2 text-xs">
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#solutions-batiment">Solutions Bâtiment &amp; Pro</a></li>
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#auto-prestige">Solutions Auto &amp; Prestige</a></li>
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#technologie-pdlc">Technologie PDLC Switchable</a></li>
+</ul>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-pure-white mb-3 tracking-wider uppercase">Territoire &amp; Garanties</div>
+<ul class="space-y-2 text-xs">
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#contact">Atelier de Vendargues</a></li>
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#expertise">Garantie 10 Ans Sérénité</a></li>
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#expertise">Certifications Armorcoat</a></li>
+</ul>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-pure-white mb-3 tracking-wider uppercase">Légal &amp; Contact</div>
+<ul class="space-y-2 text-xs">
+<li><a class="text-on-surface-variant hover:text-frost-text transition-colors" href="#contact">Mentions Légales &amp; Confidentialité</a></li>
+<li><a class="text-electric-cyan font-mono" href="tel:0612441442">06 12 44 14 42</a></li>
+<li><span class="text-outline">Vendargues — Montpellier</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-glass-border flex flex-col md:flex-row items-center justify-between text-xs text-outline gap-4">
+<div>
+        © 2024 Vit'Opaque — Orfèvrerie du Vitrage Architectural &amp; Automobile Prestige. Montpellier &amp; Vendargues, Occitanie. Tous droits réservés.
+      </div>
+<div class="flex gap-4">
+<button class="hover:text-electric-cyan transition-colors" onclick="document.getElementById('cookie-drawer').classList.remove('hidden')">Gestion des cookies</button>
+</div>
+</div>
+</footer>
+<!-- ================= COOKIE CONSENT DRAWER (Style Guidance aligned) ================= -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 bg-carbon-surface/95 pdlc-glass-translucent border-t border-electric-cyan/30 shadow-2xl transition-all" id="cookie-drawer">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-electric-cyan mt-0.5">cookie</span>
+<div class="text-xs text-on-surface-variant max-w-2xl">
+<span class="font-bold text-pure-white">Confidentialité &amp; Mesure d'Audience :</span> Ce site utilise des cookies essentiels au bon fonctionnement et des balises analytiques pour optimiser votre expérience ergonomique conformément à notre engagement de discrétion.
+        </div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<button class="px-4 py-2 rounded bg-carbon-base border border-glass-border hover:border-outline text-frost-text text-xs transition-colors" onclick="document.getElementById('cookie-drawer').classList.add('hidden')">
+          Refuser
+        </button>
+<button class="px-4 py-2 rounded bg-electric-cyan text-carbon-base font-semibold text-xs hover:shadow-[0_0_12px_rgba(0,210,255,0.4)] transition-all" onclick="document.getElementById('cookie-drawer').classList.add('hidden')">
+          Tout accepter
+        </button>
+</div>
+</div>
+</div>
+<!-- Micro-Interactions Script (PDLC Simulator & Before/After Slider) -->
+<script>
+    // 1. PDLC Nano-Switch Simulator
+    const pdlcBtn = document.getElementById('pdlc-toggle-btn');
+    const pdlcOverlay = document.getElementById('pdlc-overlay');
+    const pdlcBadge = document.getElementById('pdlc-state-badge');
+    const pdlcBtnText = document.getElementById('btn-label-text');
+    let isPdlcClear = false;
+
+    if (pdlcBtn && pdlcOverlay) {
+      pdlcBtn.addEventListener('click', () => {
+        isPdlcClear = !isPdlcClear;
+        if (isPdlcClear) {
+          pdlcOverlay.classList.add('opacity-0', 'pointer-events-none');
+          pdlcBadge.textContent = 'TRANSPARENCE: ON (24V)';
+          pdlcBadge.classList.replace('text-electric-cyan', 'text-green-400');
+          pdlcBadge.classList.replace('border-electric-cyan/40', 'border-green-400/40');
+          pdlcBtnText.textContent = 'Activer Mode Opaque';
+        } else {
+          pdlcOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          pdlcBadge.textContent = 'OPACITÉ: ACTIVE (OFF)';
+          pdlcBadge.classList.replace('text-green-400', 'text-electric-cyan');
+          pdlcBadge.classList.replace('border-green-400/40', 'border-electric-cyan/40');
+          pdlcBtnText.textContent = 'Activer Transparence';
+        }
+      });
+    }
+
+    // 2. Interactive Before / After Solar Glare Slider
+    const rangeSlider = document.getElementById('comparison-range');
+    const beforeLayer = document.getElementById('before-image-layer');
+    const sliderHandle = document.getElementById('slider-handle');
+
+    if (rangeSlider && beforeLayer && sliderHandle) {
+      rangeSlider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        beforeLayer.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0% 100%)`;
+        sliderHandle.style.left = `${val}%`;
+      });
+    }
+  </script>
+</body></html>
