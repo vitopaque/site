@@ -1,5 +1,3 @@
-export { HubPages } from './collection.hub-page'
-export { ServicePages } from './collection.service-page'
 export { PageTemplate } from './components/PageTemplate'
-export { getPublishedPage, listPublishedSlugs } from './queries'
+export { getPage, listSlugs } from './queries'
 export { pageMetadata } from './seo'

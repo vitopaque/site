@@ -9,8 +9,6 @@ import sharp from 'sharp'
 
 import { isAdminOrEditor, Users } from '@/features/access'
 import { Media } from '@/features/media'
-import { HubPages, ServicePages } from '@/features/services'
-import { Contact, Navigation, SeoSettings } from '@/features/site-settings'
 import { isOnVercel, requireEnv, resolveSiteUrl } from '@/shared/env'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -20,8 +18,7 @@ export default buildConfig({
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname, 'src') },
   },
-  collections: [Users, Media, ServicePages, HubPages],
-  globals: [Contact, Navigation, SeoSettings],
+  collections: [Users, Media],
   editor: lexicalEditor(),
   serverURL: resolveSiteUrl().origin,
   secret: requireEnv('PAYLOAD_SECRET'),
