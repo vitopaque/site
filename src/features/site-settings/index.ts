@@ -1,4 +1,4 @@
-export { Contact } from './global.contact'
-export { Navigation } from './global.navigation'
-export { SeoSettings } from './global.seo'
-export { getSeoSettings } from './queries'
+export { LocalBusinessJsonLd } from './components/LocalBusinessJsonLd'
+export { SiteFooter } from './components/SiteFooter'
+export { siteConfig } from './config'
+export { localBusinessId } from './seo'
