@@ -1,3 +1,6 @@
+import path from 'node:path'
+
+import createMDX from '@next/mdx'
 import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 import { blobImageHostname } from './src/shared/env'
@@ -17,4 +20,10 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withPayload(nextConfig)
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [path.join(process.cwd(), 'src/shared/content/remark-content-rules.mjs')],
+  },
+})
+
+export default withPayload(withMDX(nextConfig))

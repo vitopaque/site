@@ -1,6 +1,9 @@
+import { LocalBusinessJsonLd } from '@/features/site-settings'
+
 export default function HomePage() {
   return (
     <>
+      <LocalBusinessJsonLd />
       <section className="max-w-page py-3xl px-margin mx-auto">
         <p className="label-caps text-on-surface-variant">Films de prestige</p>
         <h1 className="mt-md text-display-hero">Page provisoire VIT&apos;OPAQUE</h1>

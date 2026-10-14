@@ -28,66 +28,60 @@ Le site est une application Next.js avec Payload installé dans le même projet 
 
 ## Routes du site
 
-Les URLs reprennent celles du CDC v1.1 (§6.1 et §7.2). Les pages de service partagent un seul gabarit alimenté par une collection Payload, ce qui garantit une structure identique et des balises uniques sur chaque page.
+Les URLs reprennent celles du CDC v1.1 (§6.1 et §7.2). Les pages de service partagent un seul gabarit alimenté par des modules de contenu en code (TypeScript + MDX), contrôlés au build, ce qui garantit une structure identique et des balises uniques sur chaque page.
 
 | Route | Page | Contenu géré dans | Rendu |
 | --- | --- | --- | --- |
-| `/` | Accueil | Global « Accueil » | ISR |
-| `/batiment` | Hub Bâtiment & Pro | Collection Pages hub | ISR |
-| `/voiture` | Hub Voiture | Collection Pages hub | ISR |
-| `/bateau` | Hub Bateau | Collection Pages hub | ISR |
-| `/film-solaire-batiment` | Page de service | Collection Pages de service | ISR |
-| `/film-securite-anti-effraction` | Page de service | Collection Pages de service | ISR |
-| `/film-pdlc-cristaux-liquides` | Page de service | Collection Pages de service | ISR |
-| `/vitrophanie-signaletique` | Page de service | Collection Pages de service | ISR |
-| `/vitres-teintees-auto` | Page de service | Collection Pages de service | ISR |
-| `/vitres-teintees-bateau` | Page de service | Collection Pages de service | ISR |
-| `/covering-et-flocage` | Page de service | Collection Pages de service | ISR |
-| `/realisations` | Galerie filtrable par univers et type de film | Collection Études de cas | ISR |
-| `/realisations/[slug]` | Étude de cas (Problème, Solution, Résultat) | Collection Études de cas | ISR |
+| `/` | Accueil | Contenu en code (accueil) | Statique |
+| `/batiment` | Hub Bâtiment & Pro | Contenu en code (hubs) | Statique |
+| `/voiture` | Hub Voiture | Contenu en code (hubs) | Statique |
+| `/bateau` | Hub Bateau | Contenu en code (hubs) | Statique |
+| `/film-solaire-batiment` | Page de service | Contenu en code (services) | Statique |
+| `/film-securite-anti-effraction` | Page de service | Contenu en code (services) | Statique |
+| `/film-pdlc-cristaux-liquides` | Page de service | Contenu en code (services) | Statique |
+| `/vitrophanie-signaletique` | Page de service | Contenu en code (services) | Statique |
+| `/vitres-teintees-auto` | Page de service | Contenu en code (services) | Statique |
+| `/vitres-teintees-bateau` | Page de service | Contenu en code (services) | Statique |
+| `/covering-et-flocage` | Page de service | Contenu en code (services) | Statique |
+| `/realisations` | Galerie filtrable par univers et type de film | Contenu en code (réalisations) | Statique |
+| `/realisations/[slug]` | Étude de cas (Problème, Solution, Résultat) | Contenu en code (réalisations) | Statique |
 | `/conseils-expertises` | Index du blog | Collection Articles | ISR |
 | `/conseils-expertises/[slug]` | Article | Collection Articles | ISR |
-| `/a-propos` | Savoir-faire, garanties, partenaires | Global « À propos », collection Partenaires | ISR |
-| `/contact-devis` | Formulaire de devis segmenté, coordonnées, plan d'accès | Global « Coordonnées et horaires » | Statique, formulaire côté client |
-| `/mentions-legales`, `/politique-de-confidentialite` | Pages légales | Collection Pages simples | ISR |
+| `/a-propos` | Savoir-faire, garanties, partenaires | Contenu en code (à propos, partenaires) | Statique |
+| `/contact-devis` | Formulaire de devis segmenté, coordonnées, plan d'accès | Configuration du site (code) | Statique, formulaire côté client |
+| `/mentions-legales`, `/politique-de-confidentialite` | Pages légales | Contenu en code (pages légales) | Statique |
 | `/sitemap.xml`, `/robots.txt` | Générés à partir des collections | — | Généré |
 | `/admin`, `/api/*` | Interface Payload, API, webhooks | — | Serveur |
 
-Les routes fixes (`/realisations`, `/conseils-expertises`, `/a-propos`, `/contact-devis`) l'emportent sur la route dynamique `/[slug]` des pages de service. Un slug inconnu renvoie une vraie page 404, et ces noms réservés sont interdits dans la collection Pages de service.
+Les routes fixes (`/realisations`, `/conseils-expertises`, `/a-propos`, `/contact-devis`) l'emportent sur la route dynamique `/[slug]` des pages de service. Un slug inconnu renvoie une vraie page 404, et ces noms réservés sont interdits comme slugs de pages de service (contrôle au build).
 
 **Décision :** trois pages hub, `/batiment`, `/voiture` et `/bateau`. Les deux premières gardent leurs URLs actuelles, donc sans redirection ; `/bateau` est séparée de `/voiture` pour ne pas brouiller le référencement de chaque univers. Reste à fixer l'URL de la page contact.
 
-## Modèle de contenu Payload
+## Modèle de contenu
 
-Chaque type de page a sa collection, avec des champs qui imposent les règles du CDC (un seul H1, méta-description unique, texte alternatif obligatoire sur les images). D'après la documentation Payload, l'option `versions.drafts` ajoute les brouillons : l'éditeur enregistre un brouillon ou publie, et le document est marqué Brouillon, Publié ou Modifié.
+> **Révision du 14/10/2026 (décision de Hery) :** l'admin Payload ne sert plus qu'au blog. Le contenu du site est en code : modules TypeScript typés (métadonnées, H1, accroche, introduction, FAQ, SEO) et corps en MDX, un dossier par page. Les règles du CDC sont appliquées par un contrôle au build (un seul H1, titre et méta-description uniques, règle ville, slugs réservés) qui fait échouer `next build`.
 
-| Collection | Champs clés | Brouillons |
+| Collection Payload | Champs clés | Brouillons |
 | --- | --- | --- |
-| Pages de service | Slug, univers, H1, accroche, introduction, blocs de contenu, questions fréquentes (balisage `FAQPage`), image principale, études de cas liées, titre et méta-description SEO | Oui |
-| Pages hub | Slug, univers, accroche, liens vers les pages de service, SEO | Oui |
-| Études de cas | Titre, slug, univers, type de film, problème, solution, résultat, photos avant et après, date, SEO | Oui |
 | Articles | Titre, slug, extrait, contenu, image, catégorie, auteur, page de service liée (obligatoire, pour le maillage interne), date de publication, SEO | Oui |
-| Pages simples | Mentions légales, politique de confidentialité | Oui |
-| Auteurs, Partenaires, Types de film | Nom, logo ou photo, description | Non |
-| Médias | Fichier, texte alternatif (obligatoire), légende | Non |
+| Auteurs | Nom, photo, description | Non |
+| Médias | Fichier, texte alternatif (obligatoire, sans la ville), légende | Non |
 | Demandes de devis | Univers, type de besoin, surface ou modèle de véhicule, photos, coordonnées, consentement RGPD, date | Non, accès privé |
 | Utilisateurs | Email, rôle | Non |
 
-| Global | Contenu |
+| Contenu en code | Emplacement |
 | --- | --- |
-| Accueil | Accroche, sous-titre, simulateur PDLC d'en-tête (sans vidéo), double entrée, réalisations mises en avant, garanties |
-| À propos | Savoir-faire, garanties, partenaires technologiques |
-| Coordonnées et horaires | Source unique pour le pied de page, la page contact et les données structurées `LocalBusiness`, ce qui évite les horaires contradictoires du site actuel |
-| Navigation | Menu et pied de page |
-| Réglages SEO | Modèles de titre, image de partage par défaut |
+| Pages de service et hubs | `src/features/services/content/` |
+| Coordonnées, horaires, réseaux, navigation du pied de page, modèle de titre | `src/features/site-settings/config.ts` |
+| Accueil, à propos, pages légales, réalisations | module de la feature correspondante |
 
-**Rôles :** Administrateur (toi, accès complet) et Éditeur (client : articles uniquement, avec leurs images). Tout le reste (pages de service, études de cas, coordonnées et horaires, demandes de devis, schéma, réglages SEO) reste réservé à l'administrateur. **À valider :** décidé, le client ne publie que des articles ; les demandes de devis lui parviennent par notification (n8n), sans accès à l'admin.
+**Rôles :** Administrateur (toi, accès complet) et Éditeur (client : articles uniquement, avec leurs images). Le client n'a accès à rien d'autre ; il reçoit les demandes de devis par notification (n8n), sans accès à l'admin.
 
 ## Rendu et publication
 
-Toutes les pages publiques sont prérendues puis servies depuis le cache. Un article publié par le client est visible en quelques secondes, sans reconstruction du site.
+Les pages du site (accueil, hubs, pages de service, réalisations, légales) sont statiques : le contenu est en code et la publication se fait par déploiement. Seuls les articles du blog sont prérendus en ISR et publiés depuis l'admin.
 
-1. Le client enregistre un brouillon ou publie dans `/admin`.
+1. Le client enregistre un brouillon ou publie un article dans `/admin`.
 2. Un hook Payload (`afterChange`) appelle `revalidatePath` ou `revalidateTag` pour les pages touchées.
 3. La page est régénérée à la requête suivante, puis remise en cache.
 4. Un appel de réchauffage vers l'URL publiée évite que le premier visiteur subisse la régénération.
@@ -95,11 +89,9 @@ Toutes les pages publiques sont prérendues puis servies depuis le cache. Un art
 | Contenu publié | Pages invalidées |
 | --- | --- |
 | Article | Sa page, l'index du blog, `/sitemap.xml`, la page de service liée |
-| Page de service | Sa page, son hub, l'accueil, `/sitemap.xml` |
-| Étude de cas | Sa page, `/realisations`, les pages de service liées, l'accueil si mise en avant |
-| Global (coordonnées, navigation) | Tout le site, via un tag commun |
+| Contenu en code | Aucune : le déploiement reconstruit les pages |
 
-- **Aperçu des brouillons :** le mode brouillon de Next.js, avec un secret, affiche la dernière version enregistrée (le paramètre `draft` de l'API Payload renvoie les brouillons). L'aperçu en direct de Payload est une option à évaluer ensuite.
+- **Aperçu :** pour le contenu en code, les déploiements d'aperçu par branche de Vercel. Pour les articles, le mode brouillon de Next.js avec un secret (le paramètre `draft` de l'API Payload renvoie les brouillons), à évaluer ensuite.
 - **Contrainte d'hébergement :** sur Vercel, la plateforme prend en charge l'ISR (la documentation Next.js indique un support propre à chaque plateforme) ; l'export statique est exclu.
 - **Publication planifiée :** Payload la propose, mais elle exige un traitement de tâches en arrière-plan d'après sa documentation. Hors périmètre de la première version.
 

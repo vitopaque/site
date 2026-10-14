@@ -8,9 +8,9 @@ description: "Gabarits Next.js App Router de vitopaque.com : routes minces, rout
 Source : `architecture-technique.md`, section « Routes du site ». Organisation : feature-first (skill `principes-code`).
 
 - `src/app` ne fait que le **routage** : chaque `page.tsx` est mince et appelle les composants et requêtes de la feature concernée via son `index.ts`.
-- Routes : `/`, `/batiment`, `/voiture`, `/bateau`, 7 pages de service (collection, gabarit unique), `/realisations(/[slug])`, `/conseils-expertises(/[slug])`, `/a-propos`, `/contact-devis`, pages légales.
+- Routes : `/`, `/batiment`, `/voiture`, `/bateau`, pages de service (contenu en code, gabarit unique), `/realisations(/[slug])`, `/conseils-expertises(/[slug])`, `/a-propos`, `/contact-devis`, pages légales.
 - Les routes fixes l'emportent sur `/[slug]`. Slug inconnu → vraie 404 avec liens vers les univers et le contact.
-- Rendu ISR sur les pages de contenu ; `/contact-devis` statique avec formulaire client.
+- Pages du site : statiques (contenu en code, `generateStaticParams`, `dynamicParams = false` sur `/[slug]`). ISR seulement pour le blog. `/contact-devis` statique avec formulaire client.
 - Composants serveur par défaut ; client seulement pour simulateur PDLC, curseur avant/après, carrousel, formulaire, menu mobile (chargés à l'affichage de leur zone).
 - Images : `next/image`, AVIF/WebP, tailles déclarées, chargement différé sauf l'image principale.
 - Police : `next/font/local` (Montserrat). Pas de slash final ; une seule version du domaine.

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { SiteFooter } from '@/features/site-settings'
 import { resolveSiteUrl, robotsMetadata } from '@/shared'
 import { montserrat } from '@/shared/fonts/montserrat'
 import './globals.css'
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Aller au contenu
         </a>
         <main id="contenu">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   )

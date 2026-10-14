@@ -2,7 +2,8 @@ import type { CollectionConfig } from 'payload'
 
 import { adminOrCreator, isAdminOrEditor } from '@/features/access'
 import { validateFilename } from './hooks'
-import { noCityInTitle, textRule } from '@/shared/payload/validators'
+import { noCityInTitle } from '@/shared/content/city-rules.mjs'
+import { textRule } from '@/shared/payload/validators'
 
 export const Media: CollectionConfig = {
   slug: 'media',
