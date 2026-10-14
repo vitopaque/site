@@ -26,3 +26,15 @@ export function resolveSiteUrl(): URL {
     throw new Error("Variable d'environnement invalide : SITE_URL doit être une URL absolue.")
   }
 }
+
+export function blobImageHostname(): string | undefined {
+  const token = process.env.BLOB_READ_WRITE_TOKEN?.trim()
+  if (!token) return undefined
+  const storeId = token.split('_')[3]
+  if (!storeId) {
+    throw new Error(
+      'BLOB_READ_WRITE_TOKEN a un format inattendu : identifiant du store Blob introuvable.',
+    )
+  }
+  return `${storeId.toLowerCase()}.public.blob.vercel-storage.com`
+}

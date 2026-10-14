@@ -1,0 +1,25 @@
+import { absoluteUrl } from './metadata'
+
+type JsonLdProps = { data: Record<string, unknown> }
+
+export function JsonLd({ data }: JsonLdProps) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+    />
+  )
+}
+
+export type Crumb = { name: string; path: string }
+
+export const breadcrumbList = (crumbs: Crumb[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.name,
+    item: absoluteUrl(crumb.path),
+  })),
+})

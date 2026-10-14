@@ -1,6 +1,8 @@
 import type { CollectionConfig } from 'payload'
 
 import { adminOrCreator, isAdminOrEditor } from '@/features/access'
+import { validateFilename } from './hooks'
+import { noCityInTitle, textRule } from '@/shared/payload/validators'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -10,9 +12,10 @@ export const Media: CollectionConfig = {
     update: adminOrCreator(),
     delete: adminOrCreator(),
   },
+  hooks: { beforeValidate: [validateFilename] },
   upload: { mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'] },
   fields: [
-    { name: 'alt', type: 'text', required: true },
+    { name: 'alt', type: 'text', required: true, validate: textRule(noCityInTitle) },
     {
       name: 'createdBy',
       type: 'relationship',
