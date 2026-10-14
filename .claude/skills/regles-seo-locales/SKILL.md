@@ -6,7 +6,7 @@ description: "Règles SEO et d'ancrage local de Montpellier pour vitopaque.com :
 # Règles SEO impératives
 
 - **Montpellier** : une mention naturelle dans l'introduction, un H2 si pertinent et la méta-description de chaque page de service. Aussi pied de page, page contact, mentions légales, `LocalBusiness`.
-- **Interdits** : « Montpellier 34 » et « 34740 » partout ; la ville dans les H1, titres de page, textes alternatifs, noms de fichiers. Pas de pages « service + ville ».
+- **Interdits** : « Montpellier 34 » et « 34740 » dans les contenus (textes, titres, alt, noms de fichiers) ; le code postal reste autorisé dans l'adresse postale (pied de page, `LocalBusiness`) ; la ville dans les H1, titres de page, textes alternatifs, noms de fichiers. Pas de pages « service + ville ».
 - Un seul H1 par page (géré par le gabarit) ; le contenu éditable commence à H2.
 - Titre et méta-description uniques par page ; canonique absolue.
 - Une requête principale par URL ; chaque article renvoie à sa page de service.

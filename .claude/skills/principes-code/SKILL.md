@@ -10,20 +10,20 @@ description: "Principes de code de vitopaque.com : architecture feature-first, r
 src/
   app/            routage seul : pages minces qui appellent les features
   features/
-    services/       pages de service + hubs
+    services/       pages de service + hubs (contenu en code : TypeScript + MDX, contrôlé au build)
     case-studies/   réalisations
     articles/       Conseils & Expertises
     quote/          devis (collection, formulaire, route serveur, client n8n)
     reviews/        avis Google (API Places + cache)
     consent/        bandeau RGPD, GA4
-    site-settings/  globals : accueil, à propos, coordonnées, navigation, réglages SEO
+    site-settings/  configuration du site en code : coordonnées, réseaux, navigation, SEO, pied de page, LocalBusiness
     media/          médias et upload
     access/         rôles Administrateur / Éditeur
     home/           simulateur PDLC et sections d'accueil
   shared/         kit UI, tokens, builders SEO, champs Payload communs, utilitaires
 payload.config.ts   assemble les features
 ```
-Dans une feature : `collection.ts` (ou `global.ts`), `hooks.ts`, `access.ts`, `validators.ts`, `queries.ts`, `components/`, `seo.ts`, `types.ts`, `index.ts`. Un service externe : `ports.ts` (interface) + `adapters/`.
+Dans une feature : `collection.ts` (Payload : blog et données), `content/` (contenu en code), `hooks.ts`, `access.ts`, `validators.ts`, `queries.ts`, `components/`, `seo.ts`, `types.ts`, `index.ts`. Un service externe : `ports.ts` (interface) + `adapters/`.
 
 ## Règle de dépendance
 - Sens unique : `app` → `features` → `shared`.

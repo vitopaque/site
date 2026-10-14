@@ -23,11 +23,11 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ## 3. Stack validée (verrouillée)
 
-- **Application :** Next.js (App Router) avec **Payload installé dans la même application**. Une seule base de code, sans monorepo.
+- **Application :** Next.js (App Router) avec **Payload installé dans la même application**. Une seule base de code, sans monorepo. Payload ne sert que le **blog** (articles, médias, utilisateurs) et la réception des devis ; le reste du contenu du site (pages de service, hubs, réalisations, coordonnées, navigation, réglages SEO) est **en code** : modules TypeScript typés et corps MDX (`@next/mdx`), publiés par déploiement.
 - **Base de données :** Supabase (Postgres) via `@payloadcms/db-postgres`, par le **pooler en mode transaction (port 6543)**, sans prepared statements (à valider avec l'adaptateur). Deux projets : production et préproduction.
 - **Hébergement :** Vercel, **formule Pro** (usage commercial), fonctions en région européenne. Projet sur le compte Vercel du client.
-- **Médias :** Vercel Blob via l'adaptateur Payload officiel, **envoi direct navigateur → stockage** (limite de 4,5 Mo par requête de fonction Vercel ; disque non durable).
-- **Rendu :** pages prérendues en ISR ; un hook Payload `afterChange` appelle `revalidatePath` / `revalidateTag`. Pas d'export statique.
+- **Médias :** images de l'admin (articles) sur Vercel Blob via l'adaptateur Payload officiel, **envoi direct navigateur → stockage** (limite de 4,5 Mo par requête de fonction Vercel ; disque non durable). Les images fixes du site sont dans le dépôt (WebP, `next/image`).
+- **Rendu :** pages du site statiques (contenu en code, publication par déploiement) ; articles prérendus en ISR, avec un hook Payload `afterChange` qui appelle `revalidatePath` / `revalidateTag`. Pas d'export statique. Un contrôle au build (`assertValidContent`) refuse le contenu qui enfreint les règles SEO (H1, unicité des titres et méta-descriptions, règle ville).
 - **Devis :** collection Payload privée + webhook **n8n** (email, CRM éventuel). Anti-spam sans service tiers.
 - **Avis Google :** API Places, côté serveur, mise en cache. Pas de widget tiers.
 - **Mesure :** Vercel Analytics, Search Console, **GA4 chargé uniquement après consentement** (bandeau RGPD).
@@ -46,19 +46,19 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ### SEO
 - Un seul H1 par page, géré par le gabarit. Titre et méta-description **uniques** par page. Canonique absolue partout.
-- **Montpellier** : une mention naturelle dans l'introduction, un H2 si pertinent et la méta-description de chaque page de service. **Jamais** « Montpellier 34 » ni « 34740 » ; jamais la ville dans les H1, titres de page, textes alternatifs ou noms de fichiers. Pas de pages « service + ville ».
+- **Montpellier** : une mention naturelle dans l'introduction, un H2 si pertinent et la méta-description de chaque page de service. **Jamais** « Montpellier 34 » ni « 34740 » dans les contenus (le code postal reste autorisé dans l'adresse postale : pied de page, données structurées `LocalBusiness`) ; jamais la ville dans les H1, titres de page, textes alternatifs ou noms de fichiers. Pas de pages « service + ville ».
 - Une requête principale par URL. Chaque article renvoie à sa page de service.
 - Texte alternatif obligatoire, descriptif et sobre. Noms de fichiers sobres.
 - Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `Article`, `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
 - Redirections 301 versionnées dans `next.config.ts` d'après le plan du CDC §7.4. Blog repris de zéro : les 11 anciens articles et la FAQ ne sont que redirigés.
-- Coordonnées et horaires : **source unique** (global Payload), pour supprimer les horaires contradictoires de l'ancien site.
+- Coordonnées et horaires : **source unique** (module de configuration `site-settings`), pour supprimer les horaires contradictoires de l'ancien site.
 
 ### Accueil et maquette
 - **Pas de vidéo d'en-tête** (décision figée : complexité injustifiée). L'en-tête reprend le simulateur interactif PDLC de la maquette.
 - La maquette de référence est `code.html` + `screen.png`. Elle fixe la structure et les composants ; son habillage (couleurs, police Plus Jakarta Sans, rayons) est remplacé par la charte `DESIGN.md` v2.0. Toute divergence de structure par rapport à la maquette est soumise à Hery.
 
 ### Rôles et contenu
-- **Administrateur** : Hery, accès complet. **Éditeur** (client) : **articles uniquement**, avec leurs images. Pages de service, études de cas, coordonnées, devis, schéma et réglages SEO réservés à l'administrateur. Le client reçoit les devis par notification, sans accès à l'admin.
+- L'admin Payload ne sert qu'au **blog**. **Administrateur** : Hery, accès complet. **Éditeur** (client) : **articles uniquement**, avec leurs images. Pages de service, hubs, réalisations, coordonnées, navigation et réglages SEO sont du contenu en code, modifié par Hery et publié par déploiement. Les devis sont stockés dans une collection privée réservée à l'administrateur ; le client les reçoit par notification, sans accès à l'admin.
 - Publication planifiée : hors périmètre de la première version.
 
 ### Design
@@ -76,7 +76,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - **Architecture feature-first** : `src/app` ne contient que le routage (pages minces qui appellent les features) ; chaque fonctionnalité vit dans `src/features/<feature>/` (collection, hooks, accès, validateurs, requêtes, composants, SEO, types) ; le transverse vit dans `src/shared/`. `payload.config.ts` assemble les features.
 - **Règle de dépendance** : `app` → `features` → `shared`. Une feature n'expose que son `index.ts` ; aucune autre feature n'importe ses fichiers internes ; `shared` n'importe aucune feature. Appliquée par ESLint (`no-restricted-imports` + `eslint-plugin-boundaries`), exécuté par `pnpm lint` en local et en CI (validé par Hery).
 - **SOLID**, en TypeScript fonctionnel : responsabilité unique (hooks, validateurs, requêtes, composants séparés), ouvert/fermé (fabriques de champs et de configuration), dépendances inversées (n8n, Places, GA4 derrière des interfaces propres à leur feature, donc testables).
-- **DRY** : un seul gabarit pour les 7 pages de service, un seul builder SEO, un seul champ SEO Payload, tokens uniques. On factorise dès la deuxième duplication réelle, pas par anticipation ni pour une ressemblance fortuite.
+- **DRY** : un seul gabarit pour les 7 pages de service, un seul builder SEO, un seul champ SEO Payload (articles), un seul contrôle de contenu, tokens uniques. On factorise dès la deuxième duplication réelle, pas par anticipation ni pour une ressemblance fortuite.
 - Détail et exemples : skill `principes-code`.
 
 ## 5. Gouvernance du travail
