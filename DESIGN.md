@@ -365,7 +365,7 @@ Sobres et signifiantes : toute animation illustre le passage **opaque → transp
 | Lentille du hero (diamètre) | 400 ms | par défaut |
 | Remplissage des jauges | 500 ms | par défaut |
 | Changement de film (voile) | 900 ms | `ease` |
-| Apparition des sections (opacité, translation de `reveal-shift` 28 px, flou de `reveal-blur` 14 px vers 0) | liée au défilement (`animation-timeline: view()`, plage `reveal-range` : `entry 0 %` à `entry 40 %`), sans durée | linéaire |
+| Apparition des sections (opacité, translation de `reveal-shift` 28 px, flou de `reveal-blur` 14 px vers 0) | liée au défilement (`animation-timeline: view()`, plage `reveal-range` : `entry 0 %` à `entry 40 %`), sans durée ; uniquement si JavaScript est actif (`@media (scripting: enabled)`), sinon les blocs restent visibles | linéaire |
 | Éclair au changement de film | 1200 ms | `ease-flash` |
 | Mots du manifeste (flou, opacité) | 250 ms | linéaire, pilotée par le défilement |
 | Reflet balayant (hero) | 8 s, boucle | `ease-in-out` |

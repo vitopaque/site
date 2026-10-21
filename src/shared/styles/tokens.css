@@ -315,10 +315,12 @@
 }
 
 @utility reveal {
-  @supports (animation-timeline: view()) {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: var(--reveal-range);
+  @media (scripting: enabled) {
+    @supports (animation-timeline: view()) {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: var(--reveal-range);
+    }
   }
 }
 
