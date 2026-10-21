@@ -1,9 +1,8 @@
-import Link from 'next/link'
-
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading, type SectionTitle } from '@/shared/ui/SectionHeading'
 
 import type { Guide } from '../types'
+import { ArticleCard } from './ArticleCard'
 
 type Props = { items: readonly Guide[]; heading: SectionTitle }
 
@@ -17,14 +16,7 @@ export function GuidesSection({ items, heading }: Props) {
       <ul className="reveal card-grid mt-12">
         {items.map((item) => (
           <li key={item.id}>
-            <article className="blueprint flex h-full flex-col gap-4 p-7">
-              <h3 className="text-headline-sm uppercase">
-                <Link href={item.href} className="hover:text-accent-700">
-                  {item.title}
-                </Link>
-              </h3>
-              <p className="text-neutral-700">{item.excerpt}</p>
-            </article>
+            <ArticleCard item={item} layout="text" />
           </li>
         ))}
       </ul>

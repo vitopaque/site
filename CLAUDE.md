@@ -28,7 +28,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - **Base de données :** Supabase (Postgres) via `@payloadcms/db-postgres`, par le **pooler en mode transaction (port 6543)**, sans prepared statements (à valider avec l'adaptateur). Deux projets : production et préproduction.
 - **Hébergement :** Vercel, **formule Pro** (usage commercial), fonctions en région européenne. Projet sur le compte Vercel du client.
 - **Médias :** images de l'admin (articles) sur Vercel Blob via l'adaptateur Payload officiel, **envoi direct navigateur → stockage** (limite de 4,5 Mo par requête de fonction Vercel ; disque non durable). Les images fixes du site sont dans le dépôt (WebP, `next/image`). Les vidéos du site (réalisations) sont hébergées sur Vercel Blob (store européen relié au projet), sans lecteur tiers et sans lecture automatique.
-- **Rendu :** pages du site statiques (contenu en code, publication par déploiement) ; articles prérendus en ISR, avec un hook Payload `afterChange` qui appelle `revalidatePath` / `revalidateTag`. Pas d'export statique. Un contrôle au build (`assertValidContent`) refuse le contenu qui enfreint les règles SEO (H1, unicité des titres et méta-descriptions, règle ville).
+- **Rendu :** pages du site prégénérées (contenu en code, publication par déploiement) ; celles qui affichent des articles (accueil, hubs, services, blog) se régénèrent à la publication par revalidation à la demande, avec un filet d'une heure (ISR). Hook Payload `afterChange` qui appelle `revalidatePath` / `revalidateTag`. Pas d'export statique. Un contrôle au build (`assertValidContent`) refuse le contenu qui enfreint les règles SEO (H1, unicité des titres et méta-descriptions, règle ville).
 - **Devis :** collection Payload privée + webhook **n8n** (email, CRM éventuel). Anti-spam sans service tiers.
 - **Avis Google :** API Places, côté serveur, mise en cache. Pas de widget tiers.
 - **Mesure :** Vercel Analytics, Search Console, **GA4 chargé uniquement après consentement** (bandeau RGPD).
@@ -50,7 +50,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - **Montpellier** : une mention naturelle dans l'introduction, un H2 si pertinent et la méta-description de chaque page de service. **Jamais** « Montpellier 34 » ni « 34740 » dans les contenus (le code postal reste autorisé dans l'adresse postale : pied de page, données structurées `LocalBusiness`) ; jamais la ville dans les H1, titres de page, textes alternatifs ou noms de fichiers. Pas de pages « service + ville ».
 - Une requête principale par URL. Chaque article renvoie à sa page de service.
 - Texte alternatif obligatoire, descriptif et sobre. Noms de fichiers sobres.
-- Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `Article`, `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
+- Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `BlogPosting` (sous-type d'`Article`), `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
 - Redirections 301 versionnées dans `next.config.ts` d'après le plan du CDC §7.4. Blog repris de zéro : les 11 anciens articles et la FAQ ne sont que redirigés.
 - Coordonnées et horaires : **source unique** (module de configuration `site-settings`), pour supprimer les horaires contradictoires de l'ancien site.
 - Zone d'intervention : également issue de `site-settings` (source unique). Automobile : dans les locaux de Vendargues. Bâtiment : Hérault, Gard et Aude, et Occitanie à partir de 30 m². Film à cristaux liquides : toute la France.
@@ -92,4 +92,4 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ## 6. Points ouverts (à ne pas trancher seul)
 
-URL de l'espace blog (`/conseils-expertises` proposée) · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
+codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.

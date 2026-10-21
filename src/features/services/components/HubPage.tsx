@@ -1,3 +1,4 @@
+import { GuidesSection, guidesForUnivers } from '@/features/articles'
 import { LISTING_PATH, pairOfUnivers, realisationsOfUnivers } from '@/features/realisations'
 import { provisionalPhoto } from '@/shared/assets/photos/provisional'
 import { labFilmsOf, quoteUniversHref } from '@/shared/catalog'
@@ -16,14 +17,16 @@ import { sectionTitle } from '../content/section-titles'
 import { type HubEntry, servicesOf } from '../queries'
 import { pageCrumbs } from '../seo'
 import { OtherUnivers } from './OtherUnivers'
+import { HeroVisual } from './HeroVisual'
 import { ServiceCards } from './ServiceCards'
 
-export function HubPage({ entry }: { entry: HubEntry }) {
+export async function HubPage({ entry }: { entry: HubEntry }) {
   const { page } = entry
   const services = servicesOf(page.univers)
   const films = labFilmsOf(page.univers)
   const beforeAfter = pairOfUnivers(page.univers)
   const href = quoteUniversHref(page.univers)
+  const guides = await guidesForUnivers(page.univers)
 
   return (
     <>
@@ -37,6 +40,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
             Devis gratuit
           </ButtonLink>
         }
+        aside={<HeroVisual page={page} />}
       />
       {services.length > 0 ? (
         <Section labelledBy="prestations-titre">
@@ -85,7 +89,8 @@ export function HubPage({ entry }: { entry: HubEntry }) {
         />
       ) : null}
       <FaqSection items={page.faq ?? []} heading={sectionTitle(page, 'faq')} tone="light" />
-      <OtherUnivers current={page.univers} tone="surface" />
+      <GuidesSection items={guides} heading={sectionTitle(page, 'guides')} />
+      <OtherUnivers current={page.univers} tone={guides.length > 0 ? 'light' : 'surface'} />
       <CtaBand
         id="devis-titre"
         {...sectionTitle(page, 'cta')}

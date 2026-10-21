@@ -5,7 +5,7 @@ import { pageJsonLd } from '../seo'
 import { HubPage } from './HubPage'
 import { ServicePage } from './ServicePage'
 
-export function PageTemplate({ entry }: { entry: Page }) {
+export async function PageTemplate({ entry }: { entry: Page }) {
   return (
     <>
       {pageJsonLd(entry).map((data, index) => (

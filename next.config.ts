@@ -14,7 +14,14 @@ const nextConfig: NextConfig = {
     remotePatterns: blobHostname ? [{ protocol: 'https', hostname: blobHostname }] : [],
   },
   async redirects() {
-    return [{ source: '/nos-realisations', destination: '/realisations', statusCode: 301 }]
+    return [
+      { source: '/nos-realisations', destination: '/realisations', statusCode: 301 },
+      {
+        source: '/conseils-expertises/page/1',
+        destination: '/conseils-expertises',
+        statusCode: 301,
+      },
+    ]
   },
   async headers() {
     return noindexHeaderSources().map((source) => ({

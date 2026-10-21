@@ -1,3 +1,4 @@
+import { articleSeoEntries } from '@/features/articles'
 import { realisationSeoEntries } from '@/features/realisations'
 import { siteConfig } from '@/features/site-settings'
 
@@ -14,6 +15,8 @@ import { vitresTeinteesBateau } from './services/vitres-teintees-bateau'
 import { vitrophanieSignaletique } from './services/vitrophanie-signaletique'
 import type { HubPageContent, ServicePageContent } from './types'
 import { assertValidContent, seoClashes } from './validate'
+
+const otherSeo = () => [...realisationSeoEntries(), ...articleSeoEntries()]
 
 export const hubPages: HubPageContent[] = [batimentHub, voitureHub, bateauHub]
 
@@ -32,7 +35,7 @@ assertValidContent({
   servicePages,
   silos: serviceSilos,
   titleTemplate: siteConfig.seo.titleTemplate,
-  otherSeo: realisationSeoEntries(),
+  otherSeo: otherSeo(),
   home: siteConfig.seo.home,
   internalHrefs: siteConfig.footerColumns.flatMap((column) =>
     column.links.map((link) => link.href),
@@ -44,5 +47,5 @@ export const seoClashesWithPages = (label: string, seo: { title: string; descrip
     hubPages,
     servicePages,
     home: siteConfig.seo.home,
-    otherSeo: realisationSeoEntries(),
+    otherSeo: otherSeo(),
   })

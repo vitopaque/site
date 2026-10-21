@@ -8,6 +8,8 @@ type PageMetadataInput = {
   path: string
   titleTemplate?: string | null
   imageUrl?: string | null
+  openGraphType?: 'website' | 'article'
+  robots?: Metadata['robots']
 }
 
 export const absoluteUrl = (path: string): string => new URL(path, resolveSiteUrl()).toString()
@@ -18,6 +20,8 @@ export function buildMetadata({
   path,
   titleTemplate,
   imageUrl,
+  openGraphType = 'website',
+  robots,
 }: PageMetadataInput): Metadata {
   const fullTitle = (titleTemplate ?? '%s').replace('%s', () => title)
   const url = absoluteUrl(path)
@@ -25,8 +29,9 @@ export function buildMetadata({
     title: { absolute: fullTitle },
     description,
     alternates: { canonical: url },
+    ...(robots ? { robots } : {}),
     openGraph: {
-      type: 'website',
+      type: openGraphType,
       locale: 'fr_FR',
       title: fullTitle,
       description,

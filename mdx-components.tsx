@@ -2,23 +2,17 @@ import type { MDXComponents } from 'mdx/types'
 import Link from 'next/link'
 
 import { ServiceAreaText } from '@/features/site-settings'
+import { proseClasses } from '@/shared/ui/prose-classes'
 
 const components: MDXComponents = {
   ServiceArea: ServiceAreaText,
-  h2: (props) => (
-    <h2
-      {...props}
-      className="text-headline-md mt-12 scroll-mt-(--anchor-offset) uppercase first:mt-0"
-    />
-  ),
-  h3: (props) => <h3 {...props} className="text-headline-sm mt-8 uppercase" />,
-  p: (props) => <p {...props} className="text-body-lg mt-4 text-pretty" />,
-  ul: (props) => <ul {...props} className="text-body-lg mt-4 list-disc pl-6" />,
-  ol: (props) => <ol {...props} className="text-body-lg mt-4 list-decimal pl-6" />,
-  li: (props) => <li {...props} className="mt-2" />,
-  a: ({ href = '', ...props }) => (
-    <Link href={href} {...props} className="text-accent-700 underline underline-offset-4" />
-  ),
+  h2: (props) => <h2 {...props} className={proseClasses.h2} />,
+  h3: (props) => <h3 {...props} className={proseClasses.h3} />,
+  p: (props) => <p {...props} className={proseClasses.p} />,
+  ul: (props) => <ul {...props} className={proseClasses.ul} />,
+  ol: (props) => <ol {...props} className={proseClasses.ol} />,
+  li: (props) => <li {...props} className={proseClasses.li} />,
+  a: ({ href = '', ...props }) => <Link href={href} {...props} className={proseClasses.a} />,
 }
 
 export function useMDXComponents(): MDXComponents {

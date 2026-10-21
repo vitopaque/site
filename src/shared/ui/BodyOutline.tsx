@@ -1,8 +1,8 @@
-import { ordinal } from '@/shared/ui/ordinal'
+import { ordinal } from './ordinal'
 
-import type { BodyHeading } from '../content/types'
+export type OutlineHeading = { id: string; text: string }
 
-export function BodyOutline({ headings }: { headings: readonly BodyHeading[] }) {
+export function BodyOutline({ headings }: { headings: readonly OutlineHeading[] }) {
   return (
     <nav
       aria-label="Sommaire de la page"

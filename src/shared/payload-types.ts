@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    authors: Author;
+    articles: Article;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +80,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -168,6 +172,71 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors".
+ */
+export interface Author {
+  id: number;
+  name: string;
+  role: string;
+  photo?: (number | null) | Media;
+  bio?: string | null;
+  url?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  /**
+   * Laisser vide pour le générer depuis le titre. Modifier un slug publié casse l’ancienne URL.
+   */
+  slug?: string | null;
+  excerpt: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  author: number | Author;
+  service:
+    | 'film-solaire-batiment'
+    | 'film-securite-anti-effraction'
+    | 'film-pdlc-cristaux-liquides'
+    | 'vitrophanie-signaletique'
+    | 'vitres-teintees-auto'
+    | 'covering-et-flocage'
+    | 'vitres-teintees-bateau';
+  publishedAt?: string | null;
+  /**
+   * À renseigner seulement pour une mise à jour réelle du contenu.
+   */
+  contentUpdatedAt?: string | null;
+  seo: {
+    title: string;
+    description: string;
+  };
+  createdBy?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -197,6 +266,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'authors';
+        value: number | Author;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -284,6 +361,44 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors_select".
+ */
+export interface AuthorsSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  photo?: T;
+  bio?: T;
+  url?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  content?: T;
+  image?: T;
+  author?: T;
+  service?: T;
+  publishedAt?: T;
+  contentUpdatedAt?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  createdBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

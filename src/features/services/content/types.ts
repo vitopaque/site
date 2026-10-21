@@ -2,6 +2,7 @@ import type { StaticImageData } from 'next/image'
 import type { ComponentType } from 'react'
 
 import type { Univers } from '@/shared/payload/univers'
+import type { OutlineHeading } from '@/shared/ui/BodyOutline'
 import type { FaqItem } from '@/shared/ui/FaqList'
 import type { SectionTitle } from '@/shared/ui/SectionHeading'
 
@@ -22,7 +23,7 @@ export type SectionTitles = Partial<Record<SectionKey, SectionTitle>>
 
 export type Highlight = { title: string; text: string }
 
-export type BodyHeading = { id: string; text: string }
+export type BodyHeading = OutlineHeading
 
 type PageBase = {
   univers: Univers
