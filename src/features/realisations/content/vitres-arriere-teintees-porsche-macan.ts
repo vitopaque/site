@@ -15,13 +15,13 @@ export const vitresArriereTeinteesPorscheMacan: Realisation = {
   place: 'Atelier de Vendargues',
   lede: 'Une Porsche Macan noire gagne en intimité à bord grâce à un film teinté sur les vitres arrière, posé en 4 heures à l’atelier de Vendargues.',
   problem:
-    'Le propriétaire de cette Porsche Macan noire souhaitait préserver l’intimité à l’intérieur du véhicule, sans rien retirer au caractère de sa voiture.',
+    'Le propriétaire de cette Porsche Macan noire souhaitait préserver l’intimité à l’intérieur du véhicule.',
   // Seuil de 70 % : service-public.gouv.fr, fiche F19459 (https://www.service-public.gouv.fr/particuliers/vosdroits/F19459),
   // comme sur la page vitres-teintees-auto : pare-brise et vitres latérales avant, au moins 70 %, sauf exceptions médicales.
   solution:
     'Nous avons teinté les vitres arrière : préparation du vitrage, découpe du film sur mesure, puis pose soignée et finition, le tout à l’atelier de Vendargues. Les vitres avant n’ont pas été touchées ; le pare-brise et les vitres latérales avant sont soumis à une transmission lumineuse d’au moins 70 %, sauf exceptions pour raisons médicales.',
   result: {
-    text: 'En 4 heures, l’habitacle est à l’abri des regards depuis l’arrière, avec une teinte posée comme on soigne une carrosserie : sobre, nette, à la hauteur du véhicule. Les vitres avant sont restées telles quelles.',
+    text: 'En 4 heures, l’habitacle gagne en intimité grâce aux vitres arrière teintées. Les vitres avant sont restées telles quelles.',
   },
   cover: { src: vitresTeinteesVoitureApres, alt: AFTER_ALT },
   beforeAfter: {

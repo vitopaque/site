@@ -4,7 +4,7 @@ export const listing: ListingContent = {
   h1: 'Nos réalisations de films pour vitrages',
   tagline: 'Réalisations',
   intro:
-    'Chaque réalisation raconte un besoin, un film et un résultat. Découvrez les poses signées VIT’OPAQUE, à notre atelier de Vendargues ou directement sur vos vitrages, aux portes de Montpellier, avec le soin d’un travail d’orfèvre.',
+    'Chaque réalisation raconte un besoin, un film et un résultat. Découvrez les poses signées VIT’OPAQUE, à notre atelier de Vendargues ou directement sur vos vitrages, aux portes de Montpellier.',
   seo: {
     title: 'Réalisations de films pour vitrages',
     description:
