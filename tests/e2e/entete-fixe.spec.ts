@@ -72,18 +72,74 @@ test.describe('en-tête fixe', () => {
     ).toBeInViewport()
   })
 
-  test('une ancre place son H2 sous l’en-tête, sans masquage', async ({ page }) => {
+  test.describe('ancres du sommaire', () => {
+    const PAGE = '/vitres-teintees-auto'
+    const STABLE_FRAMES = 10
+
+    const scrollSettled = (page: Page) =>
+      page.evaluate(
+        (frames) =>
+          new Promise<void>((resolve) => {
+            let last = window.scrollY
+            let stable = 0
+            const tick = () => {
+              stable = window.scrollY === last ? stable + 1 : 0
+              last = window.scrollY
+              if (stable >= frames) resolve()
+              else requestAnimationFrame(tick)
+            }
+            requestAnimationFrame(tick)
+          }),
+        STABLE_FRAMES,
+      )
+
+    const expectH2BelowHeader = async (page: Page, id: string) => {
+      await scrollSettled(page)
+      const { height } = await headerBox(page)
+      const h2 = page.locator(`#${id}`)
+      expect((await h2.boundingBox())?.y ?? -1).toBeGreaterThanOrEqual(height)
+      expect(await h2.evaluate((node) => getComputedStyle(node).scrollMarginTop)).not.toBe('0px')
+    }
+
+    const h2Ids = async (page: Page) => {
+      const ids = await page
+        .locator('.max-w-prose h2[id]')
+        .evaluateAll((nodes) => nodes.map((n) => n.id))
+      expect(ids.length).toBeGreaterThan(2)
+      return ids
+    }
+
+    test('un clic sur le sommaire place le H2 sous l’en-tête', async ({ page }) => {
+      await page.goto(PAGE)
+      const id = (await h2Ids(page))[2] ?? ''
+      await page
+        .getByRole('navigation', { name: 'Sommaire de la page' })
+        .locator(`a[href="#${id}"]`)
+        .click()
+      await expect(page).toHaveURL(new RegExp(`#${id}$`))
+      await expectH2BelowHeader(page, id)
+    })
+
+    test('une URL avec ancre place le H2 sous l’en-tête', async ({ page }) => {
+      await page.goto(PAGE)
+      const id = (await h2Ids(page))[2] ?? ''
+      await page.goto(`${PAGE}#${id}`)
+      await expectH2BelowHeader(page, id)
+    })
+  })
+
+  test('le MDX applique puces, numéros et espacement des H3', async ({ page }) => {
     await page.goto('/vitres-teintees-auto')
-    const ids = await page
-      .locator('.max-w-prose h2[id]')
-      .evaluateAll((nodes) => nodes.map((n) => n.id))
-    expect(ids.length).toBeGreaterThan(2)
-    const id = ids[2] ?? ''
-    await page.goto(`/vitres-teintees-auto#${id}`)
-    const height = (await headerBox(page)).height
-    await expect
-      .poll(async () => (await page.locator(`#${id}`).boundingBox())?.y ?? -1)
-      .toBeGreaterThanOrEqual(height)
+    const lists = page.locator('.max-w-prose :is(ul, ol)')
+    expect(await lists.count()).toBeGreaterThan(0)
+    for (const list of await lists.all()) {
+      expect(await list.evaluate((node) => getComputedStyle(node).listStyleType)).not.toBe('none')
+    }
+    const h3s = page.locator('.max-w-prose h3')
+    expect(await h3s.count()).toBeGreaterThan(1)
+    expect(
+      await h3s.nth(1).evaluate((node) => parseFloat(getComputedStyle(node).marginTop)),
+    ).toBeGreaterThan(0)
   })
 
   test('accueil : en-tête plein après défilement, texte lisible', async ({ page }) => {
