@@ -266,7 +266,7 @@ Le nouveau site garde le nom de domaine vitopaque.com, qui porte la notoriété 
 | /voiture | /voiture (URL conservée, devient la page hub Voiture) ; nouvelle page hub /bateau |
 | /enseignes-vitrophanie-et-signaletique-vehicule | /vitrophanie-signaletique (covering : /covering-et-flocage) |
 | /nos-realisations | Page Réalisations (URL à fixer) |
-| /contactez-nous | Page Contact & devis (URL à fixer) |
+| /contactez-nous | `/contact-devis` |
 | /mentions-legales | URL conservée |
 | /politique-de-confidentialite | URL conservée |
 | /foire-aux-questions | /film-solaire-batiment (les 8 questions portent sur les films solaires) |
