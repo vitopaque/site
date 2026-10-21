@@ -8,6 +8,10 @@ import {
   getPublishedArticle,
   publishedArticleSlugs,
 } from '@/features/articles'
+import { localBusinessId, siteConfig } from '@/features/site-settings'
+import { absoluteUrl } from '@/shared/seo/metadata'
+
+const publisher = { id: localBusinessId(), name: siteConfig.name, url: absoluteUrl('/') }
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -32,5 +36,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  return <ArticleDetailPage article={await load(params)} />
+  return <ArticleDetailPage article={await load(params)} publisher={publisher} />
 }

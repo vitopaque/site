@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import { quoteHref, siloBySlug } from '@/shared/catalog'
 import { universLabel } from '@/shared/payload/univers'
-import { JsonLd } from '@/shared/seo/jsonld'
+import { JsonLd, type Publisher } from '@/shared/seo/jsonld'
 import { AsideColumn } from '@/shared/ui/AsideColumn'
 import { CtaBand } from '@/shared/ui/CtaBand'
 import { PageHero } from '@/shared/ui/PageHero'
@@ -22,14 +22,20 @@ import { LinkedService } from './LinkedService'
 
 const RELATED_COUNT = 3
 
-export async function ArticleDetailPage({ article }: { article: ArticleDetail }) {
+export async function ArticleDetailPage({
+  article,
+  publisher,
+}: {
+  article: ArticleDetail
+  publisher: Publisher
+}) {
   const outline = articleOutline(article.content)
   const related = await relatedArticles(article, RELATED_COUNT)
   const silo = siloBySlug(article.serviceSlug)
   const href = quoteHref(article.serviceSlug)
   return (
     <>
-      {articleJsonLd(article).map((data, index) => (
+      {articleJsonLd(article, publisher).map((data, index) => (
         <JsonLd key={index} data={data} />
       ))}
       <PageHero

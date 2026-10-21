@@ -49,6 +49,8 @@ export const videoObject = (video: VideoInput) => ({
   ...video,
 })
 
+export type Publisher = { id: string; name: string; url: string }
+
 type BlogPostingInput = {
   headline: string
   description: string
@@ -57,6 +59,7 @@ type BlogPostingInput = {
   datePublished: string
   dateModified: string
   author: { name: string; url?: string | null } | null
+  publisher: Publisher
 }
 
 const isoDate = (value: string): string => new Date(value).toISOString()
@@ -79,4 +82,10 @@ export const blogPosting = (post: BlogPostingInput) => ({
         },
       }
     : {}),
+  publisher: {
+    '@type': 'Organization',
+    '@id': post.publisher.id,
+    name: post.publisher.name,
+    url: post.publisher.url,
+  },
 })

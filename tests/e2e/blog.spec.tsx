@@ -58,6 +58,12 @@ const content = {
   ),
 } as unknown as ArticleDetail['content']
 
+const publisher = {
+  id: 'https://www.example.com/#localbusiness',
+  name: 'Atelier Test',
+  url: 'https://www.example.com/',
+}
+
 const article: ArticleDetail = {
   slug: 'choisir-un-film',
   title: 'Choisir un film',
@@ -117,7 +123,7 @@ test.describe('rendu Lexical', () => {
 
 test.describe('SEO des articles', () => {
   test('BlogPosting', () => {
-    const [post] = articleJsonLd(article) as Record<string, unknown>[]
+    const [post] = articleJsonLd(article, publisher) as Record<string, unknown>[]
     expect(post).toMatchObject({
       '@type': 'BlogPosting',
       headline: 'Choisir un film',
@@ -125,15 +131,21 @@ test.describe('SEO des articles', () => {
       datePublished: '2026-03-02T09:00:00.000Z',
       dateModified: '2026-03-02T09:00:00.000Z',
       author: { '@type': 'Person', name: 'Jean Dupont' },
+      publisher: {
+        '@type': 'Organization',
+        '@id': publisher.id,
+        name: publisher.name,
+        url: publisher.url,
+      },
     })
     expect(post).not.toHaveProperty('author.url')
   })
 
   test('dateModified suit contentUpdatedAt', () => {
-    const [post] = articleJsonLd({
-      ...article,
-      contentUpdatedAt: '2026-04-01T10:00:00.000Z',
-    }) as Record<string, unknown>[]
+    const [post] = articleJsonLd(
+      { ...article, contentUpdatedAt: '2026-04-01T10:00:00.000Z' },
+      publisher,
+    ) as Record<string, unknown>[]
     expect(post?.dateModified).toBe('2026-04-01T10:00:00.000Z')
   })
 

@@ -1,5 +1,5 @@
 import { robotsMetadata } from '@/shared/seo/indexing'
-import { blogPosting, breadcrumbList, type Crumb } from '@/shared/seo/jsonld'
+import { blogPosting, breadcrumbList, type Crumb, type Publisher } from '@/shared/seo/jsonld'
 import { absoluteUrl, buildMetadata } from '@/shared/seo/metadata'
 import type { SitemapPath } from '@/shared/seo/sitemap'
 import { TITLE_TEMPLATE } from '@/shared/seo/title-template'
@@ -43,7 +43,10 @@ export const articleCrumbs = (article: ArticleDetail): Crumb[] => [
   { name: article.title, path: articlePath(article.slug) },
 ]
 
-export const articleJsonLd = (article: ArticleDetail): Record<string, unknown>[] => [
+export const articleJsonLd = (
+  article: ArticleDetail,
+  publisher: Publisher,
+): Record<string, unknown>[] => [
   blogPosting({
     headline: article.title,
     description: article.seo.description,
@@ -52,6 +55,7 @@ export const articleJsonLd = (article: ArticleDetail): Record<string, unknown>[]
     datePublished: article.publishedAt,
     dateModified: article.contentUpdatedAt ?? article.publishedAt,
     author: article.author,
+    publisher,
   }),
   breadcrumbList(articleCrumbs(article)),
 ]
