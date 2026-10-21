@@ -101,6 +101,10 @@ export function contentViolations({
     }
     checkPage(label, page)
     if (page.image) check(`${label} texte alternatif`, page.image.alt, noCityInTitle)
+    if (page.beforeAfter) {
+      check(`${label} texte alternatif avant`, page.beforeAfter.before.alt, noCityInTitle)
+      check(`${label} texte alternatif après`, page.beforeAfter.after.alt, noCityInTitle)
+    }
     check(`${label} résumé`, page.summary, noCityNumber)
     for (const [index, item] of (page.highlights ?? []).entries()) {
       check(`${label} point clé ${index + 1} titre`, item.title, noCityNumber)

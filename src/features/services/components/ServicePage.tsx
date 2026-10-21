@@ -17,6 +17,7 @@ import { sectionTitle } from '../content/section-titles'
 import { linkedGuides, linkedRealisations, linkedReviews } from '../content/showcase'
 import { relatedServicesOf, type ServiceEntry } from '../queries'
 import { pageCrumbs } from '../seo'
+import { BeforeAfterSection } from './BeforeAfterSection'
 import { FilmDemo } from './FilmDemo'
 import { Highlights } from './Highlights'
 import { ServiceCards } from './ServiceCards'
@@ -66,6 +67,12 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
       ) : null}
       {silo?.film ? (
         <FilmDemo name={silo.label} film={silo.film} heading={sectionTitle(page, 'film')} />
+      ) : page.beforeAfter ? (
+        <BeforeAfterSection
+          id="film-titre"
+          heading={sectionTitle(page, 'lab')}
+          pair={page.beforeAfter}
+        />
       ) : null}
       <RealisationsSection
         items={linkedRealisations}

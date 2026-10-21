@@ -1,3 +1,8 @@
+import {
+  vitresTeinteesVoitureApres,
+  vitresTeinteesVoitureAvant,
+} from '@/shared/assets/photos/vitres-teintees-voiture'
+
 import type { ServicePageContent } from '../../types'
 import Body from './body.mdx'
 
@@ -50,6 +55,16 @@ export const vitresTeinteesAuto: ServicePageContent = {
     cta: {
       kicker: 'Devis gratuit de film teinté pour voiture',
       lines: ['Confiez-nous', 'votre véhicule.'],
+    },
+  },
+  beforeAfter: {
+    before: {
+      src: vitresTeinteesVoitureAvant,
+      alt: 'Porsche Macan noire de profil, vitres d’origine',
+    },
+    after: {
+      src: vitresTeinteesVoitureApres,
+      alt: 'Porsche Macan noire de profil, vitres arrière teintées',
     },
   },
   highlights: [
