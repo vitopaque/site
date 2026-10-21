@@ -26,7 +26,7 @@ export function Hero() {
         <div className="sweep-band animate-sweep absolute -inset-x-3/10 -inset-y-1/5" />
       </div>
 
-      <div className="max-w-page px-margin relative mx-auto grid w-full flex-1 grid-cols-[repeat(auto-fit,minmax(min(100%,26.25rem),1fr))] items-center gap-10 py-12">
+      <div className="max-w-page px-margin relative mx-auto grid w-full flex-1 grid-cols-[repeat(auto-fit,minmax(min(100%,26.25rem),1fr))] items-center gap-10 py-(--hero-pad-y)">
         <div className="flex flex-col gap-6">
           <p className="label-caps text-accent-300">{homeHero.kicker}</p>
           <h1 id="accueil-titre" className="text-display-hero wrap-break-word uppercase">

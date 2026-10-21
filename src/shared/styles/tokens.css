@@ -29,7 +29,7 @@
   --font-heading: var(--font-barlow-condensed), system-ui, sans-serif;
 
   --text-*: initial;
-  --text-display-hero: clamp(4rem, 10.5vw, 10.5rem);
+  --text-display-hero: clamp(4rem, min(10.5vw, 12svh), 10.5rem);
   --text-display-hero--line-height: 0.86;
   --text-display-hero--letter-spacing: -0.02em;
   --text-display-hero--font-weight: 600;
@@ -131,6 +131,7 @@
 
   --selection: color-mix(in srgb, var(--color-accent) 30%, transparent);
 
+  --hero-pad-y: clamp(1.5rem, 5svh, 3rem);
   --hero-min-height: max(42.5rem, min(100svh, 58.75rem));
   --logo-hero-max: 27.5rem;
   --lens-size: clamp(9rem, 30vw, 16.25rem);
@@ -315,10 +316,12 @@
 }
 
 @utility reveal {
-  @supports (animation-timeline: view()) {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: var(--reveal-range);
+  @media (scripting: enabled) {
+    @supports (animation-timeline: view()) {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: var(--reveal-range);
+    }
   }
 }
 
