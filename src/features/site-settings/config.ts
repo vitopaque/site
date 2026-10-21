@@ -49,6 +49,7 @@ export const siteConfig: SiteConfig = {
   },
   navigation: {
     links: [
+      { label: 'Accueil', href: '/' },
       { label: 'Bâtiment', href: '/batiment' },
       { label: 'Voiture', href: '/voiture' },
       { label: 'Bateau', href: '/bateau' },

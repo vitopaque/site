@@ -15,7 +15,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="accueil-titre"
-      className="on-dark bg-accent-900 text-background relative flex min-h-(--hero-min-height) flex-col overflow-hidden pt-20"
+      className="on-dark bg-accent-900 text-background relative flex min-h-(--hero-min-height) flex-col overflow-hidden pt-(--header-height)"
     >
       <div className="duotone absolute inset-0">
         <Image src={provisionalPhoto} alt="" fill priority sizes="100vw" className="object-cover" />
