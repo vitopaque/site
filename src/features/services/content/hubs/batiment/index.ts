@@ -12,5 +12,23 @@ export const batimentHub: HubPageContent = {
     description:
       'Films solaires, sécurité, PDLC et vitrophanie pour bureaux, commerces et villas. VIT’OPAQUE, spécialiste du vitrage aux portes de Montpellier.',
   },
+  sectionTitles: {
+    realisations: {
+      kicker: 'Réalisations de films pour le bâtiment',
+      lines: ['Des vitrages', 'transformés.'],
+    },
+    lab: {
+      kicker: 'Laboratoire de films pour vitrage de bâtiment',
+      lines: ['Faites glisser.', 'Voyez la différence.'],
+    },
+    faq: {
+      kicker: 'Films pour bâtiment : vos questions',
+      lines: ['Avant de', 'choisir votre film.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit pour vos vitrages de bâtiment',
+      lines: ['Parlons de', 'vos espaces.'],
+    },
+  },
   Body,
 }

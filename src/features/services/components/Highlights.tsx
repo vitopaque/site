@@ -1,14 +1,16 @@
 import { ordinal } from '@/shared/ui/ordinal'
 import { Section } from '@/shared/ui/Section'
-import { SectionHeading } from '@/shared/ui/SectionHeading'
+import { SectionHeading, type SectionTitle } from '@/shared/ui/SectionHeading'
 
 import type { Highlight } from '../content/types'
 
-export function Highlights({ items }: { items: readonly Highlight[] }) {
+type Props = { items: readonly Highlight[]; heading: SectionTitle }
+
+export function Highlights({ items, heading }: Props) {
   return (
     <Section labelledBy="points-cles-titre" tone="surface">
       <div className="reveal">
-        <SectionHeading id="points-cles-titre" kicker="Points clés" lines={['L’essentiel.']} />
+        <SectionHeading id="points-cles-titre" {...heading} />
       </div>
       <ol className="reveal card-grid-narrow mt-12">
         {items.map((item, index) => (

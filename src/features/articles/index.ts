@@ -1,2 +1,2 @@
 export { GuidesSection } from './components/GuidesSection'
-export type { Guide, GuideItem } from './types'
+export type { Guide } from './types'

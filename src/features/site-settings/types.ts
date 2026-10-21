@@ -7,9 +7,14 @@ export type Weekday =
 
 export type ServiceArea = {
   automotive: { location: string }
-  building: { departments: string[]; region: { name: string; minSurfaceM2: number } }
+  building: {
+    departments: { name: string; label: string }[]
+    region: { name: string; label: string; minSurfaceM2: number }
+  }
   liquidCrystal: { country: string }
 }
+
+export type ServiceAreaScope = keyof ServiceArea
 
 export type SiteConfig = {
   name: string

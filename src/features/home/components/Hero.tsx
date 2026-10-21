@@ -4,7 +4,9 @@ import Link from 'next/link'
 import grandMonogram from '@/shared/assets/brand/monogramme-v-grand.webp'
 import { provisionalPhoto } from '@/shared/assets/photos/provisional'
 import { ordinal } from '@/shared/ui/ordinal'
+import { Prose } from '@/shared/ui/Prose'
 
+import { homeHero } from '../content/hero'
 import { HeroLens } from './HeroLens'
 
 const WORDS = ['Intimité', 'Lumière', 'Chaleur', 'Sécurité'] as const
@@ -26,16 +28,16 @@ export function Hero() {
 
       <div className="max-w-page px-margin relative mx-auto grid w-full flex-1 grid-cols-[repeat(auto-fit,minmax(min(100%,26.25rem),1fr))] items-center gap-10 py-12">
         <div className="flex flex-col gap-6">
-          <p className="label-caps text-accent-300">Films de prestige pour vitrage</p>
+          <p className="label-caps text-accent-300">{homeHero.kicker}</p>
           <h1 id="accueil-titre" className="text-display-hero wrap-break-word uppercase">
             <span className="block">La lumière, </span>
             <span className="block">
               <span className="text-accent-300">à votre</span> mesure.
             </span>
           </h1>
+          <p className="text-title-md text-accent-100 max-w-115 text-pretty">{homeHero.subtitle}</p>
           <p className="text-body-lg text-accent-100 max-w-115 text-pretty">
-            Aux portes de Montpellier, nous posons sur vos vitres le film qui décide de ce qui passe
-            — et de ce qui reste dehors. Chaleur, regards, effraction : vous gardez la lumière.
+            <Prose segments={homeHero.intro} />
           </p>
           <div className="mt-1.5 flex flex-wrap gap-4">
             <a

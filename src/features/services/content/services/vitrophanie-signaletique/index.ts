@@ -16,6 +16,44 @@ export const vitrophanieSignaletique: ServicePageContent = {
     description:
       'Vitrophanie, films dépolis et signalétique : habillez vitrines et cloisons à votre image. Pose soignée par VIT’OPAQUE, aux portes de Montpellier.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Vitrophanie : habiller vitrines et cloisons',
+      lines: ['Votre image,', 'sur le verre.'],
+    },
+    film: {
+      kicker: 'Films dépolis et adhésifs',
+      lines: ['Le film dépoli', 'en un coup d’œil.'],
+    },
+    lab: {
+      kicker: 'Laboratoire : film dépoli sur vitrage',
+      lines: ['Faites glisser,', 'dépolissez le verre.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de vitrophanie et de signalétique',
+      lines: ['Des vitrines', 'à leur image.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur la vitrophanie',
+      lines: ['Vos vitrines,', 'leurs retours.'],
+    },
+    faq: {
+      kicker: 'Vitrophanie et signalétique : vos questions',
+      lines: ['Dépoli, logo, lettrage :', 'vos questions.'],
+    },
+    otherServices: {
+      kicker: 'Autres prestations pour vos locaux',
+      lines: ['Au-delà', 'de la vitrine.'],
+    },
+    guides: {
+      kicker: 'Conseils sur la vitrophanie',
+      lines: ['Habiller le verre', 'avec méthode.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de vitrophanie',
+      lines: ['Parlons de', 'votre vitrine.'],
+    },
+  },
   highlights: [
     {
       title: 'Une vitrine qui parle de vous',
@@ -66,9 +104,9 @@ export const vitrophanieSignaletique: ServicePageContent = {
         'Avec un chiffon doux et un nettoyant doux. Évitez les produits agressifs et les matériaux abrasifs.',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Que fournir pour chiffrer un projet de vitrophanie ?',
       answer:
-        'Depuis la page Contact et devis, avec les dimensions de vos vitrages et, si possible, votre logo. Le devis est gratuit et sans engagement.',
+        'Les dimensions de vos vitrages et, si possible, votre logo ou votre charte graphique, depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
   Body,

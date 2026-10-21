@@ -1,31 +1,32 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { GuidesSection } from '@/features/articles'
 import { ReviewsSection } from '@/features/reviews'
-import { PROVISIONAL_ALT, provisionalPhoto } from '@/shared/assets/photos/provisional'
+import { universLabel } from '@/shared/payload/univers'
 import { ButtonLink } from '@/shared/ui/ButtonLink'
 import { CtaBand } from '@/shared/ui/CtaBand'
-import { FaqList } from '@/shared/ui/FaqList'
+import { FaqSection } from '@/shared/ui/FaqSection'
 import { PageHero } from '@/shared/ui/PageHero'
+import { RealisationsSection } from '@/shared/ui/RealisationsSection'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
-import { ToIntegrateBadge } from '@/shared/ui/ToIntegrateBadge'
 
-import { quoteHref, siloBySlug } from '../catalog'
-import { guidePlaceholders, reviewPlaceholders } from '../content/placeholders'
-import { type ServiceEntry, servicesOf } from '../queries'
+import { hubHref, quoteHref, siloBySlug } from '../catalog'
+import { sectionTitle } from '../content/section-titles'
+import { linkedGuides, linkedRealisations, linkedReviews } from '../content/showcase'
+import { relatedServicesOf, type ServiceEntry } from '../queries'
 import { pageCrumbs } from '../seo'
 import { FilmDemo } from './FilmDemo'
 import { Highlights } from './Highlights'
-import { LinkedRealisations } from './LinkedRealisations'
 import { ServiceCards } from './ServiceCards'
 
 export function ServicePage({ entry }: { entry: ServiceEntry }) {
   const { page } = entry
   const silo = siloBySlug(page.slug)
-  const siblings = servicesOf(page.univers).filter((service) => service.slug !== page.slug)
+  const related = relatedServicesOf(page)
   const href = quoteHref(page.slug)
-  const image = page.image ?? { src: provisionalPhoto, alt: PROVISIONAL_ALT }
+  const image = page.image
 
   return (
     <>
@@ -40,22 +41,19 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
           </ButtonLink>
         }
         aside={
-          <figure className="blueprint">
-            <div className="duotone relative aspect-16/10 lg:aspect-4/5">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(min-width: 64rem) 36vw, 100vw"
-                className="object-cover"
-              />
-              {page.image ? null : (
-                <div className="absolute top-3 left-3 z-10">
-                  <ToIntegrateBadge className="bg-background" />
-                </div>
-              )}
-            </div>
-          </figure>
+          image ? (
+            <figure className="blueprint">
+              <div className="duotone relative aspect-16/10 lg:aspect-4/5">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(min-width: 64rem) 36vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </figure>
+          ) : undefined
         }
       />
       <Section>
@@ -63,35 +61,37 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
           <page.Body />
         </div>
       </Section>
-      {page.highlights?.length ? <Highlights items={page.highlights} /> : null}
-      {silo?.film ? <FilmDemo name={silo.label} film={silo.film} /> : null}
-      <LinkedRealisations tone="surface" />
-      <ReviewsSection items={reviewPlaceholders} />
-      <Section labelledBy="faq-titre" tone="surface">
-        <div className="reveal">
-          <SectionHeading id="faq-titre" kicker="FAQ" lines={['Questions fréquentes.']} />
-        </div>
-        <div className="reveal mt-12">
-          <FaqList items={page.faq} />
-        </div>
-      </Section>
-      {siblings.length > 0 ? (
+      {page.highlights?.length ? (
+        <Highlights items={page.highlights} heading={sectionTitle(page, 'highlights')} />
+      ) : null}
+      {silo?.film ? (
+        <FilmDemo name={silo.label} film={silo.film} heading={sectionTitle(page, 'film')} />
+      ) : null}
+      <RealisationsSection
+        items={linkedRealisations}
+        heading={sectionTitle(page, 'realisations')}
+        tone="surface"
+      />
+      <ReviewsSection items={linkedReviews} heading={sectionTitle(page, 'reviews')} />
+      <FaqSection items={page.faq} heading={sectionTitle(page, 'faq')} />
+      {related.length > 0 ? (
         <Section labelledBy="prestations-titre">
-          <div className="reveal">
-            <SectionHeading
-              id="prestations-titre"
-              kicker="Dans le même univers"
-              lines={['Autres prestations.']}
-            />
+          <div className="reveal flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading id="prestations-titre" {...sectionTitle(page, 'otherServices')} />
+            <Link
+              href={hubHref(page.univers)}
+              className="label-btn-lg border-accent-700 hover:bg-surface border px-5 py-3"
+            >
+              Voir l’univers {universLabel(page.univers)}
+            </Link>
           </div>
-          <ServiceCards services={siblings} />
+          <ServiceCards services={related} />
         </Section>
       ) : null}
-      <GuidesSection items={guidePlaceholders} />
+      <GuidesSection items={linkedGuides} heading={sectionTitle(page, 'guides')} />
       <CtaBand
         id="devis-titre"
-        kicker="Devis gratuit"
-        lines={['Parlons de', 'votre vitrage.']}
+        {...sectionTitle(page, 'cta')}
         text="Décrivez votre projet : nous revenons vers vous pour établir votre devis."
         cta={{ label: 'Devis gratuit', href }}
       />

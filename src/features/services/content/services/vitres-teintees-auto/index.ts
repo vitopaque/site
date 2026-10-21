@@ -17,6 +17,41 @@ export const vitresTeinteesAuto: ServicePageContent = {
     description:
       'Film teinté voiture : confort et discrétion, pose soignée à l’atelier VIT’OPAQUE de Vendargues, aux portes de Montpellier. Devis gratuit.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Film teinté voiture : ce qu’il apporte',
+      lines: ['Ce que change', 'une vitre teintée.'],
+    },
+    film: { kicker: 'Le film teinté en détail', lines: ['Le film teinté', 'en un coup d’œil.'] },
+    lab: {
+      kicker: 'Laboratoire : film teinté sur vitrage',
+      lines: ['Faites glisser,', 'choisissez votre teinte.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de vitres teintées automobiles',
+      lines: ['Des voitures', 'à l’allure affirmée.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur nos vitres teintées auto',
+      lines: ['Au volant,', 'leurs retours.'],
+    },
+    faq: {
+      kicker: 'Vitres teintées voiture : vos questions',
+      lines: ['Teinte, loi, pose :', 'vos questions.'],
+    },
+    otherServices: {
+      kicker: 'Autres prestations automobile',
+      lines: ['Une carrosserie', 'à votre image.'],
+    },
+    guides: {
+      kicker: 'Conseils sur les vitres teintées auto',
+      lines: ['Teinter en règle,', 'sans surprise.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de film teinté pour voiture',
+      lines: ['Confiez-nous', 'votre véhicule.'],
+    },
+  },
   highlights: [
     {
       title: 'Discrétion',
@@ -45,7 +80,7 @@ export const vitresTeinteesAuto: ServicePageContent = {
       // transmission régulière de la lumière d'au moins 70 % pour le pare-brise et les vitres latérales avant,
       // sauf exceptions liées à des raisons médicales. Légifrance inaccessible (403) : article du Code de la route à confirmer.
       answer:
-        'Oui, dans le cadre de la loi. Le pare-brise et les vitres latérales avant doivent laisser passer au moins 70 % de la lumière, sauf exceptions liées à des raisons médicales. Nous vous invitons par ailleurs à vérifier les textes en vigueur.',
+        'Oui, dans le cadre de la loi. Le pare-brise et les vitres latérales avant doivent laisser passer au moins 70 % de la lumière, sauf exceptions liées à des raisons médicales. Nous vous invitons par ailleurs à vérifier les textes en vigueur.',
     },
     {
       question: 'Peut-on teinter la lunette arrière ?',
@@ -69,11 +104,12 @@ export const vitresTeinteesAuto: ServicePageContent = {
     {
       question: 'Combien coûte un film teinté pour voiture ?',
       answer:
-        'De 60 à 90 € HT/m² posé (72 à 108 € TTC), selon le véhicule. Ce montant est indicatif : le devis est gratuit et sans engagement.',
+        'De 60 à 90 € HT/m² posé (72 à 108 € TTC), selon le véhicule. Ce montant est indicatif : le devis est gratuit et sans engagement.',
     },
     {
-      question: 'Quelle est la garantie ?',
-      answer: 'Nos films sont garantis 10 ans.',
+      question: 'Quelle garantie sur un film teinté pour voiture ?',
+      answer:
+        'Nos films sont garantis 10 ans. Nous vous détaillons ce que couvre la garantie avec le devis.',
     },
     {
       question: 'Combien de temps faut-il attendre avant de nettoyer les vitres ?',
@@ -81,9 +117,9 @@ export const vitresTeinteesAuto: ServicePageContent = {
         'Nous vous communiquons un délai précis à la pose, selon le film. Respectez-le avant le premier nettoyage et avant de manipuler les vitres.',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Que préciser pour obtenir un devis de film teinté ?',
       answer:
-        'Depuis la page Contact et devis, en précisant le modèle du véhicule et les vitres concernées. Le devis est gratuit et sans engagement.',
+        'Le modèle de votre véhicule, les vitres à teinter et, si vous en avez une idée, la teinte envisagée, depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
   Body,

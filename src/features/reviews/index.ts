@@ -1,2 +1,2 @@
 export { ReviewsSection } from './components/ReviewsSection'
-export type { Review, ReviewItem } from './types'
+export type { Review } from './types'

@@ -1,3 +1,4 @@
+import { familyOf } from './catalog'
 import { hubPages, servicePages } from './content'
 import type { HubPageContent, ServicePageContent } from './content/types'
 import { isHubSlug } from './validators'
@@ -27,3 +28,11 @@ export const listSlugs = (): string[] => [
 
 export const servicesOf = (univers: HubPageContent['univers']): ServicePageContent[] =>
   servicePages.filter((service) => service.univers === univers)
+
+export const relatedServicesOf = (service: ServicePageContent): ServicePageContent[] =>
+  servicePages
+    .filter(
+      (candidate) =>
+        candidate.slug !== service.slug && familyOf(service.univers).includes(candidate.univers),
+    )
+    .sort((a, b) => Number(b.univers === service.univers) - Number(a.univers === service.univers))

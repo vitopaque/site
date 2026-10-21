@@ -1,3 +1,6 @@
+export const methodIntro =
+  'Chaque vitrage a son exposition, son usage et ses contraintes. Nous les étudions avant de proposer le film le plus juste. Nous le posons ensuite avec précision.'
+
 export const methodSteps = [
   {
     title: 'Diagnostic',

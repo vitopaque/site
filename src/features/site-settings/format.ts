@@ -1,4 +1,5 @@
-import type { SiteConfig, Weekday } from './types'
+import { siteConfig } from './config'
+import type { ServiceArea, ServiceAreaScope, SiteConfig, Weekday } from './types'
 
 const WEEK: readonly Weekday[] = [
   'Monday',
@@ -55,4 +56,26 @@ export function formatOpeningHours(hours: SiteConfig['contact']['hours']): Hours
     days: capitalize(daysLabel(days)),
     slots: slots.join(' et '),
   }))
+}
+
+const joinList = (items: readonly string[]): string =>
+  items.length > 1
+    ? `${items.slice(0, -1).join(', ')} et ${items[items.length - 1]}`
+    : (items[0] ?? '')
+
+export const formatServiceArea = ({ automotive, building, liquidCrystal }: ServiceArea): string =>
+  `Bâtiment : dans ${joinList(building.departments.map((d) => d.label))}, et toute ${building.region.label} dès ${building.region.minSurfaceM2}\u00A0m². Automobile : à l’atelier de ${automotive.location}. Vitrage opacifiant électrique (film PDLC) : partout en ${liquidCrystal.country}.`
+
+export function formatServiceAreaFor(
+  scope: ServiceAreaScope,
+  area: ServiceArea = siteConfig.serviceArea,
+): string {
+  switch (scope) {
+    case 'building':
+      return `dans ${joinList(area.building.departments.map((d) => d.label))}, et jusqu’à toute ${area.building.region.label} pour les chantiers d’au moins ${area.building.region.minSurfaceM2}\u00A0m²`
+    case 'automotive':
+      return `à l’atelier de ${area.automotive.location}`
+    case 'liquidCrystal':
+      return `partout en ${area.liquidCrystal.country}`
+  }
 }

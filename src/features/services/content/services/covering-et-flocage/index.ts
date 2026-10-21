@@ -17,6 +17,41 @@ export const coveringEtFlocage: ServicePageContent = {
     description:
       'Covering voiture et flocage : changez de couleur, personnalisez ou marquez votre véhicule. Atelier VIT’OPAQUE à Vendargues, aux portes de Montpellier.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Covering voiture et flocage : les atouts',
+      lines: ['Une carrosserie', 'qui change d’allure.'],
+    },
+    film: { kicker: 'Les films de covering', lines: ['Le covering', 'en un coup d’œil.'] },
+    lab: {
+      kicker: 'Laboratoire : films de covering',
+      lines: ['Faites glisser,', 'changez de finition.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de covering et de flocage',
+      lines: ['Des carrosseries', 'à leur image.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur le covering',
+      lines: ['Sur la route,', 'leurs retours.'],
+    },
+    faq: {
+      kicker: 'Covering et flocage : vos questions',
+      lines: ['Total, partiel, retrait :', 'vos questions.'],
+    },
+    otherServices: {
+      kicker: 'Autres prestations automobile',
+      lines: ['Aussi pour', 'vos vitres.'],
+    },
+    guides: {
+      kicker: 'Conseils sur le covering voiture',
+      lines: ['Réussir son', 'projet de covering.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de covering et de flocage',
+      lines: ['Parlons de', 'votre véhicule.'],
+    },
+  },
   highlights: [
     {
       title: 'Une autre allure',
@@ -62,9 +97,9 @@ export const coveringEtFlocage: ServicePageContent = {
         'Un changement de couleur complet peut avoir des conséquences administratives. Nous vous recommandons de vous renseigner auprès des organismes concernés avant de décider.',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Que fournir pour chiffrer un covering ou un flocage ?',
       answer:
-        'Depuis la page Contact et devis, avec le modèle du véhicule et votre idée. Le devis est gratuit.',
+        'Le modèle du véhicule, les éléments à recouvrir (partiel ou total) et votre idée de couleur ou de marquage, depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
   Body,

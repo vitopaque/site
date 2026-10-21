@@ -27,7 +27,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     areaServed: [
       ...serviceArea.building.departments.map((department) => ({
         '@type': 'AdministrativeArea',
-        name: department,
+        name: department.name,
       })),
       { '@type': 'AdministrativeArea', name: serviceArea.building.region.name },
       { '@type': 'Country', name: serviceArea.liquidCrystal.country },

@@ -1,7 +1,7 @@
-type Props = {
+export type SectionTitle = { kicker: string; lines: readonly string[] }
+
+type Props = SectionTitle & {
   id: string
-  kicker: string
-  lines: readonly string[]
   tone?: 'light' | 'dark'
 }
 

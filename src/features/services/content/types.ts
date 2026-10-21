@@ -3,8 +3,22 @@ import type { ComponentType } from 'react'
 
 import type { Univers } from '@/shared/payload/univers'
 import type { FaqItem } from '@/shared/ui/FaqList'
+import type { SectionTitle } from '@/shared/ui/SectionHeading'
 
 export type PageSeo = { title: string; description: string }
+
+export type SectionKey =
+  | 'highlights'
+  | 'film'
+  | 'lab'
+  | 'realisations'
+  | 'reviews'
+  | 'faq'
+  | 'otherServices'
+  | 'guides'
+  | 'cta'
+
+export type SectionTitles = Partial<Record<SectionKey, SectionTitle>>
 
 export type Highlight = { title: string; text: string }
 
@@ -14,9 +28,11 @@ type PageBase = {
   tagline: string
   intro: string
   seo: PageSeo
+  sectionTitles?: SectionTitles
 }
 
 export type HubPageContent = PageBase & {
+  faq?: FaqItem[]
   Body?: ComponentType
 }
 

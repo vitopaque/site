@@ -17,6 +17,41 @@ export const vitresTeinteesBateau: ServicePageContent = {
     description:
       'Vitres teintées bateau : films teintés pour moins de chaleur et plus d’intimité à bord. Pose par VIT’OPAQUE, aux portes de Montpellier. Devis gratuit.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Vitres teintées bateau : les atouts',
+      lines: ['Un bord plus frais,', 'plus intime.'],
+    },
+    film: { kicker: 'Le film teinté nautique', lines: ['Le film teinté', 'en un coup d’œil.'] },
+    lab: {
+      kicker: 'Laboratoire : film teinté sur vitrage',
+      lines: ['Avant, après :', 'le vitrage du bord.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de vitres teintées pour bateaux',
+      lines: ['Des bateaux', 'à l’abri des regards.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur la pose à bord',
+      lines: ['À bord,', 'leurs retours.'],
+    },
+    faq: {
+      kicker: 'Vitres teintées bateau : vos questions',
+      lines: ['Chaleur, visibilité,', 'milieu marin.'],
+    },
+    otherServices: {
+      kicker: 'Autres prestations VIT’OPAQUE',
+      lines: ['Aussi pour', 'la terre ferme.'],
+    },
+    guides: {
+      kicker: 'Conseils pour le vitrage de bateau',
+      lines: ['Bien choisir', 'sa teinte.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de vitres teintées pour bateau',
+      lines: ['Parlons de', 'votre bateau.'],
+    },
+  },
   highlights: [
     {
       title: 'Fraîcheur à bord',
@@ -57,9 +92,9 @@ export const vitresTeinteesBateau: ServicePageContent = {
         'Le milieu marin est exigeant. Nous vous indiquons ce que le film retenu peut supporter et les précautions d’entretien à respecter.',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Que décrire pour obtenir un devis de vitres teintées ?',
       answer:
-        'Depuis la page Contact et devis, en décrivant votre bateau et vos vitrages. Le devis est gratuit et sans engagement.',
+        'Votre bateau et la forme de ses vitrages (baies, hublots, poste de barre), depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
   Body,

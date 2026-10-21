@@ -7,11 +7,17 @@ import { SectionHeading } from '@/shared/ui/SectionHeading'
 
 import { hubHref, silosOfUnivers } from '../catalog'
 
-export function OtherUnivers({ current }: { current: Univers }) {
+type Props = { current: Univers; tone?: 'light' | 'surface' }
+
+export function OtherUnivers({ current, tone = 'light' }: Props) {
   return (
-    <Section labelledBy="univers-titre">
+    <Section labelledBy="univers-titre" tone={tone}>
       <div className="reveal">
-        <SectionHeading id="univers-titre" kicker="Univers" lines={['Autres univers.']} />
+        <SectionHeading
+          id="univers-titre"
+          kicker="Films pour vitrages"
+          lines={['Autres univers.']}
+        />
       </div>
       <ul className="reveal card-grid mt-12">
         {UNIVERS_OPTIONS.filter((option) => option.value !== current).map((option) => (

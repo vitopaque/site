@@ -62,6 +62,14 @@ export function contentViolations({
     check(`${label} méta-description`, page.seo.description, noCityNumber)
     check(`${label} accroche`, page.tagline, noCityNumber)
     check(`${label} introduction`, page.intro, noCityNumber)
+    for (const [key, title] of Object.entries(page.sectionTitles ?? {})) {
+      check(`${label} titre de section ${key} sur-titre`, title.kicker, noCityInTitle)
+      for (const line of title.lines) check(`${label} titre de section ${key}`, line, noCityInTitle)
+    }
+    for (const [index, item] of (page.faq ?? []).entries()) {
+      check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
+      check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
+    }
     if (titleTemplate.replace('%s', page.seo.title).length > RENDERED_TITLE_MAX) {
       violations.push(`${label} : titre affiché > ${RENDERED_TITLE_MAX} caractères`)
     }
@@ -99,10 +107,6 @@ export function contentViolations({
       check(`${label} point clé ${index + 1} texte`, item.text, noCityNumber)
     }
     if (page.faq.length === 0) violations.push(`${label} : FAQ obligatoire`)
-    for (const [index, item] of page.faq.entries()) {
-      check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
-      check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
-    }
   }
 
   // Contenu pas encore rédigé : la cohérence avec le catalogue n'est contrôlée qu'ensuite.

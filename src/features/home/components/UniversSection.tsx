@@ -1,26 +1,20 @@
 import Link from 'next/link'
 
 import { hubHref, silosOfUnivers } from '@/features/services'
+import { formatServiceArea, siteConfig } from '@/features/site-settings'
 import { UNIVERS_OPTIONS } from '@/shared/payload/univers'
 import { ordinal } from '@/shared/ui/ordinal'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-const INTRO = {
-  batiment: 'Confort, intimité et sécurité pour bureaux, commerces et villas.',
-  voiture: 'Vitres teintées, covering et flocage : l’allure et la discrétion.',
-  bateau: 'Teinte et protection du vitrage de votre bateau.',
-} as const
+import { homeTitles } from '../content/sections'
+import { universIntro } from '../content/univers'
 
 export function UniversSection() {
   return (
     <Section labelledBy="univers-titre" tone="surface">
       <div className="reveal">
-        <SectionHeading
-          id="univers-titre"
-          kicker="Les univers"
-          lines={['Trois univers,', 'une même exigence.']}
-        />
+        <SectionHeading id="univers-titre" {...homeTitles.univers} />
       </div>
       <ul className="reveal card-grid mt-12">
         {UNIVERS_OPTIONS.map((option, index) => (
@@ -31,7 +25,7 @@ export function UniversSection() {
                 {option.label}
               </Link>
             </h3>
-            <p className="text-neutral-700">{INTRO[option.value]}</p>
+            <p className="text-neutral-700">{universIntro[option.value]}</p>
             <ul className="border-divider mt-auto flex flex-col gap-1 border-t pt-3.5">
               {silosOfUnivers(option.value).map((silo) => (
                 <li key={silo.key}>
@@ -47,6 +41,9 @@ export function UniversSection() {
           </li>
         ))}
       </ul>
+      <p className="text-body-lg reveal mt-10 max-w-prose text-pretty text-neutral-700">
+        {formatServiceArea(siteConfig.serviceArea)}
+      </p>
     </Section>
   )
 }
