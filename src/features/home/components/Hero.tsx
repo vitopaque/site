@@ -16,15 +16,7 @@ export function Hero() {
       className="on-dark bg-accent-900 text-background relative flex min-h-(--hero-min-height) flex-col overflow-hidden pt-20"
     >
       <div className="duotone absolute inset-0">
-        <Image
-          src={provisionalPhoto}
-          alt=""
-          fill
-          priority
-          quality={50}
-          sizes="100vw"
-          className="object-cover"
-        />
+        <Image src={provisionalPhoto} alt="" fill priority sizes="100vw" className="object-cover" />
       </div>
       <HeroLens label="Verre clair" />
       <div className="grid-lines pointer-events-none absolute inset-0" />

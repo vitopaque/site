@@ -33,7 +33,6 @@ export function RealisationsSection() {
                   src={provisionalPhoto}
                   alt={PROVISIONAL_ALT}
                   fill
-                  quality={50}
                   sizes="(min-width: 64rem) 30vw, 100vw"
                   className={`object-cover ${item.position}`}
                 />
