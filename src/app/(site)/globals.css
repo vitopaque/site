@@ -1,5 +1,4 @@
 @import 'tailwindcss' source('../../');
-@source '../../../mdx-components.tsx';
 @import '../../shared/styles/tokens.css';
 
 @layer base {

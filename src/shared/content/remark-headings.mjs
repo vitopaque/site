@@ -1,13 +1,5 @@
+import { createHeadingIds } from './heading-id.mjs'
 import { textOf } from './mdast-text.mjs'
-
-const slugify = (text) =>
-  text
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .toLowerCase()
-    .replace(/œ/g, 'oe')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
 
 const literal = (value) => ({ type: 'Literal', value })
 const property = (key, value) => ({
@@ -58,17 +50,14 @@ const exportHeadings = (headings) => ({
 
 export default function remarkHeadings() {
   return (tree, file) => {
-    const used = new Set()
+    const headingId = createHeadingIds()
     const headings = []
 
     for (const node of tree.children ?? []) {
       if (node.type !== 'heading' || node.depth !== 2) continue
       const text = textOf(node).trim()
-      const base = slugify(text)
-      if (!base) throw new Error(`${file.path ?? 'MDX'} : titre H2 sans texte exploitable.`)
-      let id = base
-      for (let n = 2; used.has(id); n += 1) id = `${base}-${n}`
-      used.add(id)
+      const id = headingId(text)
+      if (!id) throw new Error(`${file.path ?? 'MDX'} : titre H2 sans texte exploitable.`)
       node.data = { ...node.data, hProperties: { ...node.data?.hProperties, id } }
       headings.push({ id, text })
     }
