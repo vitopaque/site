@@ -11,6 +11,7 @@ const blobHostname = blobImageHostname()
 const nextConfig: NextConfig = {
   experimental: { globalNotFound: true },
   images: {
+    qualities: [50, 75],
     remotePatterns: blobHostname ? [{ protocol: 'https', hostname: blobHostname }] : [],
   },
   async headers() {
