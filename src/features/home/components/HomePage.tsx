@@ -1,4 +1,4 @@
-import { GuidesSection } from '@/features/articles'
+import { GuidesSection, latestArticles, toGuide } from '@/features/articles'
 import {
   CaseStudiesSection,
   LISTING_PATH,
@@ -13,7 +13,7 @@ import { RealisationsSection } from '@/shared/ui/RealisationsSection'
 import { homeContact } from '../content/contact'
 import { homeFaq } from '../content/faq'
 import { homeTitles } from '../content/sections'
-import { homeGuides, homeReviews } from '../content/showcase'
+import { homeReviews } from '../content/showcase'
 import { GuaranteesBand } from './GuaranteesBand'
 import { Hero } from './Hero'
 import { LabSection } from './LabSection'
@@ -21,7 +21,11 @@ import { ManifestoSection } from './ManifestoSection'
 import { MethodSection } from './MethodSection'
 import { UniversSection } from './UniversSection'
 
-export function HomePage() {
+const GUIDES_COUNT = 3
+
+export async function HomePage() {
+  const latest = await latestArticles(GUIDES_COUNT)
+  const guides = latest.length >= GUIDES_COUNT ? latest.map(toGuide) : []
   return (
     <>
       <Hero />
@@ -37,8 +41,12 @@ export function HomePage() {
       />
       <CaseStudiesSection items={caseStudies()} heading={homeTitles.caseStudies} />
       <ReviewsSection items={homeReviews} heading={homeTitles.reviews} />
-      <GuidesSection items={homeGuides} heading={homeTitles.guides} />
-      <FaqSection items={homeFaq} heading={homeTitles.faq} tone="surface" />
+      <GuidesSection items={guides} heading={homeTitles.guides} />
+      <FaqSection
+        items={homeFaq}
+        heading={homeTitles.faq}
+        tone={guides.length > 0 ? 'light' : 'surface'}
+      />
       <ContactSection id="contact" {...homeContact}>
         <QuoteForm />
       </ContactSection>

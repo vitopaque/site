@@ -5,6 +5,8 @@ import { getPage, listSlugs, pageMetadata, PageTemplate } from '@/features/servi
 
 type Props = { params: Promise<{ slug: string }> }
 
+export const revalidate = 3600
+
 export const dynamicParams = false
 
 export function generateStaticParams() {

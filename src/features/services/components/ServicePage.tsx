@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { GuidesSection } from '@/features/articles'
+import { articlesForService, GuidesSection, toGuide } from '@/features/articles'
 import { LISTING_PATH, pairOfSilo, realisationsOfSilo } from '@/features/realisations'
 import { ReviewsSection } from '@/features/reviews'
 import { hubHref, quoteHref, siloBySlug } from '@/shared/catalog'
@@ -15,7 +15,7 @@ import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
 import { sectionTitle } from '../content/section-titles'
-import { linkedGuides, linkedReviews } from '../content/showcase'
+import { linkedReviews } from '../content/showcase'
 import { relatedServicesOf, type ServiceEntry } from '../queries'
 import { pageCrumbs } from '../seo'
 import { FilmDemo } from './FilmDemo'
@@ -23,12 +23,15 @@ import { HeroVisual } from './HeroVisual'
 import { ServiceAside } from './ServiceAside'
 import { ServiceCards } from './ServiceCards'
 
-export function ServicePage({ entry }: { entry: ServiceEntry }) {
+const GUIDES_COUNT = 3
+
+export async function ServicePage({ entry }: { entry: ServiceEntry }) {
   const { page } = entry
   const silo = siloBySlug(page.slug)
   const related = relatedServicesOf(page)
   const href = quoteHref(page.slug)
   const beforeAfter = pairOfSilo(page.slug)
+  const guides = (await articlesForService(page.slug, GUIDES_COUNT)).map(toGuide)
 
   return (
     <>
@@ -92,7 +95,7 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
           <ServiceCards services={related} />
         </Section>
       ) : null}
-      <GuidesSection items={linkedGuides} heading={sectionTitle(page, 'guides')} />
+      <GuidesSection items={guides} heading={sectionTitle(page, 'guides')} />
       <CtaBand
         id="devis-titre"
         {...sectionTitle(page, 'cta')}
