@@ -1,4 +1,4 @@
-import type { SiteConfig, Weekday } from './types'
+import type { ServiceArea, SiteConfig, Weekday } from './types'
 
 const WEEK: readonly Weekday[] = [
   'Monday',
@@ -56,3 +56,11 @@ export function formatOpeningHours(hours: SiteConfig['contact']['hours']): Hours
     slots: slots.join(' et '),
   }))
 }
+
+const joinList = (items: readonly string[]): string =>
+  items.length > 1
+    ? `${items.slice(0, -1).join(', ')} et ${items[items.length - 1]}`
+    : (items[0] ?? '')
+
+export const formatServiceArea = ({ automotive, building, liquidCrystal }: ServiceArea): string =>
+  `Bâtiment : ${joinList(building.departments)}, et toute l’${building.region.name} à partir de ${building.region.minSurfaceM2}\u00A0m². Automobile : à l’atelier de ${automotive.location}. Film PDLC : partout en ${liquidCrystal.country}.`

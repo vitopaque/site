@@ -37,18 +37,6 @@ export function pageJsonLd(entry: Page): Record<string, unknown>[] {
       url: absoluteUrl(pathOf(entry)),
       provider: { '@id': localBusinessId() },
     })
-    const faq = entry.page.faq
-    if (faq.length > 0) {
-      data.push({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: faq.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: { '@type': 'Answer', text: item.answer },
-        })),
-      })
-    }
   }
   return data
 }

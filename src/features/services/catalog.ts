@@ -81,6 +81,11 @@ export const siloBySlug = (slug: string): ServiceSilo | null =>
 export const silosOfUnivers = (univers: Univers): ServiceSilo[] =>
   serviceSilos.filter((candidate) => candidate.univers === univers)
 
+const UNIVERS_FAMILIES: readonly (readonly Univers[])[] = [['batiment'], ['voiture', 'bateau']]
+
+export const familyOf = (univers: Univers): readonly Univers[] =>
+  UNIVERS_FAMILIES.find((family) => family.includes(univers)) ?? [univers]
+
 export const hubHref = (univers: Univers): string => `/${univers}`
 
 export const labFilmsOf = (univers: Univers): LabFilm[] =>

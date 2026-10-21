@@ -1,15 +1,17 @@
 import { FilmMeters } from '@/shared/ui/FilmMeters'
 import { Section } from '@/shared/ui/Section'
-import { SectionHeading } from '@/shared/ui/SectionHeading'
+import { SectionHeading, type SectionTitle } from '@/shared/ui/SectionHeading'
 
 import type { FilmProfile } from '../catalog'
 
-export function FilmDemo({ name, film }: { name: string; film: FilmProfile }) {
+type Props = { name: string; film: FilmProfile; heading: SectionTitle }
+
+export function FilmDemo({ name, film, heading }: Props) {
   return (
     <Section labelledBy="film-titre">
       <div className="reveal grid grid-cols-[repeat(auto-fit,minmax(min(100%,22.5rem),1fr))] items-start gap-12">
         <div className="flex flex-col gap-6">
-          <SectionHeading id="film-titre" kicker="Le film" lines={['En un coup d’œil.']} />
+          <SectionHeading id="film-titre" {...heading} />
           <p className="text-body-lg max-w-prose text-pretty text-neutral-700">
             {film.description}
           </p>
