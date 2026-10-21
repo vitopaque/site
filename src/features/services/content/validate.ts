@@ -82,7 +82,13 @@ export function contentViolations({
     }
     checkPage(label, page)
     if (page.image) check(`${label} texte alternatif`, page.image.alt, noCityInTitle)
-    for (const [index, item] of (page.faq ?? []).entries()) {
+    check(`${label} résumé`, page.summary, noCityNumber)
+    for (const [index, item] of (page.highlights ?? []).entries()) {
+      check(`${label} point clé ${index + 1} titre`, item.title, noCityNumber)
+      check(`${label} point clé ${index + 1} texte`, item.text, noCityNumber)
+    }
+    if (page.faq.length === 0) violations.push(`${label} : FAQ obligatoire`)
+    for (const [index, item] of page.faq.entries()) {
       check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
       check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
     }

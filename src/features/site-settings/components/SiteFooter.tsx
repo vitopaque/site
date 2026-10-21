@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { siteConfig } from '../config'
+import { telHref } from '../format'
 import type { SocialNetwork } from '../types'
 import { BrandLockup } from './BrandLockup'
 import { SocialIcon } from './SocialIcon'
@@ -10,8 +11,6 @@ const NETWORK_LABELS: Record<SocialNetwork, string> = {
   instagram: 'Instagram',
   linkedin: 'LinkedIn',
 }
-
-const telHref = (phone: string): string => `tel:${phone.replace(/[^\d+]/g, '')}`
 
 export function SiteFooter() {
   const { name, baseline, locationNote, contact, social, footerColumns } = siteConfig

@@ -15,15 +15,19 @@ export function pageMetadata(entry: Page) {
   })
 }
 
-export function pageJsonLd(entry: Page): Record<string, unknown>[] {
+export function pageCrumbs(entry: Page): Crumb[] {
   const { page } = entry
   const crumbs: Crumb[] = [{ name: 'Accueil', path: '/' }]
   if (entry.kind === 'service') {
     crumbs.push({ name: universLabel(page.univers), path: `/${page.univers}` })
   }
   crumbs.push({ name: page.h1, path: pathOf(entry) })
+  return crumbs
+}
 
-  const data: Record<string, unknown>[] = [breadcrumbList(crumbs)]
+export function pageJsonLd(entry: Page): Record<string, unknown>[] {
+  const { page } = entry
+  const data: Record<string, unknown>[] = [breadcrumbList(pageCrumbs(entry))]
   if (entry.kind === 'service') {
     data.push({
       '@context': 'https://schema.org',
@@ -33,7 +37,7 @@ export function pageJsonLd(entry: Page): Record<string, unknown>[] {
       url: absoluteUrl(pathOf(entry)),
       provider: { '@id': localBusinessId() },
     })
-    const faq = entry.page.faq ?? []
+    const faq = entry.page.faq
     if (faq.length > 0) {
       data.push({
         '@context': 'https://schema.org',
