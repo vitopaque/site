@@ -16,6 +16,41 @@ export const filmSolaireBatiment: ServicePageContent = {
     description:
       'Film solaire fenêtre pour baies, vérandas et bureaux : moins de chaleur et d’éblouissement. Pose par VIT’OPAQUE, aux portes de Montpellier. Devis gratuit.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Pourquoi poser un film solaire fenêtre',
+      lines: ['Chaleur tempérée,', 'lumière préservée.'],
+    },
+    film: { kicker: 'Le film solaire en détail', lines: ['Le film solaire', 'en un coup d’œil.'] },
+    lab: {
+      kicker: 'Laboratoire : film solaire sur vitrage',
+      lines: ['Faites glisser,', 'voyez la lumière.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de films solaires',
+      lines: ['Des baies', 'qui respirent.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur nos films solaires',
+      lines: ['La parole', 'à nos clients.'],
+    },
+    faq: {
+      kicker: 'Questions sur le film solaire fenêtre',
+      lines: ['Tout savoir sur', 'le film solaire.'],
+    },
+    otherServices: {
+      kicker: 'Autres films pour vitrage de bâtiment',
+      lines: ['Un vitrage,', 'plusieurs réponses.'],
+    },
+    guides: {
+      kicker: 'Conseils sur le film solaire',
+      lines: ['Choisir son film', 'en connaissance de cause.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de pose de film solaire',
+      lines: ['Parlons de', 'vos fenêtres exposées.'],
+    },
+  },
   highlights: [
     {
       title: 'Moins de chaleur',
@@ -91,17 +126,17 @@ export const filmSolaireBatiment: ServicePageContent = {
     {
       question: 'Combien coûte la pose d’un film solaire ?',
       answer:
-        'De 80 à 300 € HT/m² posé (96 à 360 € TTC), selon le type de vitrage, l’accessibilité et le film. Ce montant est indicatif : le devis est gratuit et sans engagement.',
+        'De 80 à 300 € HT/m² posé (96 à 360 € TTC), selon le type de vitrage, l’accessibilité et le film. Ce montant est indicatif : le devis est gratuit et sans engagement.',
     },
     {
       question: 'Où intervenez-vous ?',
       answer:
-        'Dans l’Hérault, le Gard et l’Aude, et jusqu’à toute l’Occitanie pour les chantiers d’au moins 30 m².',
+        'Dans l’Hérault, le Gard et l’Aude, et jusqu’à toute l’Occitanie pour les chantiers d’au moins 30 m².',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Que préparer pour obtenir un devis de film solaire ?',
       answer:
-        'Depuis la page Contact et devis, en indiquant le type de lieu, le nombre de vitrages et, si possible, quelques photos. Le devis est gratuit et sans engagement.',
+        'Le type de lieu, le nombre de vitrages, leur exposition et quelques photos suffisent pour commencer. Envoyez-les depuis la page Contact et devis : le devis est gratuit et sans engagement.',
     },
   ],
   Body,

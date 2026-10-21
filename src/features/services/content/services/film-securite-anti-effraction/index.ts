@@ -16,6 +16,44 @@ export const filmSecuriteAntiEffraction: ServicePageContent = {
     description:
       'Film anti-effraction vitre : transparent, il renforce baies et vitrines et retient le verre en cas de choc. Pose par VIT’OPAQUE, près de Montpellier.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Film anti-effraction pour baie vitrée et vitrine',
+      lines: ['Un vitrage renforcé,', 'une allure inchangée.'],
+    },
+    film: {
+      kicker: 'Le film de sécurité en détail',
+      lines: ['La sécurité', 'en un coup d’œil.'],
+    },
+    lab: {
+      kicker: 'Laboratoire : film de sécurité sur vitrage',
+      lines: ['Le verre, avant', 'et après le film.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de films de sécurité',
+      lines: ['Vitrines et baies,', 'côté chantier.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur nos films de sécurité',
+      lines: ['Ils nous ont', 'confié leurs vitrages.'],
+    },
+    faq: {
+      kicker: 'Film anti-effraction : vos questions',
+      lines: ['Ce qu’un film', 'peut (et ne peut pas) faire.'],
+    },
+    otherServices: {
+      kicker: 'Autres solutions pour vos vitrages',
+      lines: ['Compléter', 'la protection.'],
+    },
+    guides: {
+      kicker: 'Conseils sur la sécurité des vitrages',
+      lines: ['Mieux protéger', 'vos vitres.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de film de sécurité',
+      lines: ['Sécurisons', 'vos vitrages.'],
+    },
+  },
   highlights: [
     {
       title: 'Verre retenu',
@@ -60,21 +98,17 @@ export const filmSecuriteAntiEffraction: ServicePageContent = {
     {
       question: 'Combien coûte un film de sécurité ?',
       answer:
-        'De 80 à 300 € HT/m² posé (96 à 360 € TTC), selon le type de vitrage, l’accessibilité et le film. Ce montant est indicatif : le devis est gratuit et sans engagement.',
+        'De 80 à 300 € HT/m² posé (96 à 360 € TTC), selon le type de vitrage, l’accessibilité et le film. Ce montant est indicatif : le devis est gratuit et sans engagement.',
     },
     {
-      question: 'Quelle est la garantie ?',
-      answer: 'Nos films de sécurité sont garantis 10 ans.',
-    },
-    {
-      question: 'Où intervenez-vous ?',
+      question: 'Quelle garantie sur un film de sécurité ?',
       answer:
-        'Dans l’Hérault, le Gard et l’Aude, et jusqu’à toute l’Occitanie pour les chantiers d’au moins 30 m².',
+        'Nos films de sécurité sont garantis 10 ans. Nous vous détaillons ce que couvre la garantie avec le devis.',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Que faut-il pour chiffrer la protection de mes vitrages ?',
       answer:
-        'Depuis la page Contact et devis, en précisant le type de lieu, le nombre de vitrages et, si possible, quelques photos. Le devis est gratuit et sans engagement.',
+        'Indiquez les vitrages les plus exposés (vitrine, baie, porte vitrée), leur nombre et, si possible, quelques photos depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
   Body,

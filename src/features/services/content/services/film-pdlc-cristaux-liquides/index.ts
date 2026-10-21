@@ -16,6 +16,41 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
     description:
       'Vitrage opacifiant électrique : film PDLC ou verre, de transparent à translucide d’un geste. Pose par VIT’OPAQUE, aux portes de Montpellier.',
   },
+  sectionTitles: {
+    highlights: {
+      kicker: 'Vitrage opacifiant électrique : les atouts',
+      lines: ['L’intimité,', 'd’une simple pression.'],
+    },
+    film: { kicker: 'Le film PDLC en détail', lines: ['Le film PDLC', 'en un coup d’œil.'] },
+    lab: {
+      kicker: 'Laboratoire : vitre transparente ou translucide',
+      lines: ['Transparent,', 'puis translucide.'],
+    },
+    realisations: {
+      kicker: 'Réalisations de vitrages opacifiants',
+      lines: ['Des cloisons', 'à la demande.'],
+    },
+    reviews: {
+      kicker: 'Avis clients sur le vitrage opacifiant',
+      lines: ['L’avis', 'de nos clients.'],
+    },
+    faq: {
+      kicker: 'Vitrage opacifiant électrique : vos questions',
+      lines: ['Comprendre le film', 'à cristaux liquides.'],
+    },
+    otherServices: {
+      kicker: 'Autres solutions pour vos vitrages',
+      lines: ['Autres façons', 'd’habiller le verre.'],
+    },
+    guides: {
+      kicker: 'Conseils sur le vitrage opacifiant',
+      lines: ['PDLC, électrochrome :', 'y voir clair.'],
+    },
+    cta: {
+      kicker: 'Devis gratuit de vitrage opacifiant électrique',
+      lines: ['Parlons de', 'vos cloisons vitrées.'],
+    },
+  },
   highlights: [
     {
       title: 'Intimité instantanée',
@@ -48,7 +83,7 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
     {
       question: 'Quelle est la consommation électrique d’un film PDLC ?',
       answer:
-        'Elle est faible : selon les fiches techniques de nos fournisseurs, de l’ordre de 4 à 5 W par mètre carré. Nous vous précisons les besoins d’alimentation de votre installation dans le devis.',
+        'Elle est faible : selon les fiches techniques de nos fournisseurs, de l’ordre de 4 à 5 W par mètre carré. Nous vous précisons les besoins d’alimentation de votre installation dans le devis.',
     },
     {
       question: 'Comment entretenir un verre ou un film commutable ?',
@@ -78,15 +113,15 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
     {
       question: 'Le film bloque-t-il les UV ?',
       answer:
-        'Selon les fiches techniques de nos fournisseurs, la protection contre les UV est supérieure à 99 %, que le film soit transparent ou translucide.',
+        'Selon les fiches techniques de nos fournisseurs, la protection contre les UV est supérieure à 99 %, que le film soit transparent ou translucide.',
     },
     {
       question: 'Combien coûte un vitrage opacifiant électrique ?',
       answer:
-        'Pour le film : de 450 à 1 000 € HT/m² posé (540 à 1 200 € TTC), hors frais de déplacement, selon le film choisi. Pour le verre opacifiant : à partir de 700 € HT/m² (840 € TTC). Ces montants sont indicatifs : le devis est gratuit et sans engagement.',
+        'Pour le film : de 450 à 1 000 € HT/m² posé (540 à 1 200 € TTC), hors frais de déplacement, selon le film choisi. Pour le verre opacifiant : à partir de 700 € HT/m² (840 € TTC). Ces montants sont indicatifs : le devis est gratuit et sans engagement.',
     },
     {
-      question: 'Quelle est la garantie ?',
+      question: 'Quelle garantie pour un vitrage opacifiant électrique ?',
       answer:
         'Le film est garanti 2 ans, les accessoires (transformateur, télécommande, câblage et autres) 1 an. Même garantie pour le verre opacifiant.',
     },
@@ -95,9 +130,9 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
       answer: 'Pour le film à cristaux liquides, oui : nous intervenons dans toute la France.',
     },
     {
-      question: 'Comment obtenir un devis ?',
+      question: 'Quelles informations donner pour chiffrer mon projet ?',
       answer:
-        'Depuis la page Contact et devis, en décrivant les vitrages concernés, leurs dimensions et, si possible, quelques photos. Le devis est gratuit et sans engagement.',
+        'Décrivez les vitrages concernés, leurs dimensions et, si possible, joignez quelques photos depuis la page Contact et devis. Dites-nous aussi si vous visez un film sur vitrage existant ou un verre opacifiant. Le devis est gratuit et sans engagement.',
     },
   ],
   Body,

@@ -1,5 +1,5 @@
 export const methodIntro =
-  'De la visite à la pose, chaque vitre est étudiée avant d’être traitée : voici comment nous travaillons.'
+  'Chaque vitrage a son exposition, son usage et ses contraintes. Nous les étudions avant de proposer le film le plus juste, sans vous en vendre davantage que nécessaire. Nous le posons ensuite avec précision.'
 
 export const methodSteps = [
   {
