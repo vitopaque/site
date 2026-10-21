@@ -34,7 +34,7 @@ typography:
   body-family: Barlow
   body-weight: 400
   display-hero:
-    fontSize: clamp(64px, 10.5vw, 168px)
+    fontSize: clamp(64px, min(10.5vw, 12svh), 168px)
     lineHeight: 0.86
     letterSpacing: -0.02em
   display-statement:
@@ -126,6 +126,7 @@ glass:
   veil-saturate: 0.6
   veil-tint: 'accent-900 à 86 %'
 hero:
+  pad-y: clamp(24px, 5svh, 48px)
   min-height: max(680px, min(100svh, 940px))
   logo-max: 440px
   lens-size: clamp(144px, 30vw, 260px)
@@ -260,7 +261,7 @@ Les titres sont en **capitales**, graisse 600, interlettrage -0,015 à -0,02 em.
 
 | Token | Taille | Interlignage | Usage |
 |---|---|---|---|
-| `display-hero` | clamp(64 px, 10,5 vw, 168 px) | 0,86 | Titre du hero d'accueil |
+| `display-hero` | clamp(64 px, min(10,5 vw, 12 svh), 168 px) | 0,86 | Titre du hero d'accueil (plafonné par la hauteur d'écran pour garder les boutons au-dessus du pli) |
 | `display-statement` | clamp(40 px, 6,4 vw, 104 px) | 0,98 | Manifeste |
 | `headline-xl` | clamp(48 px, 7 vw, 112 px) | 0,88 | H1 des pages intérieures, titre de la section contact |
 | `headline-lg` | clamp(44 px, 6 vw, 88 px) | 0,9 | H2 de section |
