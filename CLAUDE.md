@@ -17,6 +17,7 @@
 | Stack, routes, modèle Payload, rendu, hébergement | `architecture-technique.md` |
 | Tokens et règles de design | `DESIGN.md` (v3.0) |
 | **Maquette de référence** de l'interface (structure et habillage) | `maquette-v3.html` (copie lisible de `Vitopaque.html`), avec `DESIGN.md` v3.0. `code.html` et `screen.png` sont historiques |
+| Mots-clés, règles d'écriture, décisions SEO validées par le client | `Stratégie de référencement Google du nouveau site VIT'OPAQUE.pdf` |
 | Logos | `logo.png`, `logo_clair.png`, `favicon/` |
 
 Ne charger que la section utile d'un document. Les documents prévalent sur toute supposition ; ce fichier prévaut sur les documents en cas de contradiction apparente, à signaler à Hery.
@@ -42,7 +43,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - Hubs : `/batiment`, `/voiture`, `/bateau` (les deux premières gardent leurs URLs actuelles).
 - 7 pages de service : `/film-solaire-batiment`, `/film-securite-anti-effraction`, `/film-pdlc-cristaux-liquides`, `/vitrophanie-signaletique`, `/vitres-teintees-auto`, `/vitres-teintees-bateau`, `/covering-et-flocage`.
 - Fixes : `/realisations(/[slug])`, `/conseils-expertises(/[slug])`, `/a-propos`, `/contact-devis`, pages légales. Les routes fixes l'emportent sur `/[slug]` ; ces noms sont réservés. Slug inconnu = vraie 404.
-- La liste des 7 silos reste à valider par l'étude de mots-clés : ne pas en ajouter ni en retirer sans validation.
+- La liste des 7 silos est validée par le client, avec la stratégie de référencement : ne pas en ajouter ni en retirer sans validation de Hery.
 
 ### SEO
 - Un seul H1 par page, géré par le gabarit. Titre et méta-description **uniques** par page. Canonique absolue partout.
@@ -52,6 +53,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `Article`, `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
 - Redirections 301 versionnées dans `next.config.ts` d'après le plan du CDC §7.4. Blog repris de zéro : les 11 anciens articles et la FAQ ne sont que redirigés.
 - Coordonnées et horaires : **source unique** (module de configuration `site-settings`), pour supprimer les horaires contradictoires de l'ancien site.
+- Zone d'intervention : également issue de `site-settings` (source unique). Automobile : dans les locaux de Vendargues. Bâtiment : Hérault, Gard et Aude, et Occitanie à partir de 30 m². Film à cristaux liquides : toute la France.
 
 ### Accueil et maquette
 - **Pas de vidéo d'en-tête** (décision figée : complexité injustifiée). L'en-tête de l'accueil reprend la lentille de verre dépoli de la maquette, avec un repli tactile (pas de suivi du pointeur).
@@ -90,4 +92,4 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ## 6. Points ouverts (à ne pas trancher seul)
 
-Étude de mots-clés (liste des silos) · URL de l'espace blog (`/conseils-expertises` proposée) · liste des communes d'intervention · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
+URL de l'espace blog (`/conseils-expertises` proposée) · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
