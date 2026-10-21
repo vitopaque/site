@@ -41,7 +41,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 ### Routes
 - Hubs : `/batiment`, `/voiture`, `/bateau` (les deux premières gardent leurs URLs actuelles).
 - 7 pages de service : `/film-solaire-batiment`, `/film-securite-anti-effraction`, `/film-pdlc-cristaux-liquides`, `/vitrophanie-signaletique`, `/vitres-teintees-auto`, `/vitres-teintees-bateau`, `/covering-et-flocage`.
-- Fixes : `/realisations(/[slug])`, `/conseils-expertises(/[slug])`, `/a-propos`, `/contact-devis` (URL à confirmer), pages légales. Les routes fixes l'emportent sur `/[slug]` ; ces noms sont réservés. Slug inconnu = vraie 404.
+- Fixes : `/realisations(/[slug])`, `/conseils-expertises(/[slug])`, `/a-propos`, `/contact-devis`, pages légales. Les routes fixes l'emportent sur `/[slug]` ; ces noms sont réservés. Slug inconnu = vraie 404.
 - La liste des 7 silos reste à valider par l'étude de mots-clés : ne pas en ajouter ni en retirer sans validation.
 
 ### SEO
@@ -90,4 +90,4 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ## 6. Points ouverts (à ne pas trancher seul)
 
-Étude de mots-clés (liste des silos) · URL de la page contact · URL de l'espace blog (`/conseils-expertises` proposée) · liste des communes d'intervention · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
+Étude de mots-clés (liste des silos) · URL de l'espace blog (`/conseils-expertises` proposée) · liste des communes d'intervention · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
