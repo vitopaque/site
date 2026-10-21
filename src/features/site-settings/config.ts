@@ -38,7 +38,7 @@ export const siteConfig: SiteConfig = {
   seo: {
     titleTemplate: "%s | VIT'OPAQUE",
     home: {
-      title: 'Films adhésifs pour vitrages : bâtiment, voiture, bateau',
+      title: 'Films pour vitrages : bâtiment, auto, bateau',
       description:
         "Pose de films solaires, sécurité, PDLC et vitres teintées par VIT'OPAQUE, à Vendargues, aux portes de Montpellier. Devis gratuit.",
     },

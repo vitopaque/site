@@ -12,36 +12,58 @@ export type ContactPageContent = {
 }
 
 export const contactPage: ContactPageContent = {
-  h1: 'Demandez votre devis',
+  h1: 'Contact et devis',
   intro:
-    'Décrivez votre vitrage et votre projet : nous revenons vers vous pour établir votre devis.',
+    'Un projet de film pour vos vitrages, votre voiture ou votre bateau ? Décrivez-le-nous : le devis est gratuit. Notre atelier est à Vendargues, aux portes de Montpellier.',
   seo: {
-    title: 'Devis gratuit et contact',
+    title: 'Contact et devis gratuit pour votre vitrage',
     description:
-      'Demandez un devis gratuit à VIT’OPAQUE, à Vendargues, aux portes de Montpellier : films pour le bâtiment, la voiture et le bateau.',
+      'Demandez votre devis gratuit pour un film de vitrage : bâtiment, voiture ou bateau. VIT’OPAQUE, à Vendargues, aux portes de Montpellier.',
   },
   form: {
     kicker: 'Formulaire',
     lines: ['Votre projet.'],
-    intro: 'Quelques champs suffisent : votre univers, votre besoin et un moyen de vous joindre.',
+    intro:
+      'Plus votre demande est détaillée, plus notre proposition est juste. Indiquez, selon le cas : le type de lieu, de véhicule ou de bateau ; le besoin (chaleur, intimité, sécurité, esthétique) ; les surfaces ou le modèle ; et quelques photos si vous le pouvez.',
   },
   steps: [
     {
-      title: 'Décrivez',
-      text: 'Indiquez l’univers, le besoin et vos coordonnées dans le formulaire.',
+      title: 'Nous recevons votre demande',
+      text: 'Elle arrive directement chez nous avec les informations et les photos que vous avez jointes.',
     },
-    { title: 'Échangeons', text: 'Nous revenons vers vous pour préciser votre besoin.' },
-    { title: 'Devis', text: 'Vous recevez votre devis, gratuit.' },
+    {
+      title: 'Nous échangeons avec vous',
+      text: 'Nous prenons contact pour préciser votre besoin, vos vitrages ou votre véhicule, et répondre à vos questions.',
+    },
+    {
+      title: 'Vous recevez votre devis',
+      text: 'Il détaille la solution proposée, adaptée à votre projet. Il est gratuit et sans engagement de votre part.',
+    },
   ],
   faq: [
     {
-      question: 'Le devis est-il gratuit ?',
-      answer: 'Oui, le devis est gratuit.',
+      question: 'Le devis est-il vraiment gratuit ?',
+      answer: 'Oui, le devis est gratuit et sans engagement.',
     },
     {
-      question: 'Quelles informations dois-je indiquer ?',
+      question: 'Quelles informations dois-je donner ?',
       answer:
-        'Votre nom, un numéro de téléphone ou une adresse e-mail, votre univers et votre type de besoin. La surface ou le modèle sont facultatifs.',
+        'Le type de projet (bâtiment, voiture ou bateau), ce que vous souhaitez améliorer, les surfaces ou le modèle concerné, et vos coordonnées. Plus c’est précis, plus notre réponse l’est aussi.',
+    },
+    {
+      question: 'Dois-je joindre des photos ?',
+      answer:
+        'Ce n’est pas obligatoire, mais c’est très utile : quelques photos de vos vitrages ou de votre véhicule nous permettent de mieux comprendre votre demande.',
+    },
+    {
+      question: 'Où intervenez-vous ?',
+      answer:
+        'Pour la voiture, la pose se fait dans nos locaux de Vendargues. Pour le bâtiment, nous intervenons dans l’Hérault, le Gard et l’Aude, et jusqu’à toute l’Occitanie pour les chantiers d’au moins 30 m². Pour le film à cristaux liquides, nous intervenons dans toute la France.',
+    },
+    {
+      question: 'Travaillez-vous pour les particuliers comme pour les professionnels ?',
+      answer:
+        'Oui. Particuliers, entreprises, commerces et gestionnaires de locaux peuvent nous solliciter, pour le bâtiment, la voiture ou le bateau.',
     },
   ],
 }

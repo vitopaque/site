@@ -53,7 +53,7 @@ export const serviceSilos: readonly ServiceSilo[] = [
   }),
   silo('filmPdlc', 'batiment', 'Film PDLC', {
     description:
-      'L’intimité à la demande : d’une simple pression, la vitre passe du transparent à l’opaque.',
+      'L’intimité à la demande : d’une simple pression, la vitre passe du transparent au translucide.',
     meters: [5, 4, 1],
     uses: ['Salle de bain', 'Cloisons', 'Salles de réunion'],
     veil: 'film-veil-pdlc',
