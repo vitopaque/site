@@ -13,14 +13,14 @@ export function PageTemplate({ entry }: { entry: Page }) {
   const faq = service?.faq ?? []
 
   return (
-    <article className="max-w-page py-3xl px-margin mx-auto">
+    <article className="max-w-page py-section px-margin mx-auto">
       {pageJsonLd(entry).map((data, index) => (
         <JsonLd key={index} data={data} />
       ))}
       <header>
-        <p className="label-caps text-on-surface-variant">{page.tagline}</p>
-        <h1 className="mt-md text-display-hero">{page.h1}</h1>
-        <p className="mt-lg text-body-lg text-on-surface-variant max-w-prose">{page.intro}</p>
+        <p className="label-caps text-accent-700">{page.tagline}</p>
+        <h1 className="text-headline-xl mt-4 wrap-break-word hyphens-auto uppercase">{page.h1}</h1>
+        <p className="text-body-lg mt-6 max-w-prose text-neutral-700">{page.intro}</p>
       </header>
       {service?.image ? (
         <Image
@@ -28,33 +28,36 @@ export function PageTemplate({ entry }: { entry: Page }) {
           alt={service.image.alt}
           priority
           sizes="(min-width: 90rem) 90rem, 100vw"
-          className="mt-xl rounded-md"
+          className="mt-12"
         />
       ) : null}
       {service ? (
-        <div className="mt-xl max-w-prose">
+        <div className="mt-12 max-w-prose">
           <service.Body />
         </div>
       ) : null}
       {faq.length > 0 ? (
-        <section className="mt-xl max-w-prose">
-          <h2 className="text-headline-lg">Questions fréquentes</h2>
-          <dl className="mt-md">
+        <section className="mt-12 max-w-prose">
+          <h2 className="text-headline-lg uppercase">Questions fréquentes</h2>
+          <dl className="mt-4">
             {faq.map((item, index) => (
-              <div key={index} className="mt-md">
-                <dt className="text-headline-md">{item.question}</dt>
-                <dd className="mt-sm text-on-surface-variant">{item.answer}</dd>
+              <div key={index} className="mt-4">
+                <dt className="text-headline-sm uppercase">{item.question}</dt>
+                <dd className="mt-2 text-neutral-700">{item.answer}</dd>
               </div>
             ))}
           </dl>
         </section>
       ) : null}
       {linkedServices.length > 0 ? (
-        <nav className="mt-xl" aria-label="Nos prestations">
-          <ul className="gap-gutter flex flex-wrap">
+        <nav className="mt-12" aria-label="Nos prestations">
+          <ul className="flex flex-wrap gap-6">
             {linkedServices.map((linked) => (
               <li key={linked.slug}>
-                <Link href={`/${linked.slug}`} className="label-md text-primary">
+                <Link
+                  href={`/${linked.slug}`}
+                  className="label-btn-lg text-accent-700 underline underline-offset-4"
+                >
                   {linked.h1}
                 </Link>
               </li>
