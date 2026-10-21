@@ -63,8 +63,8 @@ export function contentViolations({
     check(`${label} accroche`, page.tagline, noCityNumber)
     check(`${label} introduction`, page.intro, noCityNumber)
     for (const [key, title] of Object.entries(page.sectionTitles ?? {})) {
-      check(`${label} titre de section ${key} sur-titre`, title.kicker, noCityNumber)
-      for (const line of title.lines) check(`${label} titre de section ${key}`, line, noCityNumber)
+      check(`${label} titre de section ${key} sur-titre`, title.kicker, noCityInTitle)
+      for (const line of title.lines) check(`${label} titre de section ${key}`, line, noCityInTitle)
     }
     for (const [index, item] of (page.faq ?? []).entries()) {
       check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
