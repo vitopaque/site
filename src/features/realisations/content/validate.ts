@@ -1,12 +1,11 @@
-import { noCityInTitle, noCityNumber, type Rule } from '@/shared/content/city-rules.mjs'
+import { noCityInTitle, noCityNumber } from '@/shared/content/city-rules.mjs'
+import { checkSeoLengths, makeCheck, registerUnique, type Seen } from '@/shared/content/seo-rules'
 import { siloBySlug } from '@/shared/catalog'
 
 import { realisationTitles } from './sections'
 import { DATE_FORMAT } from '../format'
 import type { ListingContent, Realisation } from '../types'
 
-const RENDERED_TITLE_MAX = 70
-const DESCRIPTION_MAX = 160
 const SLUG_FORMAT = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const DURATION_FORMAT = /^PT(?=\d)(?:\d+H)?(?:\d+M)?(?:\d+S)?$/
 const UPLOAD_DATE_FORMAT = /^\d{4}-\d{2}-\d{2}$/
@@ -19,36 +18,16 @@ type Input = {
 
 export function realisationViolations({ listing, realisations, titleTemplate }: Input): string[] {
   const violations: string[] = []
-  const check = (label: string, value: string, rule: Rule) => {
-    if (!value.trim()) violations.push(`${label} : valeur vide`)
-    else {
-      const result = rule(value)
-      if (result !== true) violations.push(`${label} : ${result}`)
-    }
-  }
-  const titles = new Map<string, string>()
-  const descriptions = new Map<string, string>()
-  const unique = (label: string, seo: { title: string; description: string }) => {
-    for (const [field, value, seen] of [
-      ['titre SEO', seo.title, titles],
-      ['méta-description', seo.description, descriptions],
-    ] as const) {
-      const key = value.trim().toLowerCase()
-      const previous = seen.get(key)
-      if (previous) violations.push(`${label} : ${field} déjà utilisé(e) par ${previous}`)
-      else seen.set(key, label)
-    }
-  }
+  const check = makeCheck(violations)
+  const titles: Seen = new Map()
+  const descriptions: Seen = new Map()
+
   const checkSeo = (label: string, seo: { title: string; description: string }) => {
     check(`${label} titre SEO`, seo.title, noCityInTitle)
     check(`${label} méta-description`, seo.description, noCityNumber)
-    if (titleTemplate.replace('%s', seo.title).length > RENDERED_TITLE_MAX) {
-      violations.push(`${label} : titre affiché > ${RENDERED_TITLE_MAX} caractères`)
-    }
-    if (seo.description.length > DESCRIPTION_MAX) {
-      violations.push(`${label} : méta-description > ${DESCRIPTION_MAX}`)
-    }
-    unique(label, seo)
+    checkSeoLengths(violations, label, seo, titleTemplate)
+    registerUnique(violations, label, seo.title, titles, 'titre SEO')
+    registerUnique(violations, label, seo.description, descriptions, 'méta-description')
   }
 
   check('réalisations H1', listing.h1, noCityInTitle)

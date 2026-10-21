@@ -1,10 +1,9 @@
-import { noCityInTitle, noCityNumber, type Rule } from '@/shared/content/city-rules.mjs'
+import { noCityInTitle, noCityNumber } from '@/shared/content/city-rules.mjs'
+import { checkSeoLengths, makeCheck, registerUnique, type Seen } from '@/shared/content/seo-rules'
 
 import { servicePageSlugRule } from '../validators'
 import type { HubPageContent, ServicePageContent } from './types'
 
-const RENDERED_TITLE_MAX = 70
-const DESCRIPTION_MAX = 160
 const TAGLINE_MAX = 160
 
 type Content = {
@@ -15,21 +14,6 @@ type Content = {
   internalHrefs: string[]
   silos: readonly { slug: string; univers: string }[]
   otherSeo: readonly { label: string; seo: { title: string; description: string } }[]
-}
-
-type Seen = Map<string, string>
-
-function registerUnique(
-  violations: string[],
-  label: string,
-  value: string,
-  seen: Seen,
-  field: string,
-) {
-  const key = value.trim().toLowerCase()
-  const previous = seen.get(key)
-  if (previous) violations.push(`${label} : ${field} déjà utilisé(e) par ${previous}`)
-  else seen.set(key, label)
 }
 
 export function contentViolations({
@@ -47,14 +31,7 @@ export function contentViolations({
     [home.description.trim().toLowerCase(), 'accueil'],
   ])
 
-  const check = (label: string, value: string, rule: Rule) => {
-    if (!value.trim()) {
-      violations.push(`${label} : valeur vide`)
-      return
-    }
-    const result = rule(value)
-    if (result !== true) violations.push(`${label} : ${result}`)
-  }
+  const check = makeCheck(violations)
   const unique = (label: string, value: string, seen: Seen, field: string) =>
     registerUnique(violations, label, value, seen, field)
 
@@ -72,12 +49,7 @@ export function contentViolations({
       check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
       check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
     }
-    if (titleTemplate.replace('%s', page.seo.title).length > RENDERED_TITLE_MAX) {
-      violations.push(`${label} : titre affiché > ${RENDERED_TITLE_MAX} caractères`)
-    }
-    if (page.seo.description.length > DESCRIPTION_MAX) {
-      violations.push(`${label} : méta-description > ${DESCRIPTION_MAX}`)
-    }
+    checkSeoLengths(violations, label, page.seo, titleTemplate)
     if (page.tagline.length > TAGLINE_MAX) violations.push(`${label} : accroche > ${TAGLINE_MAX}`)
     unique(label, page.seo.title, seenTitles, 'titre SEO')
     unique(label, page.seo.description, seenDescriptions, 'méta-description')
