@@ -8,7 +8,7 @@ const TONES = {
 
 type Props = {
   id?: string
-  labelledBy: string
+  labelledBy?: string
   tone?: keyof typeof TONES
   className?: string
   children: ReactNode

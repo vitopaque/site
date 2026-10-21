@@ -1,6 +1,6 @@
-import { serviceSilos } from '@/features/services'
+import { UNIVERS_OPTIONS, type Univers } from '@/shared/payload/univers'
 
-import { UNKNOWN_NEED, type QuoteErrors, type QuoteValues } from './types'
+import { UNKNOWN_NEED, type QuoteErrors, type QuoteSilo, type QuoteValues } from './types'
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_CHARS = /^[+\d\s().-]+$/
@@ -18,20 +18,31 @@ export const contactError = (value: string): string | null => {
   return 'Ce numéro ou cette adresse e-mail ne semble pas valide.'
 }
 
-export const needError = (univers: QuoteValues['univers'], need: QuoteValues['need']) =>
-  need === UNKNOWN_NEED ||
-  serviceSilos.some((silo) => silo.key === need && silo.univers === univers)
+export const serviceFromParam = (
+  value: string | null,
+  silos: readonly QuoteSilo[],
+): QuoteSilo | null => silos.find((silo) => silo.slug === value) ?? null
+
+export const universFromParam = (value: string | null): Univers | null =>
+  UNIVERS_OPTIONS.find((option) => option.value === value)?.value ?? null
+
+export const needError = (
+  univers: QuoteValues['univers'],
+  need: QuoteValues['need'],
+  silos: readonly QuoteSilo[],
+) =>
+  need === UNKNOWN_NEED || silos.some((silo) => silo.key === need && silo.univers === univers)
     ? null
     : 'Choisissez un besoin correspondant à cet univers.'
 
 export const consentError = (value: boolean): string | null =>
   value ? null : 'Votre accord est nécessaire pour traiter votre demande.'
 
-export const validateQuote = (values: QuoteValues): QuoteErrors => {
+export const validateQuote = (values: QuoteValues, silos: readonly QuoteSilo[]): QuoteErrors => {
   const checks: QuoteErrors = {
     name: nameError(values.name) ?? undefined,
     contact: contactError(values.contact) ?? undefined,
-    need: needError(values.univers, values.need) ?? undefined,
+    need: needError(values.univers, values.need, silos) ?? undefined,
     consent: consentError(values.consent) ?? undefined,
   }
   return Object.fromEntries(Object.entries(checks).filter(([, message]) => message))

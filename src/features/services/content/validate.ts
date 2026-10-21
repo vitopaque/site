@@ -16,6 +16,21 @@ type Content = {
   silos: readonly { slug: string; univers: string }[]
 }
 
+type Seen = Map<string, string>
+
+function registerUnique(
+  violations: string[],
+  label: string,
+  value: string,
+  seen: Seen,
+  field: string,
+) {
+  const key = value.trim().toLowerCase()
+  const previous = seen.get(key)
+  if (previous) violations.push(`${label} : ${field} déjà utilisé(e) par ${previous}`)
+  else seen.set(key, label)
+}
+
 export function contentViolations({
   hubPages,
   servicePages,
@@ -38,12 +53,8 @@ export function contentViolations({
     const result = rule(value)
     if (result !== true) violations.push(`${label} : ${result}`)
   }
-  const unique = (label: string, value: string, seen: Map<string, string>, field: string) => {
-    const key = value.trim().toLowerCase()
-    const previous = seen.get(key)
-    if (previous) violations.push(`${label} : ${field} déjà utilisé(e) par ${previous}`)
-    else seen.set(key, label)
-  }
+  const unique = (label: string, value: string, seen: Seen, field: string) =>
+    registerUnique(violations, label, value, seen, field)
 
   const checkPage = (label: string, page: HubPageContent | ServicePageContent) => {
     check(`${label} H1`, page.h1, noCityInTitle)
@@ -82,7 +93,13 @@ export function contentViolations({
     }
     checkPage(label, page)
     if (page.image) check(`${label} texte alternatif`, page.image.alt, noCityInTitle)
-    for (const [index, item] of (page.faq ?? []).entries()) {
+    check(`${label} résumé`, page.summary, noCityNumber)
+    for (const [index, item] of (page.highlights ?? []).entries()) {
+      check(`${label} point clé ${index + 1} titre`, item.title, noCityNumber)
+      check(`${label} point clé ${index + 1} texte`, item.text, noCityNumber)
+    }
+    if (page.faq.length === 0) violations.push(`${label} : FAQ obligatoire`)
+    for (const [index, item] of page.faq.entries()) {
       check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
       check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
     }
@@ -115,6 +132,27 @@ export function contentViolations({
     }
   }
 
+  return violations
+}
+
+export function seoClashes(
+  label: string,
+  seo: { title: string; description: string },
+  { hubPages, servicePages, home }: Pick<Content, 'hubPages' | 'servicePages' | 'home'>,
+): string[] {
+  const violations: string[] = []
+  const titles: Seen = new Map([[home.title.trim().toLowerCase(), 'accueil']])
+  const descriptions: Seen = new Map([[home.description.trim().toLowerCase(), 'accueil']])
+  for (const page of hubPages) {
+    titles.set(page.seo.title.trim().toLowerCase(), `hub ${page.univers}`)
+    descriptions.set(page.seo.description.trim().toLowerCase(), `hub ${page.univers}`)
+  }
+  for (const page of servicePages) {
+    titles.set(page.seo.title.trim().toLowerCase(), `service ${page.slug}`)
+    descriptions.set(page.seo.description.trim().toLowerCase(), `service ${page.slug}`)
+  }
+  registerUnique(violations, label, seo.title, titles, 'titre SEO')
+  registerUnique(violations, label, seo.description, descriptions, 'méta-description')
   return violations
 }
 

@@ -5,6 +5,9 @@ import { isHubSlug } from './validators'
 export type Page =
   { kind: 'hub'; page: HubPageContent } | { kind: 'service'; page: ServicePageContent }
 
+export type ServiceEntry = Extract<Page, { kind: 'service' }>
+export type HubEntry = Extract<Page, { kind: 'hub' }>
+
 export const pathOf = ({ kind, page }: Page): string =>
   `/${kind === 'hub' ? page.univers : (page as ServicePageContent).slug}`
 

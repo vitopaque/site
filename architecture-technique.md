@@ -55,7 +55,7 @@ Les URLs reprennent celles du CDC v1.1 (§6.1 et §7.2). Les pages de service pa
 
 Les routes fixes (`/realisations`, `/conseils-expertises`, `/a-propos`, `/contact-devis`) l'emportent sur la route dynamique `/[slug]` des pages de service. Un slug inconnu renvoie une vraie page 404, et ces noms réservés sont interdits comme slugs de pages de service (contrôle au build).
 
-**Décision :** trois pages hub, `/batiment`, `/voiture` et `/bateau`. Les deux premières gardent leurs URLs actuelles, donc sans redirection ; `/bateau` est séparée de `/voiture` pour ne pas brouiller le référencement de chaque univers. Reste à fixer l'URL de la page contact.
+**Décision :** trois pages hub, `/batiment`, `/voiture` et `/bateau`. Les deux premières gardent leurs URLs actuelles, donc sans redirection ; `/bateau` est séparée de `/voiture` pour ne pas brouiller le référencement de chaque univers. L'URL retenue pour la page contact est `/contact-devis`.
 
 ## Modèle de contenu
 

@@ -1,18 +1,19 @@
 'use client'
 
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { useState, type CSSProperties } from 'react'
 
-import { ordinal } from '@/shared/ui/ordinal'
-
-import { METER_LABELS, METER_MAX, type Film } from '../content/films'
-import { PROVISIONAL_ALT, provisionalPhoto } from '../content/media'
+import type { LabFilm } from './film'
+import { FilmMeters } from './FilmMeters'
+import { ordinal } from './ordinal'
 
 const SPLIT_MIN = 2
 const SPLIT_MAX = 98
 
-export function FilmLab({ films }: { films: readonly Film[] }) {
+type Props = { films: readonly LabFilm[]; image: { src: StaticImageData; alt: string } }
+
+export function FilmLab({ films, image }: Props) {
   const [split, setSplit] = useState(50)
   const [selected, setSelected] = useState(0)
   const [flash, setFlash] = useState(0)
@@ -35,8 +36,8 @@ export function FilmLab({ films }: { films: readonly Film[] }) {
           <div className="absolute inset-0 overflow-hidden">
             <div className="duotone absolute inset-0">
               <Image
-                src={provisionalPhoto}
-                alt={PROVISIONAL_ALT}
+                src={image.src}
+                alt={image.alt}
                 fill
                 quality={75}
                 sizes="(min-width: 64rem) 66vw, 100vw"
@@ -104,30 +105,7 @@ export function FilmLab({ films }: { films: readonly Film[] }) {
             <h3 className="text-headline-md uppercase">{film.name}</h3>
             <p className="text-neutral-700">{film.description}</p>
           </div>
-          <ul className="flex flex-col gap-3">
-            {METER_LABELS.map((label, index) => {
-              const level = film.meters[index] ?? 0
-              return (
-                <li key={label} className="grid grid-cols-[1fr_auto] items-center gap-3">
-                  <span className="text-body-sm tracking-wide">
-                    {label}
-                    <span className="sr-only">
-                      {' '}
-                      : {level} sur {METER_MAX}
-                    </span>
-                  </span>
-                  <span aria-hidden="true" className="flex gap-0.75">
-                    {Array.from({ length: METER_MAX }, (_, cell) => (
-                      <span
-                        key={cell}
-                        className={`border-accent h-2 w-5.5 border transition-colors duration-(--duration-meter) ${cell < level ? 'bg-accent' : 'bg-transparent'}`}
-                      />
-                    ))}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
+          <FilmMeters meters={film.meters} />
           <ul className="flex flex-wrap gap-2">
             {film.uses.map((use) => (
               <li key={use} className="label-sm bg-accent-100 text-accent-700 px-2.5 py-1">
@@ -160,7 +138,7 @@ export function FilmLab({ films }: { films: readonly Film[] }) {
               <span className="relative block aspect-4/3 overflow-hidden">
                 <span className="duotone absolute inset-0">
                   <Image
-                    src={provisionalPhoto}
+                    src={image.src}
                     alt=""
                     fill
                     sizes="(min-width: 64rem) 20vw, 50vw"
