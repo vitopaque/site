@@ -5,7 +5,12 @@ import { ServiceAreaText } from '@/features/site-settings'
 
 const components: MDXComponents = {
   ServiceArea: ServiceAreaText,
-  h2: (props) => <h2 {...props} className="text-headline-md mt-12 uppercase first:mt-0" />,
+  h2: (props) => (
+    <h2
+      {...props}
+      className="text-headline-md mt-12 scroll-mt-(--anchor-offset) uppercase first:mt-0"
+    />
+  ),
   h3: (props) => <h3 {...props} className="text-headline-sm mt-8 uppercase" />,
   p: (props) => <p {...props} className="text-body-lg mt-4 text-pretty" />,
   ul: (props) => <ul {...props} className="text-body-lg mt-4 list-disc pl-6" />,

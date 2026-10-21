@@ -5,16 +5,16 @@ import { BrandLockup } from './BrandLockup'
 import { MobileMenu } from './MobileMenu'
 
 const VARIANTS = {
-  solid: 'bg-accent-900 relative',
-  overlay: 'absolute inset-x-0 top-0',
+  solid: 'bg-accent-900 sticky top-0',
+  overlay: 'header-fade fixed inset-x-0 top-0',
 } as const
 
 export function SiteHeader({ variant = 'solid' }: { variant?: keyof typeof VARIANTS }) {
   const { links, cta } = siteConfig.navigation
 
   return (
-    <header className={`on-dark text-background z-20 ${VARIANTS[variant]}`}>
-      <div className="max-w-page px-margin desktop:gap-10 mx-auto flex items-center gap-6 py-5">
+    <header className={`on-dark text-background z-20 h-(--header-height) ${VARIANTS[variant]}`}>
+      <div className="max-w-page px-margin desktop:gap-10 mx-auto flex h-full items-center gap-6">
         <div className="mr-auto">
           <BrandLockup />
         </div>

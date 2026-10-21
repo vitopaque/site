@@ -1,5 +1,5 @@
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Vitre latérale arrière d’une voiture équipée d’un film teinté »
@@ -122,5 +122,6 @@ export const vitresTeinteesAuto: ServicePageContent = {
         'Le modèle de votre véhicule, les vitres à teinter et, si vous en avez une idée, la teinte envisagée, depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }

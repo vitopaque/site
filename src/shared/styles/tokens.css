@@ -158,8 +158,19 @@
   --card-gap: 1.75rem;
   --card-min-height: 16.25rem;
 
+  --header-height: 3.5rem;
+  --header-fill-distance: 5rem;
+  --anchor-gap: 1.5rem;
+  --anchor-offset: calc(var(--header-height) + var(--anchor-gap));
+
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+}
+
+@media (width >= theme(--breakpoint-desktop)) {
+  :root {
+    --header-height: 5rem;
+  }
 }
 
 @utility blueprint {
@@ -321,6 +332,29 @@
       animation: reveal linear both;
       animation-timeline: view();
       animation-range: var(--reveal-range);
+    }
+  }
+}
+
+@keyframes header-fill {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: var(--color-accent-900);
+  }
+}
+
+@utility header-fade {
+  background-color: var(--color-accent-900);
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      background-color: transparent;
+      animation: header-fill linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 var(--header-fill-distance);
     }
   }
 }

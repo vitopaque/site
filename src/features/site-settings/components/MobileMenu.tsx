@@ -64,7 +64,7 @@ export function MobileMenu({ links, cta }: Props) {
       <div
         id="menu-mobile"
         hidden={!open}
-        className="bg-accent-900 border-divider-inverse px-margin absolute inset-x-0 top-full z-20 border-t py-6"
+        className="bg-accent-900 border-divider-inverse px-margin absolute inset-x-0 top-full z-20 max-h-[calc(100svh-var(--header-height))] overflow-y-auto border-t py-6"
       >
         <ul className="flex flex-col gap-1">
           {links.map((link) => (

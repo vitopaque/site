@@ -76,6 +76,8 @@ export const pairOfSilo = (slug: string): PairWithSource | undefined =>
 export const pairOfUnivers = (univers: Univers): PairWithSource | undefined =>
   pairOf(latestFirst.filter((item) => universOf(item) === univers))
 
+export const vehicleAfterPhoto = () => pairOfUnivers('voiture')?.pair.after
+
 export const caseStudies = (): CaseStudy[] => {
   const withMetric = latestFirst.flatMap((item) =>
     item.result.metric

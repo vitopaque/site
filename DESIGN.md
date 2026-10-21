@@ -101,6 +101,10 @@ spacing:
   card-min-narrow: 230px
   card-gap: 28px
   card-min-height: 260px
+  header-height: 56px                    # 80px à partir de breakpoint-desktop
+  header-fill-distance: 80px            # distance de défilement du fondu de l'en-tête d'accueil
+  anchor-gap: 24px
+  anchor-offset: header-height + anchor-gap
   focus-ring-width: 2px
   focus-ring-offset: 2px
   corner-size: 11px
@@ -294,6 +298,7 @@ Grille de **12 colonnes**, rythme sur multiples de 4 px (échelle Tailwind).
 - **Rythme des sections** : alternance fond clair, `surface`, `accent-900`. Hero, manifeste, contact et pied de page en `accent-900`.
 - **Cartes** : grilles `auto-fit` partagées `card-grid` (colonne minimale `card-min` 280 px) et `card-grid-narrow` (`card-min-narrow` 230 px), gouttière `card-gap` 28 px. Carte `blueprint-card` : hauteur minimale `card-min-height` 260 px, rembourrage 28 px, colonne avec espacement de 14 px.
 - **Breakpoint** : `desktop` (`breakpoint-desktop`) = 1200 px. En dessous, la navigation passe dans le menu mobile.
+- **En-tête fixe** : présent en haut de toutes les pages, desktop et mobile. Hauteur `header-height` : 56 px (barre compacte : lockup et bouton de menu) sous 1200 px, 80 px à partir de 1200 px. `anchor-offset` = `header-height` + `anchor-gap` (24 px) : il sert de `scroll-margin-top` aux ancres (H2 du sommaire) et de décalage `top` à la colonne latérale fixe des pages de service, pour qu'aucun contenu ne passe sous l'en-tête.
 - **Appel à l'action permanent** : « Devis gratuit » dans l'en-tête (menu mobile en dessous de 1200 px).
 
 ## Élévation et profondeur
@@ -341,7 +346,7 @@ Pas d'ombres portées (`--shadow-*` vidé). La profondeur vient des filets, des 
 Cellules de 22 × 8 px, contour 1 px `accent`, remplies en `accent` ; vignette sélectionnée en fond `accent-200`.
 
 ### Navigation
-- **En-tête** : fond `accent-900`, lockup à gauche, liens `label-nav` en `background` (survol `accent-300`), bouton « Devis gratuit ». Liens validés : `/batiment`, `/voiture`, `/bateau`, `/realisations`, `/conseils-expertises`, CTA `/contact-devis`.
+- **En-tête** : fond `accent-900`, lockup à gauche, liens `label-nav` en `background` (survol `accent-300`), bouton « Devis gratuit ». Fixe (`sticky`) sur les pages intérieures. Sur l'accueil (`fixed`, `header-fade`), il est transparent par-dessus le hero puis passe à `accent-900` sur les `header-fill-distance` premiers pixels de défilement (`animation-timeline: scroll(root)`, sans JavaScript) ; sans prise en charge de `animation-timeline` ou avec `prefers-reduced-motion: reduce`, le fond est plein dès le départ. Liens validés : `/` (« Accueil », en premier), `/batiment`, `/voiture`, `/bateau`, `/realisations`, `/conseils-expertises`, CTA `/contact-devis`.
 - **Menu mobile** (sous 1200 px) : bouton 44 px à contour `outline-inverse`, panneau `accent-900` pleine largeur, liens en `title-md`, bouton « Devis gratuit » en bas.
 - **Pied de page** : fond `accent-900`, filet supérieur `divider-inverse`, textes `accent-200`, intitulés `accent-300`, coordonnées issues de `site-settings`.
 
@@ -369,6 +374,7 @@ Sobres et signifiantes : toute animation illustre le passage **opaque → transp
 | Apparition des sections (opacité, translation de `reveal-shift` 28 px, flou de `reveal-blur` 14 px vers 0) | liée au défilement (`animation-timeline: view()`, plage `reveal-range` : `entry 0 %` à `entry 40 %`), sans durée ; uniquement si JavaScript est actif (`@media (scripting: enabled)`), sinon les blocs restent visibles | linéaire |
 | Éclair au changement de film | 1200 ms | `ease-flash` |
 | Mots du manifeste (flou, opacité) | 250 ms | linéaire, pilotée par le défilement |
+| Fond de l'en-tête d'accueil (transparent vers `accent-900`) | liée au défilement (`animation-timeline: scroll(root)`, 0 à `header-fill-distance`), sans durée ; uniquement si `animation-timeline` est pris en charge et mouvement non réduit | linéaire |
 | Reflet balayant (hero) | 8 s, boucle | `ease-in-out` |
 | Reflet balayant (contact) | 10,4 s, boucle | `ease-in-out` |
 
@@ -385,5 +391,6 @@ Les durées vivent uniquement dans `tokens.css` (`--duration-*`). Les durées `r
 
 ## Historique
 
+- 2026-10-21 : en-tête fixe (desktop et mobile, tokens `header-height`, `header-fill-distance`, `anchor-gap`, `anchor-offset`), fond de l'accueil piloté par le défilement, lien « Accueil » en tête de navigation.
 - 2026-10-20 : version 3.0, tirée de la maquette d'accueil `maquette-v3.html` : thème clair bleu acier, Barlow / Barlow Condensed, rayon 0, repères d'angle, grille 12 colonnes, lentille de verre dépoli. Abandon du dégradé cuivre → bleu.
 - 2026-10-13 : (v2.0) précisions validées : libellé du CTA dégradé, espacements tablette et grand écran, `space-3xl` par palier.

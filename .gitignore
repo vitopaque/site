@@ -11,3 +11,6 @@ next-env.d.ts
 
 /test-results
 /playwright-report
+
+# Généré par Next.js en développement
+/AGENTS.md

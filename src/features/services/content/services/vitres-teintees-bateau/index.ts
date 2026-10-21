@@ -1,5 +1,5 @@
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Baie vitrée d’un bateau de plaisance équipée d’un film teinté »
@@ -97,5 +97,6 @@ export const vitresTeinteesBateau: ServicePageContent = {
         'Votre bateau et la forme de ses vitrages (baies, hublots, poste de barre), depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }

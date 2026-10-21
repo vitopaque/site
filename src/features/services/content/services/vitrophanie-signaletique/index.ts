@@ -1,5 +1,5 @@
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Vitrine de commerce habillée d’un film adhésif dépoli avec logo découpé »
@@ -109,5 +109,6 @@ export const vitrophanieSignaletique: ServicePageContent = {
         'Les dimensions de vos vitrages et, si possible, votre logo ou votre charte graphique, depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }
