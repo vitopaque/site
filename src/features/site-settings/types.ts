@@ -11,6 +11,8 @@ export type ServiceArea = {
   liquidCrystal: { country: string }
 }
 
+export type ServiceAreaScope = keyof ServiceArea
+
 export type SiteConfig = {
   name: string
   baseline: string

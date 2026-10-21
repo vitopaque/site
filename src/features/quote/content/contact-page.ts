@@ -1,3 +1,4 @@
+import { formatServiceAreaFor } from '@/features/site-settings'
 import type { FaqItem } from '@/shared/ui/FaqList'
 
 import { assertValidContactPage } from './validate'
@@ -57,8 +58,7 @@ export const contactPage: ContactPageContent = {
     },
     {
       question: 'Où intervenez-vous ?',
-      answer:
-        'Pour la voiture, la pose se fait dans nos locaux de Vendargues. Pour le bâtiment, nous intervenons dans l’Hérault, le Gard et l’Aude, et jusqu’à toute l’Occitanie pour les chantiers d’au moins 30\u00A0m². Pour le film à cristaux liquides, nous intervenons dans toute la France.',
+      answer: `Pour la voiture, la pose se fait ${formatServiceAreaFor('automotive')}. Pour le bâtiment, nous intervenons ${formatServiceAreaFor('building')}. Pour le film à cristaux liquides, nous intervenons ${formatServiceAreaFor('liquidCrystal')}.`,
     },
     {
       question: 'Travaillez-vous pour les particuliers comme pour les professionnels ?',

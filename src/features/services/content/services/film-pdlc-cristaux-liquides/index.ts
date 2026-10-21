@@ -1,3 +1,5 @@
+import { formatServiceAreaFor } from '@/features/site-settings'
+
 import type { ServicePageContent } from '../../types'
 import Body from './body.mdx'
 
@@ -127,7 +129,7 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
     },
     {
       question: 'Intervenez-vous en dehors de la région ?',
-      answer: 'Pour le film à cristaux liquides, oui : nous intervenons dans toute la France.',
+      answer: `Pour le film à cristaux liquides, oui : nous intervenons ${formatServiceAreaFor('liquidCrystal')}.`,
     },
     {
       question: 'Quelles informations donner pour chiffrer mon projet ?',

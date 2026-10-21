@@ -1,3 +1,5 @@
+import { formatServiceAreaFor } from '@/features/site-settings'
+
 import type { ServicePageContent } from '../../types'
 import Body from './body.mdx'
 
@@ -130,8 +132,7 @@ export const filmSolaireBatiment: ServicePageContent = {
     },
     {
       question: 'Où intervenez-vous ?',
-      answer:
-        'Dans l’Hérault, le Gard et l’Aude, et jusqu’à toute l’Occitanie pour les chantiers d’au moins 30 m².',
+      answer: `Nous intervenons ${formatServiceAreaFor('building')}.`,
     },
     {
       question: 'Que préparer pour obtenir un devis de film solaire ?',

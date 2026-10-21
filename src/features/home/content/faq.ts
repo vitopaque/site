@@ -1,3 +1,4 @@
+import { formatServiceAreaFor } from '@/features/site-settings'
 import type { FaqItem } from '@/shared/ui/FaqList'
 
 export const homeFaq: FaqItem[] = [
@@ -13,7 +14,6 @@ export const homeFaq: FaqItem[] = [
   },
   {
     question: 'Dans quelle zone intervenez-vous ?',
-    answer:
-      'Pour le bâtiment, dans l’Hérault, le Gard et l’Aude, et dans toute l’Occitanie à partir de 30 m². Pour votre voiture, nous vous recevons à l’atelier de Vendargues. Pour le vitrage opacifiant électrique en film PDLC, nous intervenons partout en France. Un doute sur votre situation ? Écrivez-nous depuis la page Contact et devis.',
+    answer: `Pour le bâtiment, nous intervenons ${formatServiceAreaFor('building')}. Pour votre voiture, nous vous recevons ${formatServiceAreaFor('automotive')}. Pour le vitrage opacifiant électrique en film PDLC, nous intervenons ${formatServiceAreaFor('liquidCrystal')}. Un doute sur votre situation ? Écrivez-nous depuis la page Contact et devis.`,
   },
 ]

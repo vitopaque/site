@@ -1,4 +1,5 @@
-import type { ServiceArea, SiteConfig, Weekday } from './types'
+import { siteConfig } from './config'
+import type { ServiceArea, ServiceAreaScope, SiteConfig, Weekday } from './types'
 
 const WEEK: readonly Weekday[] = [
   'Monday',
@@ -64,3 +65,17 @@ const joinList = (items: readonly string[]): string =>
 
 export const formatServiceArea = ({ automotive, building, liquidCrystal }: ServiceArea): string =>
   `Bâtiment : ${joinList(building.departments)}, et toute l’${building.region.name} dès ${building.region.minSurfaceM2}\u00A0m². Automobile : à l’atelier de ${automotive.location}. Vitrage opacifiant électrique (film PDLC) : partout en ${liquidCrystal.country}.`
+
+export function formatServiceAreaFor(
+  scope: ServiceAreaScope,
+  area: ServiceArea = siteConfig.serviceArea,
+): string {
+  switch (scope) {
+    case 'building':
+      return `dans les départements ${joinList(area.building.departments)}, et jusqu’à toute l’${area.building.region.name} pour les chantiers d’au moins ${area.building.region.minSurfaceM2}\u00A0m²`
+    case 'automotive':
+      return `à l’atelier de ${area.automotive.location}`
+    case 'liquidCrystal':
+      return `partout en ${area.liquidCrystal.country}`
+  }
+}
