@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { articlesForService, GuidesSection, toGuide } from '@/features/articles'
+import { GuidesSection, guidesForService } from '@/features/articles'
 import { LISTING_PATH, pairOfSilo, realisationsOfSilo } from '@/features/realisations'
 import { ReviewsSection } from '@/features/reviews'
 import { hubHref, quoteHref, siloBySlug } from '@/shared/catalog'
@@ -23,15 +23,13 @@ import { HeroVisual } from './HeroVisual'
 import { ServiceAside } from './ServiceAside'
 import { ServiceCards } from './ServiceCards'
 
-const GUIDES_COUNT = 3
-
 export async function ServicePage({ entry }: { entry: ServiceEntry }) {
   const { page } = entry
   const silo = siloBySlug(page.slug)
   const related = relatedServicesOf(page)
   const href = quoteHref(page.slug)
   const beforeAfter = pairOfSilo(page.slug)
-  const guides = (await articlesForService(page.slug, GUIDES_COUNT)).map(toGuide)
+  const guides = await guidesForService(page.slug)
 
   return (
     <>

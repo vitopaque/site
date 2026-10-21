@@ -1,4 +1,4 @@
-import { GuidesSection, latestArticles, toGuide } from '@/features/articles'
+import { GuidesSection, homeGuides } from '@/features/articles'
 import {
   CaseStudiesSection,
   LISTING_PATH,
@@ -21,11 +21,8 @@ import { ManifestoSection } from './ManifestoSection'
 import { MethodSection } from './MethodSection'
 import { UniversSection } from './UniversSection'
 
-const GUIDES_COUNT = 3
-
 export async function HomePage() {
-  const latest = await latestArticles(GUIDES_COUNT)
-  const guides = latest.length >= GUIDES_COUNT ? latest.map(toGuide) : []
+  const guides = await homeGuides()
   return (
     <>
       <Hero />
