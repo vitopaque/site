@@ -48,3 +48,35 @@ export const videoObject = (video: VideoInput) => ({
   '@type': 'VideoObject',
   ...video,
 })
+
+type BlogPostingInput = {
+  headline: string
+  description: string
+  path: string
+  image: string | null
+  datePublished: string
+  dateModified: string
+  author: { name: string; url?: string | null } | null
+}
+
+const isoDate = (value: string): string => new Date(value).toISOString()
+
+export const blogPosting = (post: BlogPostingInput) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.headline,
+  description: post.description,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl(post.path) },
+  ...(post.image ? { image: [absoluteUrl(post.image)] } : {}),
+  datePublished: isoDate(post.datePublished),
+  dateModified: isoDate(post.dateModified),
+  ...(post.author
+    ? {
+        author: {
+          '@type': 'Person',
+          name: post.author.name,
+          ...(post.author.url ? { url: post.author.url } : {}),
+        },
+      }
+    : {}),
+})

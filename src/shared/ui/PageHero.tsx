@@ -8,11 +8,12 @@ type Props = {
   kicker?: string
   title: string
   intro: string
+  meta?: ReactNode
   actions?: ReactNode
   aside?: ReactNode
 }
 
-export function PageHero({ crumbs, kicker, title, intro, actions, aside }: Props) {
+export function PageHero({ crumbs, kicker, title, intro, meta, actions, aside }: Props) {
   return (
     <header className="bg-background text-foreground">
       <div className="max-w-page px-margin mx-auto pt-8 pb-12">
@@ -22,6 +23,7 @@ export function PageHero({ crumbs, kicker, title, intro, actions, aside }: Props
             {kicker ? <p className="label-caps text-accent-700">{kicker}</p> : null}
             <h1 className="text-headline-xl wrap-break-word hyphens-auto uppercase">{title}</h1>
             <p className="text-body-lg max-w-prose text-pretty text-neutral-700">{intro}</p>
+            {meta}
             {actions ? <div className="mt-1.5 flex flex-wrap gap-4">{actions}</div> : null}
           </div>
           {aside ? <div className="lg:col-span-5">{aside}</div> : null}

@@ -6,6 +6,8 @@ export type Guide = {
   title: string
   excerpt: string
   href: string
+  publishedAt: string
+  category: string
 }
 
 export type ArticleImage = {
@@ -14,6 +16,8 @@ export type ArticleImage = {
   width: number | null
   height: number | null
 }
+
+export type ArticleCardItem = Guide & { image: ArticleImage | null }
 
 export type ArticleAuthor = {
   name: string
