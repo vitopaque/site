@@ -8,6 +8,6 @@ export const listing: ListingContent = {
   seo: {
     title: 'Réalisations de films pour vitrages',
     description:
-      'Découvrez les réalisations VIT’OPAQUE : des films posés sur des vitrages, du besoin au résultat. Intervention à Vendargues et alentours, devis gratuit.',
+      'Découvrez les réalisations VIT’OPAQUE : des films posés sur des vitrages, du besoin au résultat. Atelier à Vendargues ou pose sur site, devis gratuit.',
   },
 }
