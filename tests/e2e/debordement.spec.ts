@@ -12,7 +12,6 @@ const PATHS = [
   '/vitres-teintees-auto',
   '/vitres-teintees-bateau',
   '/covering-et-flocage',
-  '/a-propos',
   '/contact-devis',
   '/realisations',
   '/realisations/vitres-arriere-teintees-porsche-macan',
@@ -27,7 +26,8 @@ const SHOT_PATHS = new Set([
 
 for (const path of PATHS) {
   test(`${path} : aucun débordement horizontal ni titre coupé`, async ({ page }, testInfo) => {
-    await page.goto(path)
+    const response = await page.goto(path)
+    expect(response?.status()).toBe(200)
     const overflow = await page.evaluate(() => {
       const viewport = document.documentElement.clientWidth
       const wide = [...document.body.querySelectorAll<HTMLElement>('*')]

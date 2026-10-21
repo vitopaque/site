@@ -21,7 +21,7 @@ export function PageHero({ crumbs, kicker, title, intro, meta, actions, aside }:
         <div className="mt-12 grid items-end gap-12 lg:grid-cols-12">
           <div className={`flex flex-col gap-6 ${aside ? 'lg:col-span-7' : 'lg:col-span-12'}`}>
             {kicker ? <p className="label-caps text-accent-700">{kicker}</p> : null}
-            <h1 className="text-headline-xl wrap-break-word uppercase">{title}</h1>
+            <h1 className="text-headline-xl uppercase">{title}</h1>
             <p className="text-body-lg max-w-prose text-pretty text-neutral-700">{intro}</p>
             {meta}
             {actions ? <div className="mt-1.5 flex flex-wrap gap-4">{actions}</div> : null}
