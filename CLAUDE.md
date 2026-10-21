@@ -15,8 +15,8 @@
 | --- | --- |
 | Objectifs, cibles, SEO, redirections, indicateurs | `cahier-des-charges-v1.1.md` |
 | Stack, routes, modèle Payload, rendu, hébergement | `architecture-technique.md` |
-| Tokens et règles de design | `DESIGN.md` (v2.0) |
-| **Maquette de référence** de l'interface (à adapter aux tokens v2.0 : couleurs, Montserrat, rayons) | `code.html`, `screen.png` |
+| Tokens et règles de design | `DESIGN.md` (v3.0) |
+| **Maquette de référence** de l'interface (structure et habillage) | `maquette-v3.html` (copie lisible de `Vitopaque.html`), avec `DESIGN.md` v3.0. `code.html` et `screen.png` sont historiques |
 | Logos | `logo.png`, `logo_clair.png`, `favicon/` |
 
 Ne charger que la section utile d'un document. Les documents prévalent sur toute supposition ; ce fichier prévaut sur les documents en cas de contradiction apparente, à signaler à Hery.
@@ -31,7 +31,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - **Devis :** collection Payload privée + webhook **n8n** (email, CRM éventuel). Anti-spam sans service tiers.
 - **Avis Google :** API Places, côté serveur, mise en cache. Pas de widget tiers.
 - **Mesure :** Vercel Analytics, Search Console, **GA4 chargé uniquement après consentement** (bandeau RGPD).
-- **Styles :** Tailwind, tokens issus de `DESIGN.md`. **Police :** Montserrat auto-hébergée (`next/font/local`).
+- **Styles :** Tailwind, tokens issus de `DESIGN.md`. **Polices :** Barlow et Barlow Condensed auto-hébergées (`next/font/local`).
 - **Outillage :** pnpm, TypeScript strict, ESLint, Prettier, Node LTS verrouillée (`.nvmrc`, `engines`). Tests Playwright limités aux parcours critiques (devis, redirections 301, balises SEO). Migrations Payload versionnées, jamais de synchronisation automatique du schéma en production.
 - **Git :** dépôt privé GitHub **au nom du client**, Hery collaborateur. Branche `main` protégée, branches `feat/*`, commits conventionnels. Préproduction = URL `*.vercel.app` en `noindex`.
 - Versions des dépendances : vérifiées et figées à la création du projet, jamais « de mémoire ».
@@ -54,22 +54,21 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - Coordonnées et horaires : **source unique** (module de configuration `site-settings`), pour supprimer les horaires contradictoires de l'ancien site.
 
 ### Accueil et maquette
-- **Pas de vidéo d'en-tête** (décision figée : complexité injustifiée). L'en-tête reprend le simulateur interactif PDLC de la maquette.
-- La maquette de référence est `code.html` + `screen.png`. Elle fixe la structure et les composants ; son habillage (couleurs, police Plus Jakarta Sans, rayons) est remplacé par la charte `DESIGN.md` v2.0. Toute divergence de structure par rapport à la maquette est soumise à Hery.
+- **Pas de vidéo d'en-tête** (décision figée : complexité injustifiée). L'en-tête de l'accueil reprend la lentille de verre dépoli de la maquette, avec un repli tactile (pas de suivi du pointeur).
+- La maquette de référence est `maquette-v3.html` (copie lisible de `Vitopaque.html`) ; `code.html` et `screen.png` sont historiques. Elle fixe la structure **et** l'habillage, consignés dans `DESIGN.md` v3.0. Sections ajoutées, validées par Hery : univers Bâtiment / Voiture / Bateau, avis Google, guides experts, études de cas chiffrées ; les films du laboratoire sont alignés sur les silos. Toute autre divergence par rapport à la maquette est soumise à Hery.
 
 ### Rôles et contenu
 - L'admin Payload ne sert qu'au **blog**. **Administrateur** : Hery, accès complet. **Éditeur** (client) : **articles uniquement**, avec leurs images. Pages de service, hubs, réalisations, coordonnées, navigation et réglages SEO sont du contenu en code, modifié par Hery et publié par déploiement. Les devis sont stockés dans une collection privée réservée à l'administrateur ; le client les reçoit par notification, sans accès à l'admin.
 - Publication planifiée : hors périmètre de la première version.
 
 ### Design
-- Tokens de `DESIGN.md` uniquement : Noir Carbone `#16181C`, Gris Anthracite `#2B2E34`, Blanc `#FFFFFF`, Argent `#C9CDD2`, Cuivre `#C27A4E`, Bleu électrique `#1E7FD9`, Gris signature `#8A8D93`. Aucune couleur ni valeur de design en dur.
-- Dégradé cuivre → bleu réservé aux appels à l'action principaux et aux visuels PDLC.
-- **Contraste :** sur Gris Anthracite, le texte courant reste blanc ou argent ; cuivre et bleu servent aux éléments graphiques, boutons et grands textes. Le bleu est réservé aux grands textes et éléments graphiques sur Noir Carbone. Niveau AA des WCAG.
-- Rayons 2 à 4 px, filets 1 px, effet verre, animations sobres de 200 à 400 ms. Logo : jamais déformé, jamais d'ombre ni d'effet 3D, version couleur uniquement sur fond sombre.
+- Tokens de `DESIGN.md` v3.0 uniquement (définis dans `tokens.css`) : fond `#F2F2F3`, surface `#E9E9EA`, texte `#1D1F20`, neutre `#5D5D60`, accent bleu acier (`#5980A6`, `#EEF6FF`, `#D6EBFF`, `#B5D9FD`, `#416180`, `#1D2D3D`). Aucune couleur, police ni durée en dur.
+- **Contraste :** niveau AA des WCAG, avec les combinaisons autorisées du tableau de `DESIGN.md` ; pas de petit texte en opacité réduite.
+- Rayons à 0 (sauf pastilles), filets 1 px, repères d'angle, effet verre, animations de 250 ms à 1,2 s (reflet en boucle de 8 s), `prefers-reduced-motion` respecté. Logo : jamais déformé, jamais d'ombre ni d'effet 3D, version couleur uniquement sur fond sombre.
 - Ton éditorial : confiant, épuré, rassurant ; du technique au bénéfice client.
 
 ### Performance et conformité
-- Core Web Vitals au vert (mobile et desktop). Composants serveur par défaut ; JavaScript client limité au simulateur PDLC d'en-tête, au curseur avant/après, au carrousel, au formulaire et au menu mobile. Le texte de l'accroche ou une image légère sert de LCP.
+- Core Web Vitals au vert (mobile et desktop). Composants serveur par défaut ; JavaScript client limité à la lentille d'en-tête, au laboratoire de films, au manifeste, au curseur avant/après, au carrousel, au formulaire et au menu mobile. Le texte de l'accroche ou une image légère sert de LCP.
 - RGPD : consentement avant tout traceur GA4, consentement enregistré avec chaque demande de devis, polices auto-hébergées.
 
 ### Principes de code (SOLID, DRY, feature-first)
@@ -91,4 +90,4 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ## 6. Points ouverts (à ne pas trancher seul)
 
-Étude de mots-clés (liste des silos) · URL de la page contact · URL de l'espace blog (`/conseils-expertises` proposée) · liste des communes d'intervention · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs · report des tokens v2.0 dans `code.html`.
+Étude de mots-clés (liste des silos) · URL de la page contact · URL de l'espace blog (`/conseils-expertises` proposée) · liste des communes d'intervention · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.

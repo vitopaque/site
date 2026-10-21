@@ -1,16 +1,16 @@
 ---
 name: ui-tokens-design
-description: "Design system de vitopaque.com : tokens de DESIGN.md v2.0, Tailwind, règles de contraste, adaptation de la maquette code.html. À utiliser pour tout style ou composant visuel."
+description: "Design system de vitopaque.com : tokens de DESIGN.md v3.0, Tailwind, règles de contraste, fidélité à la maquette maquette-v3.html. À utiliser pour tout style ou composant visuel."
 ---
 
 # Design et maquette
 
-Sources : `DESIGN.md` (v2.0), `code.html` + `screen.png` (maquette de référence).
+Sources : `DESIGN.md` (v3.0), `maquette-v3.html` (maquette de référence, structure et habillage). `code.html` et `screen.png` sont historiques.
 
-- La maquette fixe la **structure et les composants** ; son habillage (couleurs, Plus Jakarta Sans, rayons) est remplacé par les tokens v2.0. Toute divergence de structure → orchestrateur.
-- Tokens uniquement : Noir Carbone #16181C, Gris Anthracite #2B2E34, Blanc #FFFFFF, Argent #C9CDD2, Cuivre #C27A4E, Bleu électrique #1E7FD9, Gris signature #8A8D93. Montserrat. Rayons 2 à 4 px.
-- Dégradé cuivre→bleu réservé aux CTA principaux et visuels PDLC.
-- Contraste : sur Anthracite, texte courant blanc ou argent ; cuivre et bleu pour graphiques, boutons, grands textes. Bleu réservé aux grands textes sur Noir Carbone. AA.
-- Effet verre, filets 1 px, animations 200 à 400 ms, icônes linéaires argent. Logo jamais déformé, sans ombre ni 3D.
-- Pas de vidéo d'en-tête : le simulateur PDLC de la maquette tient ce rôle.
+- La maquette fixe la **structure, les composants et l'habillage** (thème clair bleu acier, Barlow / Barlow Condensed, rayon 0, repères d'angle « blueprint »). Toute divergence de structure → orchestrateur.
+- Tokens uniquement (`src/shared/styles/tokens.css`) : `background`, `surface`, `foreground`, `accent` et ses teintes, `neutral-700`, dérivés sur fond sombre. Aucune couleur ni valeur de design en dur ailleurs.
+- Pas de dégradé cuivre → bleu (abandonné en v3.0). Pas d'ombre portée, pas de rayon (sauf pastille et lentille).
+- Contraste AA : voir le tableau de `DESIGN.md`. Aucun texte de moins de 24 px en opacité réduite ou en `color-mix`.
+- Verre (`glass-veil`), filets 1 px, animations sobres, `prefers-reduced-motion` respecté. Logo jamais déformé, sans ombre ni 3D, version couleur sur fond sombre uniquement.
+- Pas de vidéo d'en-tête : le hero reprend la lentille de verre dépoli de la maquette.
 - Lire `DESIGN.md` par section selon le besoin.
