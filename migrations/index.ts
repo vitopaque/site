@@ -6,6 +6,7 @@ import * as migration_20261013_190540_roles from './20261013_190540_roles';
 import * as migration_20261014_135113_site_settings from './20261014_135113_site_settings';
 import * as migration_20261014_135740_services from './20261014_135740_services';
 import * as migration_20261014_144123_drop_page_models from './20261014_144123_drop_page_models';
+import * as migration_20261021_141049_blog from './20261021_141049_blog';
 
 export const migrations = [
   {
@@ -46,6 +47,11 @@ export const migrations = [
   {
     up: migration_20261014_144123_drop_page_models.up,
     down: migration_20261014_144123_drop_page_models.down,
-    name: '20261014_144123_drop_page_models'
+    name: '20261014_144123_drop_page_models',
+  },
+  {
+    up: migration_20261021_141049_blog.up,
+    down: migration_20261021_141049_blog.down,
+    name: '20261021_141049_blog'
   },
 ];
