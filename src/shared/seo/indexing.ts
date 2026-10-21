@@ -1,5 +1,7 @@
 import type { Metadata, MetadataRoute } from 'next'
 
+import { absoluteUrl } from './metadata'
+
 export const NOINDEX_DIRECTIVE = 'noindex, nofollow'
 
 const PRIVATE_PATHS = ['/admin', '/api'] as const
@@ -31,5 +33,5 @@ export function robotsMetadata(): Metadata['robots'] {
 
 export function robotsRules(): MetadataRoute.Robots {
   if (!isIndexable()) return { rules: { userAgent: '*', disallow: '/' } }
-  return { rules: { userAgent: '*', allow: '/' } }
+  return { rules: { userAgent: '*', allow: '/' }, sitemap: absoluteUrl('/sitemap.xml') }
 }

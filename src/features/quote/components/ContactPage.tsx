@@ -1,5 +1,6 @@
+import { LocalBusinessJsonLd } from '@/features/site-settings'
 import { JsonLd, breadcrumbList } from '@/shared/seo/jsonld'
-import { FaqList } from '@/shared/ui/FaqList'
+import { FaqSection } from '@/shared/ui/FaqSection'
 import { ordinal } from '@/shared/ui/ordinal'
 import { PageHero } from '@/shared/ui/PageHero'
 import { Section } from '@/shared/ui/Section'
@@ -19,6 +20,7 @@ export function ContactPage() {
 
   return (
     <>
+      <LocalBusinessJsonLd />
       <JsonLd data={breadcrumbList(CONTACT_CRUMBS)} />
       <PageHero crumbs={CONTACT_CRUMBS} title={contactPage.h1} intro={contactPage.intro} />
       <ContactSection {...contactPage.form}>
@@ -40,14 +42,11 @@ export function ContactPage() {
           ))}
         </ol>
       </Section>
-      <Section labelledBy="faq-titre" tone={faqTone}>
-        <div className="reveal">
-          <SectionHeading id="faq-titre" kicker="FAQ" lines={['Questions fréquentes.']} />
-        </div>
-        <div className="reveal mt-12">
-          <FaqList items={contactPage.faq} />
-        </div>
-      </Section>
+      <FaqSection
+        items={contactPage.faq}
+        heading={{ kicker: 'FAQ', lines: ['Questions fréquentes.'] }}
+        tone={faqTone}
+      />
     </>
   )
 }
