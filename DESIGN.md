@@ -1,341 +1,388 @@
 ---
 name: Films de Prestige
-version: 2.0
-source: Cahier des charges VIT'OPAQUE v1.0 (12 octobre 2026), section 4 + nouveau logo
+version: 3.0
+source: Maquette d'accueil `maquette-v3.html` (copie lisible de `Vitopaque.html`), validée par Hery
 colors:
-  # --- Rôles Material (remappés sur la palette VIT'OPAQUE) ---
-  # Les valeurs marquées "dérivé" ne figurent pas dans le CDC : elles sont calculées
-  # à partir des couleurs de marque pour compléter l'échelle des surfaces.
-  surface: '#16181C'
-  surface-dim: '#16181C'
-  surface-bright: '#34373D'            # dérivé
-  surface-container-lowest: '#101215'  # dérivé
-  surface-container-low: '#1D2025'     # dérivé
-  surface-container: '#23262B'         # dérivé
-  surface-container-high: '#2B2E34'
-  surface-container-highest: '#34373D' # dérivé
-  on-surface: '#FFFFFF'
-  on-surface-variant: '#C9CDD2'
-  inverse-surface: '#E8EAED'           # dérivé
-  inverse-on-surface: '#16181C'
-  outline: '#8A8D93'
-  outline-variant: '#3A3E45'           # dérivé (filet discret)
-  surface-tint: '#C27A4E'
-  primary: '#C27A4E'
-  on-primary: '#16181C'
-  primary-container: '#8F5532'         # dérivé
-  on-primary-container: '#FFFFFF'
-  inverse-primary: '#8F5532'           # dérivé
-  secondary: '#1E7FD9'
-  on-secondary: '#FFFFFF'
-  secondary-container: '#163F66'       # dérivé
-  on-secondary-container: '#C9CDD2'
-  tertiary: '#C9CDD2'
-  on-tertiary: '#16181C'
-  tertiary-container: '#2B2E34'
-  on-tertiary-container: '#C9CDD2'
-  error: '#FFB4AB'                     # hors charte, conservé
-  on-error: '#690005'
-  error-container: '#93000A'
-  on-error-container: '#FFDAD6'
-  primary-fixed: '#F0D3BF'             # dérivé
-  primary-fixed-dim: '#C27A4E'
-  on-primary-fixed: '#2E1608'          # dérivé
-  on-primary-fixed-variant: '#7A4A2B'  # dérivé
-  secondary-fixed: '#D3E6FA'           # dérivé
-  secondary-fixed-dim: '#7DB5EC'       # dérivé
-  on-secondary-fixed: '#06213D'        # dérivé
-  on-secondary-fixed-variant: '#12497E' # dérivé
-  tertiary-fixed: '#E4E6E9'            # dérivé
-  tertiary-fixed-dim: '#C9CDD2'
-  on-tertiary-fixed: '#16181C'
-  on-tertiary-fixed-variant: '#2B2E34'
-  background: '#16181C'
-  on-background: '#FFFFFF'
-  surface-variant: '#2B2E34'
-  # --- Tokens de marque (source : CDC §4.3, relevés sur le logo) ---
-  noir-carbone: '#16181C'
-  gris-anthracite: '#2B2E34'
-  blanc-pur: '#FFFFFF'
-  argent: '#C9CDD2'
-  cuivre: '#C27A4E'
-  bleu-electrique: '#1E7FD9'
-  gris-signature: '#8A8D93'
-  # --- Effets ---
-  glass-panel: rgba(43, 46, 52, 0.65)
-  glass-border: rgba(201, 205, 210, 0.14)
-  glow-bleu: rgba(30, 127, 217, 0.40)
-  gradient-signature: 'linear-gradient(135deg, #C27A4E 0%, #1E7FD9 100%)'
+  # --- Fonds, texte, filets (thème clair) ---
+  background: '#F2F2F3'
+  surface: '#E9E9EA'
+  foreground: '#1D1F20'
+  divider: 'foreground à 16 %'
+  # --- Accent (bleu acier) : uniquement les teintes utilisées par la maquette ---
+  accent: '#5980A6'
+  accent-100: '#EEF6FF'
+  accent-200: '#D6EBFF'
+  accent-300: '#B5D9FD'
+  accent-700: '#416180'
+  accent-900: '#1D2D3D'
+  accent-2: '#728FAB'   # réservé, non utilisé dans la maquette d'accueil
+  # --- Neutre ---
+  neutral-700: '#5D5D60'
+  # --- Dérivés sur fond sombre (accent-900) ---
+  divider-inverse: 'background à 18 %'
+  outline-inverse: 'background à 40 %'
+  hover-inverse: 'background à 10 %'
+  # --- Repère d'angle ---
+  corner: 'foreground à 55 %'
+  # --- Sélection de texte ---
+  selection: 'accent à 30 %'
+  # --- Quadrillage du hero et du manifeste ---
+  grid-line: 'background à 7 %'
 typography:
+  heading-family: Barlow Condensed
+  heading-weight: 600
+  body-family: Barlow
+  body-weight: 400
   display-hero:
-    fontFamily: Montserrat
-    fontSize: 56px
-    fontWeight: '300'
-    lineHeight: 64px
-    letterSpacing: -0.01em
-  display-hero-mobile:
-    fontFamily: Montserrat
-    fontSize: 36px
-    fontWeight: '300'
-    lineHeight: 44px
-    letterSpacing: -0.005em
+    fontSize: clamp(64px, 10.5vw, 168px)
+    lineHeight: 0.86
+    letterSpacing: -0.02em
+  display-statement:
+    fontSize: clamp(40px, 6.4vw, 104px)
+    lineHeight: 0.98
+    letterSpacing: -0.015em
+  headline-xl:
+    fontSize: clamp(48px, 7vw, 112px)
+    lineHeight: 0.88
+    letterSpacing: -0.015em
   headline-lg:
-    fontFamily: Montserrat
-    fontSize: 40px
-    fontWeight: '300'
-    lineHeight: 48px
-    letterSpacing: -0.005em
-  headline-lg-mobile:
-    fontFamily: Montserrat
-    fontSize: 28px
-    fontWeight: '300'
-    lineHeight: 36px
-    letterSpacing: 0em
+    fontSize: clamp(44px, 6vw, 88px)
+    lineHeight: 0.9
+    letterSpacing: -0.015em
+  numeral:
+    fontSize: 64px
+    lineHeight: 0.8
   headline-md:
-    fontFamily: Montserrat
-    fontSize: 28px
-    fontWeight: '300'
-    lineHeight: 36px
-    letterSpacing: 0em
+    fontSize: 40px
+    lineHeight: 0.95
+    letterSpacing: -0.015em
   headline-sm:
-    fontFamily: Montserrat
-    fontSize: 20px
-    fontWeight: '400'
-    lineHeight: 28px
-    letterSpacing: 0em
+    fontSize: 24px
+    lineHeight: 1.2
+    letterSpacing: -0.015em
   title-md:
-    fontFamily: Montserrat
-    fontSize: 16px
-    fontWeight: '500'
-    lineHeight: 24px
-    letterSpacing: 0.01em
+    fontSize: 20px
+    lineHeight: 1.2
   body-lg:
-    fontFamily: Montserrat
     fontSize: 18px
-    fontWeight: '400'
-    lineHeight: 29px
-    letterSpacing: 0em
+    lineHeight: 1.55
   body-md:
-    fontFamily: Montserrat
-    fontSize: 16px
-    fontWeight: '400'
-    lineHeight: 26px
-    letterSpacing: 0em
+    fontSize: 15px
+    lineHeight: 1.55
   body-sm:
-    fontFamily: Montserrat
-    fontSize: 14px
-    fontWeight: '400'
-    lineHeight: 22px
-    letterSpacing: 0.01em
+    fontSize: 13px
+    lineHeight: 1.55
   label-caps:
-    fontFamily: Montserrat
+    fontSize: 13px
+    letterSpacing: 0.32em
+  label-sm:
     fontSize: 12px
-    fontWeight: '400'
-    lineHeight: 16px
-    letterSpacing: 0.25em
-  label-md:
-    fontFamily: Montserrat
+    letterSpacing: 0.24em
+  label-nav:
     fontSize: 14px
-    fontWeight: '500'
-    lineHeight: 20px
-    letterSpacing: 0.10em
+    letterSpacing: 0.04em
+  label-btn:
+    fontSize: 14px
+    fontWeight: 600
+  label-btn-lg:
+    fontSize: 16px
+    fontWeight: 600
 rounded:
-  sm: 0.125rem
-  DEFAULT: 0.25rem
-  md: 0.25rem
-  lg: 0.25rem
-  xl: 0.25rem
-  full: 9999px
+  none: 0
+  full: 9999px   # pastilles et lentille uniquement
 spacing:
-  gutter: 1.5rem
-  gutter-mobile: 1rem
-  margin: 3rem
-  margin-mobile: 1.25rem
-  gutter-tablet: 1.25rem
-  margin-tablet: 2rem
-  margin-wide: 5rem
-  space-xs: 0.25rem
-  space-sm: 0.5rem
-  space-md: 1rem
-  space-lg: 1.5rem
-  space-xl: 2.5rem
-  space-2xl: 4rem
-  space-3xl: 6rem
-  space-3xl-mobile: 4rem
-  space-3xl-tablet: 5rem
+  margin: clamp(20px, 5vw, 72px)
+  section: clamp(64px, 9vw, 128px)
+  statement: clamp(90px, 14vw, 200px)   # respiration du manifeste
+  container-page: 1440px
+  breakpoint-desktop: 1200px
+  grid-columns: 12
+  card-min: 280px
+  card-min-narrow: 230px
+  card-gap: 28px
+  card-min-height: 260px
+  focus-ring-width: 2px
+  focus-ring-offset: 2px
+  corner-size: 11px
+  corner-offset: -6px
+animations:
+  hover: 300ms
+  lens: 400ms
+  meter: 500ms
+  film: 900ms
+  reveal: 1000ms
+  reveal-filter: 1100ms
+  flash: 1200ms
+  word: 250ms
+  sweep: 8s
+  sweep-cta: 10.4s
+  reveal-blur: 14px
+  reveal-shift: 28px
+  reveal-range: 'entry 0 % à entry 40 %'
+  ease-reveal: cubic-bezier(0.2, 0.7, 0.2, 1)
+  ease-flash: cubic-bezier(0.3, 0.6, 0.2, 1)
+glass:
+  veil-blur: 26px
+  veil-saturate: 0.6
+  veil-tint: 'accent-900 à 86 %'
+hero:
+  min-height: max(680px, min(100svh, 940px))
+  logo-max: 440px
+  lens-size: clamp(144px, 30vw, 260px)
+  lens-default-x: 72%
+  lens-default-y: 46%
+  lens-default-y-small: 70%   # sous 640 px
+  lens-hole: 62%
+manifesto:
+  word-gap: 0.24em
+  word-blur: 16px
+  word-dim: 0.75
+  word-span: 0.75
+  word-lead: 0.25
 ---
 
 ## Marque et style
 
-Ce référentiel applique la section 4 du cahier des charges de la refonte de vitopaque.com. Il s'impose à toutes les interfaces et à tous les supports du projet. Il remplace la version précédente (« Luminescent Precision », palette cyan), qui ne correspond plus au logo validé.
+Ce référentiel est tiré de la maquette d'accueil `maquette-v3.html` (copie lisible de `Vitopaque.html`), qui devient la référence de design principale. Il remplace la version 2.0 (palette Noir Carbone, Cuivre, Bleu électrique, Montserrat), conservée dans l'historique git. `code.html` et `screen.png` sont historiques.
 
-**Positionnement** : VIT'OPAQUE, films de prestige. L'expertise du vitrage au service de l'architecture et de l'automobile d'exception.
+**Positionnement** : VIT'OPAQUE, films de prestige pour vitrage. L'expertise du vitrage au service de l'architecture, de l'automobile et du nautisme.
 
 ### Personnalité
-- **Confiant** : l'expertise s'affirme sans se justifier.
-- **Épuré** : lignes géométriques nettes, peu d'ornements, phrases courtes.
-- **Orfèvre** : le soin du détail de la pose se lit dans celui de l'interface.
+- **Confiant** : titres en capitales condensées, très grands, serrés.
+- **Épuré** : fonds clairs, filets de 1 px, aucun ornement décoratif superflu.
+- **Technique** : repères d'angle « blueprint », grille de 12 colonnes, numérotation (01, 02…), vocabulaire d'atelier.
 
 ### Cibles
 - **Bâtiment et Pro (B2B)** : architectes, chefs d'entreprise, gestionnaires de bureaux et de commerces, propriétaires de villas.
 - **Auto et Bateau (B2C premium)** : propriétaires de véhicules haut de gamme, plaisanciers, passionnés d'automobile.
 
-Les deux univers partagent la même exigence de prestige et le même système visuel.
+Les trois univers (Bâtiment, Voiture, Bateau) partagent le même système visuel.
 
 ## Logo
 
-### Concept
-Le monogramme « V » est un symbole iconique, composé de lignes géométriques ultra-nettes. Ses branches s'entrecroisent et se superposent en transparence, comme un film posé sur un vitrage : passage de l'ombre à la lumière, superposition technique. Il porte trois facettes : **blanc/argent**, **cuivre** et **bleu électrique**.
+Le logo actuel reste, **sans déformation** : monogramme « V » (facettes argent, cuivre, bleu), logotype « VIT'OPAQUE », signature « FILMS DE PRESTIGE ». Fichiers : `logo.png`, `logo_clair.png`, et le monogramme détouré `src/shared/assets/brand/monogramme-v.webp` (dérivé du PNG de la maquette). Aucun fichier vectoriel de production pour l'instant (point ouvert).
 
-Le logotype « VIT'OPAQUE » est en capitales, dans une linéale géométrique fine. La signature « FILMS DE PRESTIGE » est en capitales très espacées, en gris signature.
+### Fonds autorisés (d'après la maquette)
+- **Version couleur** : uniquement sur `accent-900` (en-tête, pied de page, hero sombre, sections sombres) ou sur une photographie assombrie par un voile `accent-900`. La maquette ne la place jamais sur un fond clair.
+- **Fonds clairs** (`background`, `surface`) : version couleur interdite. Utiliser une version monochrome `foreground`, à produire depuis le vectoriel.
+- Monogramme seul : favicon, réseaux sociaux.
 
-### Déclinaisons
-
-| Déclinaison | Usages |
-|---|---|
-| Logo complet couleur (symbole + logotype + signature), sur Noir Carbone | En-tête du site, page d'accueil, devis, présentations commerciales |
-| Monogramme « V » seul | Favicon, icône des réseaux sociaux, broderie, objets publicitaires |
-| Monochrome blanc | Vinyle sur véhicules et vitrines, incrustation sur photos sombres |
-| Monochrome noir | Fonds clairs, impressions économiques, tampons |
-
-Fichiers sources dans le dossier du projet : `logo.png` (rendu métallique sur fond sombre, visuel de marque) et `logo_clair.png` (rendu sur fond clair). Ce sont des visuels de présentation, pas des fichiers de production.
+### Composition en en-tête et en pied de page
+Monogramme (hauteur 40 px) suivi du mot « VIT'OPAQUE » composé en `wordmark` (Barlow Condensed 400, 20 px, interlettrage 0,24 em), en `background` sur `accent-900`. Le pied de page ajoute la signature en `label-caps` `accent-300`.
 
 ### Règles d'usage
-- **Zone de protection** : espace libre autour du logo au moins égal à la hauteur de la lettre « O » du logotype.
-- **Tailles minimales** : 16 px pour le monogramme (favicon), 120 px de large pour le logo complet.
-- **Rendu à plat** : le rendu métallique et lumineux est réservé aux visuels de marque. Le site utilise une version vectorielle à plat (SVG).
-- **Interdits** : déformer le logo, modifier les couleurs des facettes, ajouter des ombres ou des effets 3D, placer la version couleur sur un fond clair ou chargé.
+- **Zone de protection** : au moins la hauteur du monogramme sur 4 côtés dans le pied de page, 12 px minimum ailleurs.
+- **Tailles minimales** : monogramme 16 px (favicon) ; 36 px de haut dans l'interface.
+- **Interdits** : déformer le logo, modifier les couleurs des facettes, ajouter une ombre, un halo ou un effet 3D (la maquette applique une ombre portée au grand logo de son hero : **non reprise**, car contraire à cette règle), placer la version couleur sur un fond clair ou chargé.
 
-> **À confirmer** : les codes couleur ont été relevés sur le visuel du logo. Ils devront être confirmés sur le fichier vectoriel définitif (SVG), et ce document mis à jour si besoin.
+> **À confirmer** : les codes couleur du logo seront confirmés sur le vectoriel définitif (SVG).
 
 ## Couleurs
 
-La palette est issue du logo : teintes sombres et élégantes, rehaussées d'accents qui soulignent l'innovation technologique.
+Thème clair. Le sombre est un fond de section (`accent-900`) et non un thème global.
 
-| Couleur | Code | Rôle |
+### Fonds, texte et filets
+| Token | Code | Rôle |
 |---|---|---|
-| Noir Carbone | `#16181C` | Fond principal, en-tête et pied de page |
-| Gris Anthracite | `#2B2E34` | Surfaces secondaires, cartes, alternance des sections |
-| Blanc pur | `#FFFFFF` | Titres et textes principaux sur fond sombre |
-| Argent | `#C9CDD2` | Filets, icônes, textes secondaires (facette argent du V) |
-| Cuivre | `#C27A4E` | Accent premium : boutons principaux, survols, chiffres clés |
-| Bleu électrique | `#1E7FD9` | Accent technologique : univers PDLC, liens, états actifs |
-| Gris signature | `#8A8D93` | Signature « Films de prestige », légendes, mentions |
+| `background` | `#F2F2F3` | Fond principal de la page ; texte clair sur fond sombre |
+| `surface` | `#E9E9EA` | Sections alternées, champs, cartes pleines |
+| `foreground` | `#1D1F20` | Texte principal et titres sur fond clair |
+| `neutral-700` | `#5D5D60` | Texte secondaire sur fond clair (remplace toute opacité réduite) |
+| `divider` | `foreground` à 16 % | Filets 1 px sur fond clair (décoratif) |
 
-### Correspondance avec les rôles
-- `primary` = Cuivre. `secondary` = Bleu électrique. `tertiary` = Argent.
-- `surface` / `background` = Noir Carbone. `surface-container-high` = Gris Anthracite.
-- `on-surface` = Blanc pur. `on-surface-variant` = Argent. `outline` = Gris signature.
+### Accent (bleu acier)
+| Token | Code | Rôle |
+|---|---|---|
+| `accent` | `#5980A6` | Grands chiffres (24 px et plus), cellules de jauge, poignée, focus sur fond clair |
+| `accent-100` | `#EEF6FF` | Texte d'accroche sur fond sombre ; fond de survol des vignettes |
+| `accent-200` | `#D6EBFF` | Texte secondaire et liens sur fond sombre ; fond de la vignette sélectionnée |
+| `accent-300` | `#B5D9FD` | Sur-titres, chiffres et survols sur fond sombre ; repères d'angle sur fond sombre |
+| `accent-700` | `#416180` | Texte d'accent sur fond clair (sur-titres, liens) ; fond du bouton principal sur fond clair |
+| `accent-900` | `#1D2D3D` | Fond sombre : en-tête, pied de page, hero, manifeste, contact |
+| `accent-2` | `#728FAB` | Réservé. Non utilisé par la maquette d'accueil ; à retirer s'il reste sans emploi |
+
+Les rampes 400, 500, 600 et 800, ainsi que les neutres autres que 700, sont dans la maquette mais inutilisés : volontairement non repris.
+
+### Dérivés sur fond sombre
+`divider-inverse` (`background` à 18 %, séparateurs), `outline-inverse` (`background` à 40 %, contour des boutons et champs), `hover-inverse` (`background` à 10 %, survol). La maquette emploie des valeurs de 14 à 40 % : normalisées en trois niveaux ; `outline-inverse` est porté à 40 % pour atteindre 3:1 sur `accent-900`.
 
 ### Équilibre
-Environ 70 % de tons sombres, 20 % de blanc et d'argent, 10 % d'accents cuivre et bleu.
-
-### Dégradé signature
-`linear-gradient(135deg, #C27A4E, #1E7FD9)` : cuivre vers bleu électrique. Réservé aux appels à l'action principaux (« Demander un devis » en tête de page et en fin de page) et aux visuels PDLC. Partout ailleurs, le cuivre et le bleu s'utilisent en aplat.
+Environ 80 % de fonds clairs, 15 % de sections `accent-900`, 5 % d'accent.
 
 ### Contrastes (WCAG AA)
 
-| Combinaison | Ratio | Usage autorisé |
-|---|---|---|
-| Blanc sur Noir Carbone | 17,8:1 | Tout texte |
-| Argent sur Noir Carbone | 11,1:1 | Tout texte |
-| Gris signature sur Noir Carbone | 5,3:1 | Tout texte |
-| Cuivre sur Noir Carbone | 5,2:1 | Tout texte |
-| Noir Carbone sur Cuivre | 5,2:1 | Libellé des boutons principaux |
-| Bleu électrique sur Noir Carbone | 4,3:1 | Grands textes et éléments graphiques uniquement |
-| Blanc sur Anthracite | 13,6:1 | Tout texte |
-| Argent sur Anthracite | 8,5:1 | Tout texte |
-| Gris signature sur Anthracite | 4,1:1 | Grands textes uniquement |
-| Cuivre sur Anthracite | 4,0:1 | Grands textes, boutons et éléments graphiques uniquement |
-| Bleu électrique sur Anthracite | 3,3:1 | Éléments graphiques uniquement (filets, icônes, focus) |
+Combinaisons autorisées pour le texte courant (4,5:1 minimum) :
 
-**Règle** : sur Gris Anthracite, le texte courant reste en blanc ou en argent. Cuivre et bleu y servent aux éléments graphiques, aux boutons et aux grands textes. Le bleu électrique en texte (liens) se place sur Noir Carbone, en grande taille ou souligné.
+| Texte | Fond | Ratio |
+|---|---|---|
+| `foreground` | `background` / `surface` | 14,8 / 13,6:1 |
+| `neutral-700` | `background` / `surface` | 5,9 / 5,4:1 |
+| `accent-700` | `background` / `surface` | 5,8 / 5,3:1 |
+| `accent-700` | `accent-100` / `accent-200` | 5,9 / 5,3:1 |
+| `accent-900` | `background` / `surface` | 12,6 / 11,6:1 |
+| `background` | `accent-900` | 12,6:1 |
+| `accent-100` | `accent-900` | 12,9:1 |
+| `accent-200` | `accent-900` | 11,5:1 |
+| `accent-300` | `accent-900` | 9,6:1 |
+| `background` | `accent-700` (libellé du bouton principal) | 5,8:1 |
+| `accent-900` | `background` / `accent-200` (bouton principal sur fond sombre) | 12,6 / 11,5:1 |
+| `foreground` | `accent-100` / `accent-200` | 15,2 / 13,5:1 |
+
+Combinaisons réservées aux grands textes (24 px et plus, ou 18,66 px gras) et aux éléments graphiques (3:1) :
+
+| Combinaison | Ratio | Usage |
+|---|---|---|
+| `accent` sur `background` | 3,7:1 | Grands chiffres, graphiques |
+| `accent` sur `surface` | 3,4:1 | Grands chiffres, graphiques |
+| `accent` sur `accent-900` | 3,4:1 | Éléments graphiques uniquement (cellules de jauge, filets) |
+| `accent-700` sur `accent-300` | 4,4:1 | Grands textes uniquement |
+
+Combinaisons **interdites** :
+- `background` sur `accent` (3,7:1) pour un libellé de bouton ou un texte inférieur à 24 px : le `.btn-primary` de la maquette est remplacé par `accent-700` + `background`.
+- `accent-300`, `accent-200`, `accent-100` sur fond clair ; `foreground`, `neutral-700` et `accent-700` sur `accent-900`.
+- **Petits libellés en opacité réduite** : la maquette atténue légèrement certains textes (`text-muted` et légendes à 55 %, métadonnées à 50 %, étiquettes de champ à 70 %, `opacity` 0,8 des corps de carte). Ces valeurs donnent 3,6:1 et 3,2:1, sous le seuil AA. **Interdit** : tout texte de moins de 24 px dont la couleur est obtenue par opacité ou par `color-mix`. On utilise `neutral-700` sur fond clair, `accent-200` ou `accent-300` sur fond sombre.
+
+Contours porteurs d'information (champs, boutons secondaires) : 3:1 minimum, donc `accent-700` sur fond clair et `outline-inverse` sur `accent-900`. `divider` et `divider-inverse` (1,4:1 et 1,7:1) sont décoratifs : jamais seuls pour délimiter un champ ou un contrôle.
 
 ## Typographie
 
-Famille unique : **Montserrat**, auto-hébergée sur le serveur du site (performance et conformité RGPD). Aucun appel à Google Fonts en production.
+Deux familles, auto-hébergées (`next/font/local`, sous-ensemble latin, aucun appel à Google Fonts) :
 
-| Usage | Style | Paramètres |
+| Famille | Graisses chargées | Usage |
 |---|---|---|
-| Titres (H1, H2) | Montserrat Light | Capitales ou casse mixte, graisse 300 à 400, en écho au logotype |
-| Sur-titres et signatures | Montserrat Regular | Capitales, interlettrage +20 à 30 % (`label-caps`, 0,25 em), en écho à « FILMS DE PRESTIGE » |
-| Corps de texte | Montserrat Regular | 16 à 18 px, interlignage 1,6, blanc ou argent sur fond sombre |
-| Boutons | Montserrat Medium | Capitales, interlettrage +10 % (`label-md`) |
+| **Barlow Condensed** | 600 (titres, boutons), 400 (sur-titres, numéros, logotype) | Tout ce qui est titre, sur-titre, numéro, bouton |
+| **Barlow** | 400 | Corps de texte, navigation, formulaires |
 
-Les sur-titres de catégorie (`BÂTIMENT`, `AUTO & BATEAU`, `FILMS DE PRESTIGE`) utilisent `label-caps` en argent ou en gris signature.
+Aucune autre graisse n'est chargée : interdit d'utiliser 500 ou 700 (elles seraient synthétisées).
+
+### Échelle
+Les titres sont en **capitales**, graisse 600, interlettrage -0,015 à -0,02 em.
+
+| Token | Taille | Interlignage | Usage |
+|---|---|---|---|
+| `display-hero` | clamp(64 px, 10,5 vw, 168 px) | 0,86 | Titre du hero d'accueil |
+| `display-statement` | clamp(40 px, 6,4 vw, 104 px) | 0,98 | Manifeste |
+| `headline-xl` | clamp(48 px, 7 vw, 112 px) | 0,88 | H1 des pages intérieures, titre de la section contact |
+| `headline-lg` | clamp(44 px, 6 vw, 88 px) | 0,9 | H2 de section |
+| `headline-md` | 40 px | 0,95 | H3, fiche film |
+| `headline-sm` | 24 px | 1,2 | Titre de carte |
+| `title-md` | 20 px | 1,2 | Logotype, vignette, menu mobile |
+| `body-lg` | 18 px | 1,55 | Chapô |
+| `body-md` | 15 px | 1,55 | Corps de texte |
+| `body-sm` | 13 px | 1,55 | Légendes, pied de page |
+
+### Utilitaires de libellé
+| Utilitaire | Paramètres |
+|---|---|
+| `label-caps` | Barlow Condensed 400, 13 px, capitales, interlettrage 0,32 em : sur-titres |
+| `label-sm` | Barlow Condensed 400, 12 px, capitales, 0,24 em : étiquettes, numéros |
+| `label-nav` | Barlow 400, 14 px, 0,04 em : navigation |
+| `label-btn` / `label-btn-lg` | Barlow Condensed 600, 14 px / 16 px : boutons |
+| `wordmark` | Barlow Condensed 400, 20 px, 0,24 em : logotype |
+
+Un H1 et un seul par page, géré par le gabarit. Les mots longs se coupent (`wrap-break-word`, `hyphens-auto`) sur mobile.
 
 ## Mise en page et espacement
 
-Grille de 12 colonnes, rythme sur base de 8 px.
+Grille de **12 colonnes**, rythme sur multiples de 4 px (échelle Tailwind).
 
-- **Bureau (≥ 1200 px)** : 12 colonnes, gouttières de 24 px, marges extérieures de 48 px à partir de 1200 px et de 80 px à partir de 1440 px, largeur maximale 1440 px. Rythme vertical généreux entre sections (`space-3xl`).
-- **Tablette (768 à 1199 px)** : 8 colonnes, gouttières de 20 px, marges de 32 px.
-- **Mobile (320 à 767 px)** : 4 colonnes, gouttières de 16 px, marges de 20 px. Conception mobile d'abord. Les cartes passent en piles linéaires, avec carrousels tactiles pour les réalisations.
-- **Rythme des sections** : alternance Noir Carbone / Gris Anthracite. Espacement vertical entre sections `space-3xl` : 64 px (mobile), 80 px (tablette), 96 px (bureau).
-- **Appel à l'action permanent** : « Demander un devis » dans l'en-tête fixe, et bouton flottant sur mobile.
+- **Espacement du manifeste** : `statement` = clamp(90 px, 14 vw, 200 px).
+- **Marges latérales** : `margin` = clamp(20 px, 5 vw, 72 px). **Respiration verticale entre sections** : `section` = clamp(64 px, 9 vw, 128 px).
+- **Largeur** : fonds de section en pleine largeur ; contenu plafonné à 1440 px (`max-w-page`, token `container-page`).
+- **Colonnes** : la maquette compose ses blocs en grilles `auto-fit` (colonne minimale 160 à 420 px) avec des gouttières de 24 à 56 px. La grille de 12 colonnes est matérialisée par un quadrillage de filets verticaux (`grid-lines`, `background` à 7 %) sur le hero et le manifeste.
+- **Rythme des sections** : alternance fond clair, `surface`, `accent-900`. Hero, manifeste, contact et pied de page en `accent-900`.
+- **Cartes** : grilles `auto-fit` partagées `card-grid` (colonne minimale `card-min` 280 px) et `card-grid-narrow` (`card-min-narrow` 230 px), gouttière `card-gap` 28 px. Carte `blueprint-card` : hauteur minimale `card-min-height` 260 px, rembourrage 28 px, colonne avec espacement de 14 px.
+- **Breakpoint** : `desktop` (`breakpoint-desktop`) = 1200 px. En dessous, la navigation passe dans le menu mobile.
+- **Appel à l'action permanent** : « Devis gratuit » dans l'en-tête (menu mobile en dessous de 1200 px).
 
 ## Élévation et profondeur
 
-Pas d'ombres portées classiques. La profondeur vient de la transparence, des superpositions et des filets, en métaphore des films superposés du monogramme.
+Pas d'ombres portées (`--shadow-*` vidé). La profondeur vient des filets, des repères d'angle et du verre.
 
-1. **Fond** : Noir Carbone en aplat.
-2. **Effet verre** (cartes, modales, bandeau cookies) : fond `glass-panel` (Gris Anthracite à 65 % d'opacité) avec `backdrop-filter: blur(16px) saturate(140%)`. Bordure `glass-border` : Argent à 14 % d'opacité, 1 px.
-3. **Filets** : traits de 1 px, argent à faible opacité (`glass-border`) ou cuivre. Au survol ou au focus, le filet passe en cuivre plein ou en bleu électrique.
-4. **Halo** : réservé aux survols et aux visuels PDLC : `box-shadow: 0 0 24px -4px rgba(30, 127, 217, 0.40)`.
+1. **Filets** : 1 px, `divider` sur fond clair, `divider-inverse` ou `outline-inverse` sur fond sombre.
+2. **Repères d'angle « blueprint »** (`blueprint`) : cadre de 1 px avec une croix de `corner-size` (11 px) sur chacun des 4 angles, décalée de `corner-offset` (6 px) vers l'extérieur ; croix en `corner` (`foreground` à 55 %, 3,6:1) sur fond clair, `accent-300` sur fond sombre (`blueprint-inverse`). Utilisés pour les cartes, cadres de visuels, boutons à mise en avant, formulaire de contact.
+3. **Verre** : voile du hero (`glass-veil`) : `accent-900` à 86 % avec `backdrop-filter: blur(26px) saturate(0.6)`, percé par la lentille. Le laboratoire de films emploie le même principe (flou 2 à 18 px, saturation 0,4 à 0,8) pour chaque film (dépoli, solaire, miroir, occultant, décoratif).
+4. **Voiles des films** (`film-veil-solaire`, `film-veil-securite`, `film-veil-pdlc`, `film-veil-vitrophanie`) : solaire = `accent-900` à 42 % avec luminosité 0,62 et saturation 0,8 ; sécurité = `accent-900` à 10 % avec luminosité 0,94 et saturation 0,9 ; PDLC = `background` à 30 % avec flou 18 px, saturation 0,4 et luminosité 1,15 ; vitrophanie = bandes verticales `background` (62 % puis 8 %, pas de 22 px) avec flou 5 px et saturation 0,5.
+5. **Lentille et hero** : hauteur minimale `hero.min-height`, diamètre de la lentille `lens-size`, position par défaut 72 % / 46 % (70 % en vertical sous 640 px), ouverture `lens-hole` (62 %), logo plafonné à `logo-max` (440 px).
+6. **Poignée du comparateur** : halo `accent-200` de 18 px, seule lueur autorisée.
 
 ## Formes
 
-Angles nets ou arrondis minimes, en écho aux arêtes du monogramme.
-
-- **Composants courants** (boutons, champs, badges, cartes, panneaux, cadres de visuels) : 2 à 4 px. Valeur par défaut : 4 px (`rounded`).
-- Les rayons `md`, `lg` et `xl` sont plafonnés à 4 px pour rester compatibles avec la configuration Tailwind existante.
-- `rounded-full` : réservé aux interrupteurs et aux pastilles de statut.
+- **Rayon 0 partout** : boutons, champs, cartes, étiquettes, panneaux, cadres de visuels, modales. Le programme est carré, filaire.
+- `rounded-full` : **pastilles de statut et lentille circulaire du hero uniquement**.
+- Aucun rayon ne doit exister dans `tokens.css` en dehors de ce cas.
 
 ## Composants
 
 ### Boutons
-- **Principal** : fond Cuivre `#C27A4E`, texte Noir Carbone, Montserrat Medium en capitales. Au survol, halo bleu électrique (`glow-bleu`).
-- **Principal, variante dégradé** : fond `gradient-signature`, libellé Noir Carbone, Montserrat Bold (700) en capitales, taille d'au moins 18,66 px. Il s'agit d'un « grand texte » au sens des WCAG (seuil de 3:1) : le pire contraste est de 4,3:1, sur la zone bleue. Réservé aux appels à l'action principaux. Les autres boutons restent en Medium (`label-md`).
-- **Secondaire** : fond transparent, contour argent de 1 px, texte blanc. Au survol, halo bleu électrique.
-- **Lien texte** : argent, avec un soulignement cuivre qui s'étend de 0 à 100 % de la largeur au survol.
+- **Principal sur fond clair** : fond `accent-700`, libellé `background`, `label-btn-lg`. Survol et actif : `accent-900`. (Écart avec la maquette, voir Contrastes.)
+- **Principal sur fond sombre** : fond `background`, libellé `accent-900`, repères d'angle `accent-300` ; survol `accent-200`.
+- **Secondaire sur fond clair** : transparent, contour 1 px `accent-700`, libellé `foreground`, survol `surface`.
+- **Secondaire sur fond sombre** : transparent, contour `outline-inverse`, libellé `background`, survol `hover-inverse`.
+- **Bouton d'en-tête** : « Devis gratuit », `blueprint blueprint-inverse`, `label-btn`, survol `hover-inverse`.
+- Zone tactile d'au moins 44 px (icônes et menu mobile), 24 px minimum ailleurs.
 
-### Cartes
-- Effet verre (`glass-panel`), filet de 1 px (`glass-border`), rayon 4 px.
-- Cartes d'études de cas : structure en trois temps (Problème, Solution, Résultat). Chiffres clés en cuivre.
-- Visuels : photographies sombres à lumière rasante. Pas de visuels génériques.
+### Cartes et figures
+- Cartes : cadre `blueprint` (gabarit `blueprint-card`), fond transparent, 1 px, rayon 0. Chiffres en `accent` (`text-numeral`, 64 px), titre en `headline-sm`.
+- Figures de réalisations : cadre `blueprint`, légende `body-sm`, catégorie en `accent-700`.
+- Visuels : photographies traitées en **bichromie `accent`** (mélange en mode `color`), cadrage 4:5 ou 16:10.
 
 ### Champs de formulaire
-- Fond `surface-container-low`, bordure de 1 px `outline-variant`, hauteur 48 px, marge intérieure de 16 px, rayon 4 px.
-- Focus : anneau de 2 px en bleu électrique (3:1 minimum conservé). Pas de décalage de contour.
-- Placeholder : gris signature.
-- Formulaire de devis segmenté : choix de l'univers (bâtiment ou véhicule), type de besoin, surface ou modèle de véhicule, ajout de photos.
+- Sur fond clair : fond `surface`, bordure 1 px `accent-700`, hauteur 44 px, rayon 0, `body-md`.
+- Sur fond sombre (contact) : fond transparent, bordure `outline-inverse`, texte `background`, étiquette `accent-200`.
+- Focus : anneau 2 px `accent` (fond clair) ou `accent-300` (fond sombre), décalage 2 px. Placeholder en `neutral-700` (fond clair) ou `accent-200` (fond sombre).
+- Choix segmenté du projet : contour 1 px, option active en inversion de couleur.
 
-### Cases à cocher et interrupteurs
-- Case : 18 × 18 px, rayon 2 px. Inactive : bordure `outline`. Active : fond cuivre, coche Noir Carbone.
-- Interrupteur : piste représentant l'état du verre (désactivé : dépoli, activé : transparent), transition de 300 ms.
+### Étiquettes
+`label-sm`, rayon 0. Fond `accent-100`, texte `accent-700` (5,9:1), ou contour 1 px `accent-700`.
+
+### Jauges et vignettes du laboratoire
+Cellules de 22 × 8 px, contour 1 px `accent`, remplies en `accent` ; vignette sélectionnée en fond `accent-200`.
+
+### Navigation
+- **En-tête** : fond `accent-900`, lockup à gauche, liens `label-nav` en `background` (survol `accent-300`), bouton « Devis gratuit ». Liens validés : `/batiment`, `/voiture`, `/bateau`, `/realisations`, `/conseils-expertises`, CTA `/contact-devis`.
+- **Menu mobile** (sous 1200 px) : bouton 44 px à contour `outline-inverse`, panneau `accent-900` pleine largeur, liens en `title-md`, bouton « Devis gratuit » en bas.
+- **Pied de page** : fond `accent-900`, filet supérieur `divider-inverse`, textes `accent-200`, intitulés `accent-300`, coordonnées issues de `site-settings`.
 
 ### Bandeau cookies et modales
-- Bandeau ancré en bas, effet verre, filet supérieur en dégradé cuivre vers bleu.
-- Modale centrée, fond `rgba(10, 12, 15, 0.8)` avec flou d'arrière-plan.
+Bandeau ancré en bas : fond `accent-900`, filet supérieur `divider-inverse`, texte `background`. Modale : cadre `blueprint-inverse` sur voile `accent-900` à 50 %. Rayon 0.
 
 ### Réassurance
-- Garanties affichées en évidence, logos partenaires en monochrome argent, carrousel d'avis Google sur la page d'accueil.
+Avis Google (API Places), guides experts, études de cas chiffrées : mêmes cartes `blueprint`. Chiffres clés en `accent` à grande taille.
 
 ## Iconographie et photographie
 
-- **Icônes** : linéaires, trait fin, monochromes argent. Aucun pictogramme illustratif lourd (dessins de voitures ou de fenêtres).
-- **Photographie** : villas modernes, bureaux d'architectes, commerces haut de gamme, véhicules et bateaux d'exception. Lumière rasante, reflets sur le verre, jeux d'ombre et de lumière, en écho aux facettes du logo. Reportages sur chantiers réels de VIT'OPAQUE. Aucune image de banque d'images.
+- **Icônes** : linéaires, trait 1,5 px, `currentColor`. Aucun pictogramme illustratif lourd.
+- **Photographie** : intérieurs, bureaux, commerces, véhicules et bateaux, vus à travers une vitre. Traitement bichromie `accent`. Reportages sur chantiers réels de VIT'OPAQUE. Aucune image de banque d'images. Textes alternatifs descriptifs et sobres, sans ville.
 
 ## Animations
 
-Sobres : fondus et révélations progressives de 200 à 400 ms. La transition **opaque → transparent** est le motif animé signature de la marque (révélation d'un visuel, changement d'état d'un interrupteur, curseur avant / après).
+Sobres et signifiantes : toute animation illustre le passage **opaque → transparent**, le verre qui se révèle.
+
+| Animation | Durée | Courbe |
+|---|---|---|
+| Survol (fond, couleur) | 300 ms | par défaut |
+| Lentille du hero (diamètre) | 400 ms | par défaut |
+| Remplissage des jauges | 500 ms | par défaut |
+| Changement de film (voile) | 900 ms | `ease` |
+| Apparition des sections (opacité, translation de `reveal-shift` 28 px, flou de `reveal-blur` 14 px vers 0) | liée au défilement (`animation-timeline: view()`, plage `reveal-range` : `entry 0 %` à `entry 40 %`), sans durée | linéaire |
+| Éclair au changement de film | 1200 ms | `ease-flash` |
+| Mots du manifeste (flou, opacité) | 250 ms | linéaire, pilotée par le défilement |
+| Reflet balayant (hero) | 8 s, boucle | `ease-in-out` |
+| Reflet balayant (contact) | 10,4 s, boucle | `ease-in-out` |
+
+Les durées vivent uniquement dans `tokens.css` (`--duration-*`). Les durées `reveal` (1000 ms) et `reveal-filter` (1100 ms) y subsistent mais ne sont plus utilisées, l'apparition étant pilotée par le défilement. Les mots du manifeste se règlent par `word-gap`, `word-blur`, `word-dim`, `word-span` et `word-lead`. Le reflet (`sweep-band`, `animate-sweep`) est un dégradé oblique `accent-300` et `background`.
+
+**`prefers-reduced-motion: reduce` (obligatoire)** : toutes les animations sont coupées (`animation: none`) : plus de reflet, d'éclair ni d'apparition au défilement ; pas de défilement doux ; seules les transitions d'opacité, de couleur, de fond et de bordure subsistent. Règle globale en bas de `tokens.css`.
 
 ## Accessibilité et performance
-- Contrastes conformes au niveau AA des WCAG, avec une vigilance particulière sur fond sombre (voir le tableau des contrastes).
-- Respect de `prefers-reduced-motion` : fondus uniquement, sans révélations animées.
-- Images en WebP/AVIF avec chargement différé. Pas de vidéo d'en-tête : l'en-tête de l'accueil utilise le simulateur interactif PDLC de la maquette de référence.
-- Polices auto-hébergées.
+- Contrastes conformes au niveau AA (voir le tableau). Focus visible partout (`focus-ring-width` 2 px, décalage `focus-ring-offset` 2 px). Sélection de texte en `selection` (`accent` à 30 %).
+- Respect de `prefers-reduced-motion`. Lentille du hero : repli tactile (position fixe, pas de suivi du pointeur). Manifeste : sans JavaScript ou avec mouvement réduit, les mots restent nets et opaques ; l'effet n'existe que si le script l'active.
+- Images en WebP/AVIF avec chargement différé. Pas de vidéo d'en-tête.
+- Polices auto-hébergées, une seule requête par fichier, `font-display: swap`.
+- JavaScript client limité : lentille d'en-tête, laboratoire de films, manifeste, curseur, carrousel, formulaire, menu mobile.
 
 ## Historique
 
-- 2026-10-13 : précisions validées : libellé du CTA dégradé, espacements tablette et grand écran, `space-3xl` par palier.
+- 2026-10-20 : version 3.0, tirée de la maquette d'accueil `maquette-v3.html` : thème clair bleu acier, Barlow / Barlow Condensed, rayon 0, repères d'angle, grille 12 colonnes, lentille de verre dépoli. Abandon du dégradé cuivre → bleu.
+- 2026-10-13 : (v2.0) précisions validées : libellé du CTA dégradé, espacements tablette et grand écran, `space-3xl` par palier.

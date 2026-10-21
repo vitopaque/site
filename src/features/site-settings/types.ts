@@ -16,6 +16,7 @@ export type SiteConfig = {
     hours: { days: Weekday[]; opens: string; closes: string }[]
   }
   social: { network: SocialNetwork; url: string }[]
-  seo: { titleTemplate: string }
+  seo: { titleTemplate: string; home: { title: string; description: string } }
+  navigation: { links: NavLink[]; cta: NavLink }
   footerColumns: { title: string; links: NavLink[] }[]
 }

@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { siteConfig } from '../config'
 import type { SocialNetwork } from '../types'
+import { BrandLockup } from './BrandLockup'
 import { SocialIcon } from './SocialIcon'
 
 const NETWORK_LABELS: Record<SocialNetwork, string> = {
@@ -18,14 +19,16 @@ export function SiteFooter() {
   const postal = [address.postalCode, address.city].filter(Boolean).join(' ')
 
   return (
-    <footer className="border-outline mt-3xl border-t">
-      <div className="max-w-page px-margin py-2xl mx-auto">
-        <div className="gap-xl grid grid-cols-1 md:grid-cols-12">
+    <footer className="on-dark bg-accent-900 text-accent-200 border-divider-inverse border-t">
+      <div className="max-w-page px-margin mx-auto py-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="text-headline-sm tracking-widest uppercase">{name}</p>
-            <p className="label-caps text-outline mt-sm">{baseline}</p>
+            <div className="text-background">
+              <BrandLockup />
+            </div>
+            <p className="label-caps text-accent-300 mt-4">{baseline}</p>
             {social.length > 0 ? (
-              <ul className="mt-lg gap-md flex">
+              <ul className="mt-6 flex gap-4">
                 {social.map((link) => (
                   <li key={link.network}>
                     <a
@@ -33,7 +36,7 @@ export function SiteFooter() {
                       rel="noopener noreferrer"
                       target="_blank"
                       aria-label={`${NETWORK_LABELS[link.network]} (nouvel onglet)`}
-                      className="border-outline text-on-surface-variant hover:text-on-surface hover:border-on-surface-variant inline-flex size-10 items-center justify-center rounded-sm border"
+                      className="border-outline-inverse text-accent-200 hover:bg-hover-inverse hover:text-background inline-flex size-11 items-center justify-center border"
                     >
                       <SocialIcon network={link.network} />
                     </a>
@@ -42,17 +45,14 @@ export function SiteFooter() {
               </ul>
             ) : null}
           </div>
-          <div className="gap-xl grid grid-cols-1 sm:grid-cols-2 md:col-span-7">
+          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:col-span-7">
             {footerColumns.map((column) => (
               <nav key={column.title} aria-label={column.title}>
-                <p className="label-caps text-on-surface">{column.title}</p>
-                <ul className="mt-md gap-sm flex flex-col">
+                <p className="label-caps text-accent-300">{column.title}</p>
+                <ul className="mt-4 flex flex-col gap-2">
                   {column.links.map((link) => (
                     <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-body-sm text-on-surface-variant hover:text-on-surface"
-                      >
+                      <Link href={link.href} className="text-body-sm hover:text-background">
                         {link.label}
                       </Link>
                     </li>
@@ -61,23 +61,24 @@ export function SiteFooter() {
               </nav>
             ))}
             <div>
-              <p className="label-caps text-on-surface">Contact</p>
-              <ul className="mt-md gap-sm text-body-sm flex flex-col">
+              <p className="label-caps text-accent-300">Contact</p>
+              <ul className="text-body-sm mt-4 flex flex-col gap-2">
                 <li>
-                  <a href={telHref(contact.phone)} className="text-primary">
+                  <a
+                    href={telHref(contact.phone)}
+                    className="text-background underline underline-offset-4"
+                  >
                     {contact.phone}
                   </a>
                 </li>
-                {address.street ? (
-                  <li className="text-on-surface-variant">{address.street}</li>
-                ) : null}
-                <li className="text-on-surface-variant">{postal}</li>
-                {locationNote ? <li className="text-on-surface-variant">{locationNote}</li> : null}
+                {address.street ? <li>{address.street}</li> : null}
+                <li>{postal}</li>
+                {locationNote ? <li>{locationNote}</li> : null}
               </ul>
             </div>
           </div>
         </div>
-        <p className="border-outline pt-lg mt-xl text-body-sm text-on-surface-variant border-t">
+        <p className="border-divider-inverse text-body-sm mt-12 border-t pt-6">
           © {new Date().getFullYear()} {name}
         </p>
       </div>

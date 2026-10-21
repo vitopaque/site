@@ -6,12 +6,40 @@
     background-color: var(--color-background);
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
-    @apply bg-background text-body-md text-on-surface font-sans font-normal antialiased;
+    @apply bg-background text-body-md text-foreground overflow-x-hidden font-sans font-normal antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold;
   }
 
   :focus-visible {
-    outline: var(--focus-ring-width) solid var(--color-secondary);
+    outline: var(--focus-ring-width) solid var(--color-accent);
     outline-offset: var(--focus-ring-offset);
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-accent-300);
+  }
+
+  ::selection {
+    background-color: var(--selection);
+  }
+
+  strong,
+  b {
+    font-weight: inherit;
   }
 }

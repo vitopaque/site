@@ -27,7 +27,24 @@ export const siteConfig: SiteConfig = {
     { network: 'instagram', url: 'https://www.instagram.com/vit.opaque/' },
     { network: 'linkedin', url: 'https://www.linkedin.com/company/vit-opaque/' },
   ],
-  seo: { titleTemplate: "%s | VIT'OPAQUE" },
+  seo: {
+    titleTemplate: "%s | VIT'OPAQUE",
+    home: {
+      title: 'Films adhésifs pour vitrages : bâtiment, voiture, bateau',
+      description:
+        "Pose de films solaires, sécurité, PDLC et vitres teintées par VIT'OPAQUE, à Vendargues, aux portes de Montpellier. Devis gratuit.",
+    },
+  },
+  navigation: {
+    links: [
+      { label: 'Bâtiment', href: '/batiment' },
+      { label: 'Voiture', href: '/voiture' },
+      { label: 'Bateau', href: '/bateau' },
+      { label: 'Réalisations', href: '/realisations' },
+      { label: 'Conseils & expertises', href: '/conseils-expertises' },
+    ],
+    cta: { label: 'Devis gratuit', href: '/contact-devis' },
+  },
   footerColumns: [],
 }
 

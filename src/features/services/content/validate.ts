@@ -11,18 +11,24 @@ type Content = {
   hubPages: HubPageContent[]
   servicePages: ServicePageContent[]
   titleTemplate: string
+  home: { title: string; description: string }
   internalHrefs: string[]
+  silos: readonly { slug: string; univers: string }[]
 }
 
 export function contentViolations({
   hubPages,
   servicePages,
   titleTemplate,
+  home,
   internalHrefs,
+  silos,
 }: Content): string[] {
   const violations: string[] = []
-  const seenTitles = new Map<string, string>()
-  const seenDescriptions = new Map<string, string>()
+  const seenTitles = new Map<string, string>([[home.title.trim().toLowerCase(), 'accueil']])
+  const seenDescriptions = new Map<string, string>([
+    [home.description.trim().toLowerCase(), 'accueil'],
+  ])
 
   const check = (label: string, value: string, rule: Rule) => {
     if (!value.trim()) {
@@ -79,6 +85,25 @@ export function contentViolations({
     for (const [index, item] of (page.faq ?? []).entries()) {
       check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
       check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
+    }
+  }
+
+  // Contenu pas encore rédigé : la cohérence avec le catalogue n'est contrôlée qu'ensuite.
+  if (hubPages.length > 0 || servicePages.length > 0) {
+    for (const silo of silos) {
+      const page = servicePages.find((candidate) => candidate.slug === silo.slug)
+      if (!page) violations.push(`silo ${silo.slug} : aucune page de service`)
+      else if (page.univers !== silo.univers) {
+        violations.push(`silo ${silo.slug} : univers ${page.univers} au lieu de ${silo.univers}`)
+      }
+      if (!hubUnivers.has(silo.univers)) {
+        violations.push(`silo ${silo.slug} : aucun hub pour l'univers ${silo.univers}`)
+      }
+    }
+    for (const page of servicePages) {
+      if (!silos.some((silo) => silo.slug === page.slug)) {
+        violations.push(`service ${page.slug} : absent du catalogue des silos`)
+      }
     }
   }
 

@@ -12,6 +12,10 @@ export function assertValidSiteConfig(config: SiteConfig): void {
   check('nom', config.name, noCityInTitle)
   check('signature', config.baseline, noCityNumber)
   if (config.locationNote) check('mention de localisation', config.locationNote, noCityNumber)
+  check('titre SEO accueil', config.seo.home.title, noCityInTitle)
+  check('méta-description accueil', config.seo.home.description, noCityNumber)
+  for (const link of [...config.navigation.links, config.navigation.cta])
+    check(`navigation ${link.href}`, link.label, noCityNumber)
   for (const column of config.footerColumns) {
     check(`colonne ${column.title}`, column.title, noCityNumber)
     for (const link of column.links) check(`lien ${link.href}`, link.label, noCityNumber)
