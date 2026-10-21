@@ -1,1 +1,1 @@
-export {}
+export { QuoteForm } from './components/QuoteForm'
