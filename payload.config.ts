@@ -8,6 +8,8 @@ import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
 import { isAdminOrEditor, Users } from '@/features/access'
+import { Articles } from '@/features/articles'
+import { Authors } from '@/features/authors'
 import { Media } from '@/features/media'
 import { isOnVercel, requireEnv, resolveSiteUrl } from '@/shared/env'
 
@@ -18,7 +20,7 @@ export default buildConfig({
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname, 'src') },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Authors, Articles],
   editor: lexicalEditor(),
   serverURL: resolveSiteUrl().origin,
   secret: requireEnv('PAYLOAD_SECRET'),
