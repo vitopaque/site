@@ -33,6 +33,23 @@ test.describe('Contact et devis', () => {
     await expect(page.getByRole('radio', { name: 'Bâtiment & Pro' })).toBeChecked()
   })
 
+  test('présélection de l’univers par ?univers=', async ({ page }) => {
+    await page.goto('/contact-devis?univers=bateau')
+    await expect(page.getByRole('radio', { name: 'Bateau' })).toBeChecked()
+    await expect(page.getByLabel('Type de besoin')).toHaveValue('inconnu')
+  })
+
+  test('univers inconnu ignoré', async ({ page }) => {
+    await page.goto('/contact-devis?univers=avion')
+    await expect(page.getByRole('radio', { name: 'Bâtiment & Pro' })).toBeChecked()
+  })
+
+  test('?service= l’emporte sur ?univers=', async ({ page }) => {
+    await page.goto('/contact-devis?service=vitres-teintees-auto&univers=bateau')
+    await expect(page.getByRole('radio', { name: 'Voiture' })).toBeChecked()
+    await expect(page.getByLabel('Type de besoin')).toHaveValue('vitresAuto')
+  })
+
   test('aucune violation axe', async ({ page }) => {
     await page.goto('/contact-devis')
     const { violations } = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze()

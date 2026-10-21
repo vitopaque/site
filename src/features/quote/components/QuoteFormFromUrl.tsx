@@ -4,20 +4,22 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 
 import type { QuoteSilo } from '../types'
-import { serviceFromParam } from '../validators'
+import { serviceFromParam, universFromParam } from '../validators'
 import { QuoteFormClient } from './QuoteFormClient'
 
-type Props = { silos: readonly QuoteSilo[]; param: string }
+type Props = { silos: readonly QuoteSilo[]; serviceParam: string; universParam: string }
 
-function PreselectedQuoteForm({ silos, param }: Props) {
-  const service = serviceFromParam(useSearchParams().get(param), silos)
-  return <QuoteFormClient silos={silos} initialService={service} />
+function PreselectedQuoteForm({ silos, serviceParam, universParam }: Props) {
+  const params = useSearchParams()
+  const service = serviceFromParam(params.get(serviceParam), silos)
+  const univers = universFromParam(params.get(universParam))
+  return <QuoteFormClient silos={silos} initialService={service} initialUnivers={univers} />
 }
 
-export function QuoteFormFromUrl({ silos, param }: Props) {
+export function QuoteFormFromUrl({ silos, serviceParam, universParam }: Props) {
   return (
     <Suspense fallback={<QuoteFormClient silos={silos} />}>
-      <PreselectedQuoteForm silos={silos} param={param} />
+      <PreselectedQuoteForm silos={silos} serviceParam={serviceParam} universParam={universParam} />
     </Suspense>
   )
 }

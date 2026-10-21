@@ -1,3 +1,5 @@
+import { UNIVERS_OPTIONS, type Univers } from '@/shared/payload/univers'
+
 import { UNKNOWN_NEED, type QuoteErrors, type QuoteSilo, type QuoteValues } from './types'
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -20,6 +22,9 @@ export const serviceFromParam = (
   value: string | null,
   silos: readonly QuoteSilo[],
 ): QuoteSilo | null => silos.find((silo) => silo.slug === value) ?? null
+
+export const universFromParam = (value: string | null): Univers | null =>
+  UNIVERS_OPTIONS.find((option) => option.value === value)?.value ?? null
 
 export const needError = (
   univers: QuoteValues['univers'],

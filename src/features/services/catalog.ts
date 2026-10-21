@@ -90,5 +90,10 @@ export const labFilmsOf = (univers: Univers): LabFilm[] =>
 
 export const QUOTE_SERVICE_PARAM = 'service'
 
+export const QUOTE_UNIVERS_PARAM = 'univers'
+
 export const quoteHref = (slug?: string): string =>
   slug ? `/contact-devis?${QUOTE_SERVICE_PARAM}=${slug}` : '/contact-devis'
+
+export const quoteUniversHref = (univers: Univers): string =>
+  `/contact-devis?${QUOTE_UNIVERS_PARAM}=${univers}`

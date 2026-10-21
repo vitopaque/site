@@ -16,20 +16,26 @@ const DETAILS_FIELD: Record<Univers, { label: string; placeholder: string }> = {
   bateau: { label: 'Marque et modèle', placeholder: 'Jeanneau Merry Fisher 895' },
 }
 
-const initialValues = (service: QuoteSilo | null): QuoteValues => ({
+const initialValues = (service: QuoteSilo | null, univers: Univers | null): QuoteValues => ({
   name: '',
   contact: '',
-  univers: service?.univers ?? UNIVERS_OPTIONS[0].value,
+  univers: service?.univers ?? univers ?? UNIVERS_OPTIONS[0].value,
   need: service?.key ?? UNKNOWN_NEED,
   details: '',
   consent: false,
 })
 
-type Props = { silos: readonly QuoteSilo[]; initialService?: QuoteSilo | null }
+type Props = {
+  silos: readonly QuoteSilo[]
+  initialService?: QuoteSilo | null
+  initialUnivers?: Univers | null
+}
 
-export function QuoteFormClient({ silos, initialService = null }: Props) {
+export function QuoteFormClient({ silos, initialService = null, initialUnivers = null }: Props) {
   const uid = useId()
-  const [values, setValues] = useState<QuoteValues>(() => initialValues(initialService))
+  const [values, setValues] = useState<QuoteValues>(() =>
+    initialValues(initialService, initialUnivers),
+  )
   const [touched, setTouched] = useState<Record<QuoteField, boolean>>({
     name: false,
     contact: false,

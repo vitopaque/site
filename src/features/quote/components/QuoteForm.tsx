@@ -1,4 +1,4 @@
-import { QUOTE_SERVICE_PARAM, serviceSilos } from '@/features/services'
+import { QUOTE_SERVICE_PARAM, QUOTE_UNIVERS_PARAM, serviceSilos } from '@/features/services'
 
 import type { QuoteSilo } from '../types'
 import { QuoteFormClient } from './QuoteFormClient'
@@ -13,7 +13,11 @@ const silos: QuoteSilo[] = serviceSilos.map(({ key, slug, univers, label }) => (
 
 export function QuoteForm({ preselectFromUrl = false }: { preselectFromUrl?: boolean }) {
   return preselectFromUrl ? (
-    <QuoteFormFromUrl silos={silos} param={QUOTE_SERVICE_PARAM} />
+    <QuoteFormFromUrl
+      silos={silos}
+      serviceParam={QUOTE_SERVICE_PARAM}
+      universParam={QUOTE_UNIVERS_PARAM}
+    />
   ) : (
     <QuoteFormClient silos={silos} />
   )
