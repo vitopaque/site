@@ -4,7 +4,7 @@ import { noCityInTitle, noCityNumber } from '@/shared/content/city-rules.mjs'
 import { checkSeoLengths, DESCRIPTION_MAX } from '@/shared/content/seo-rules'
 import { textareaRule, textRule } from './validators'
 
-type SeoFieldsOptions = { titleTemplate: () => string | Promise<string> }
+type SeoFieldsOptions = { titleTemplate: string }
 
 export const seoFields = ({ titleTemplate }: SeoFieldsOptions): Field => {
   const titleRule = textRule(noCityInTitle)
@@ -12,7 +12,7 @@ export const seoFields = ({ titleTemplate }: SeoFieldsOptions): Field => {
     const base = titleRule(value, options)
     if (base !== true || typeof value !== 'string') return base
     const violations: string[] = []
-    checkSeoLengths(violations, 'SEO', { title: value, description: '' }, await titleTemplate())
+    checkSeoLengths(violations, 'SEO', { title: value, description: '' }, titleTemplate)
     return violations[0] ?? true
   }
   return {

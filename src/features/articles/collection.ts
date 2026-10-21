@@ -10,12 +10,10 @@ import { serviceSilos } from '@/shared/catalog'
 import { noCityInTitle, noCityNumber } from '@/shared/content/city-rules.mjs'
 import { seoFields } from '@/shared/payload/seo-fields'
 import { richTextRule, textareaRule, textRule } from '@/shared/payload/validators'
+import { TITLE_TEMPLATE } from '@/shared/seo/title-template'
 import { articleEditor } from './editor'
 import { captureLiveState, revalidateOnChange, revalidateOnDelete, stampPublishedAt } from './hooks'
 import { articleSlugRule, slugify } from './slug'
-
-const titleTemplate = async (): Promise<string> =>
-  (await import('@/features/site-settings')).siteConfig.seo.titleTemplate
 
 const validateSlug: TextFieldSingleValidation = (value, options) => {
   const base = text(value, options)
@@ -105,7 +103,7 @@ export const Articles: CollectionConfig = {
         description: 'À renseigner seulement pour une mise à jour réelle du contenu.',
       },
     },
-    seoFields({ titleTemplate }),
+    seoFields({ titleTemplate: TITLE_TEMPLATE }),
     {
       name: 'createdBy',
       type: 'relationship',

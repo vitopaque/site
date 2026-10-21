@@ -1,3 +1,4 @@
+import { TITLE_TEMPLATE } from '@/shared/seo/title-template'
 import type { SiteConfig } from './types'
 import { assertValidSiteConfig } from './validate'
 
@@ -40,7 +41,7 @@ export const siteConfig: SiteConfig = {
     { network: 'linkedin', url: 'https://www.linkedin.com/company/vit-opaque/' },
   ],
   seo: {
-    titleTemplate: "%s | VIT'OPAQUE",
+    titleTemplate: TITLE_TEMPLATE,
     home: {
       title: 'Films pour vitrages : bâtiment, auto, bateau',
       description:
