@@ -1,7 +1,7 @@
 import { formatServiceAreaFor } from '@/features/site-settings'
 
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Baie vitrée de bureaux équipée d’un film solaire, vue sur l’extérieur »
@@ -140,5 +140,6 @@ export const filmSolaireBatiment: ServicePageContent = {
         'Le type de lieu, le nombre de vitrages, leur exposition et quelques photos suffisent pour commencer. Envoyez-les depuis la page Contact et devis : le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }

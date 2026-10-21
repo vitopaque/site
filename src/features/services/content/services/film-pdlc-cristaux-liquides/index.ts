@@ -1,7 +1,7 @@
 import { formatServiceAreaFor } from '@/features/site-settings'
 
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Cloison vitrée de salle de réunion équipée d’un film PDLC, état translucide »
@@ -137,5 +137,6 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
         'Décrivez les vitrages concernés, leurs dimensions et, si possible, joignez quelques photos depuis la page Contact et devis. Dites-nous aussi si vous visez un film sur vitrage existant ou un verre opacifiant. Le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }

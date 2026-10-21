@@ -22,6 +22,8 @@ export type SectionTitles = Partial<Record<SectionKey, SectionTitle>>
 
 export type Highlight = { title: string; text: string }
 
+export type BodyHeading = { id: string; text: string }
+
 type PageBase = {
   univers: Univers
   h1: string
@@ -42,5 +44,6 @@ export type ServicePageContent = PageBase & {
   image?: { src: StaticImageData; alt: string }
   highlights?: Highlight[]
   faq: FaqItem[]
+  headings: readonly BodyHeading[]
   Body: ComponentType
 }

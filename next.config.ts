@@ -26,7 +26,10 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [path.join(process.cwd(), 'src/shared/content/remark-content-rules.mjs')],
+    remarkPlugins: [
+      path.join(process.cwd(), 'src/shared/content/remark-content-rules.mjs'),
+      path.join(process.cwd(), 'src/shared/content/remark-headings.mjs'),
+    ],
   },
 })
 

@@ -1,5 +1,5 @@
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Voiture partiellement recouverte d’un film adhésif de couleur, détail du capot »
@@ -102,5 +102,6 @@ export const coveringEtFlocage: ServicePageContent = {
         'Le modèle du véhicule, les éléments à recouvrir (partiel ou total) et votre idée de couleur ou de marquage, depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }

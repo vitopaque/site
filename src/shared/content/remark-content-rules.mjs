@@ -1,21 +1,5 @@
 import { noCityInTitle, noCityNumber } from './city-rules.mjs'
-
-const PHRASING = new Set([
-  'text',
-  'emphasis',
-  'strong',
-  'link',
-  'inlineCode',
-  'delete',
-  'linkReference',
-])
-
-const textOf = (node) => {
-  if (typeof node.value === 'string' && node.type !== 'html') return node.value
-  const children = node.children ?? []
-  const separator = children.every((child) => PHRASING.has(child.type)) ? '' : ' '
-  return children.map(textOf).join(separator)
-}
+import { textOf } from './mdast-text.mjs'
 
 const walk = (node, visit) => {
   visit(node)

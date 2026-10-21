@@ -1,5 +1,5 @@
 import type { ServicePageContent } from '../../types'
-import Body from './body.mdx'
+import Body, { headings } from './body.mdx'
 
 // alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
 // « Vitrine de commerce équipée d’un film de sécurité transparent »
@@ -111,5 +111,6 @@ export const filmSecuriteAntiEffraction: ServicePageContent = {
         'Indiquez les vitrages les plus exposés (vitrine, baie, porte vitrée), leur nombre et, si possible, quelques photos depuis la page Contact et devis. Le devis est gratuit et sans engagement.',
     },
   ],
+  headings,
   Body,
 }
