@@ -1,5 +1,8 @@
+import { pairOfUnivers, realisationsOfUnivers } from '@/features/realisations'
 import { provisionalPhoto } from '@/shared/assets/photos/provisional'
+import { labFilmsOf, quoteUniversHref } from '@/shared/catalog'
 import { universLabel } from '@/shared/payload/univers'
+import { BeforeAfterSection } from '@/shared/ui/BeforeAfterSection'
 import { ButtonLink } from '@/shared/ui/ButtonLink'
 import { CtaBand } from '@/shared/ui/CtaBand'
 import { FaqSection } from '@/shared/ui/FaqSection'
@@ -9,12 +12,9 @@ import { RealisationsSection } from '@/shared/ui/RealisationsSection'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-import { labFilmsOf, quoteUniversHref } from '@/shared/catalog'
 import { sectionTitle } from '../content/section-titles'
-import { linkedRealisations } from '../content/showcase'
-import { beforeAfterOf, type HubEntry, servicesOf } from '../queries'
+import { type HubEntry, servicesOf } from '../queries'
 import { pageCrumbs } from '../seo'
-import { BeforeAfterSection } from '@/shared/ui/BeforeAfterSection'
 import { OtherUnivers } from './OtherUnivers'
 import { ServiceCards } from './ServiceCards'
 
@@ -22,7 +22,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
   const { page } = entry
   const services = servicesOf(page.univers)
   const films = labFilmsOf(page.univers)
-  const beforeAfter = beforeAfterOf(page.univers)
+  const beforeAfter = pairOfUnivers(page.univers)
   const href = quoteUniversHref(page.univers)
 
   return (
@@ -58,7 +58,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
         </Section>
       ) : null}
       <RealisationsSection
-        items={linkedRealisations}
+        items={realisationsOfUnivers(page.univers)}
         heading={sectionTitle(page, 'realisations')}
         tone="light"
       />
@@ -78,7 +78,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
         <BeforeAfterSection
           id="laboratoire-titre"
           heading={sectionTitle(page, 'lab')}
-          pair={beforeAfter}
+          pair={beforeAfter.pair}
           tone="surface"
         />
       ) : null}

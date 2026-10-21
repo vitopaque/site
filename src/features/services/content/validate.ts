@@ -14,6 +14,7 @@ type Content = {
   home: { title: string; description: string }
   internalHrefs: string[]
   silos: readonly { slug: string; univers: string }[]
+  otherSeo: readonly { label: string; seo: { title: string; description: string } }[]
 }
 
 type Seen = Map<string, string>
@@ -38,6 +39,7 @@ export function contentViolations({
   home,
   internalHrefs,
   silos,
+  otherSeo,
 }: Content): string[] {
   const violations: string[] = []
   const seenTitles = new Map<string, string>([[home.title.trim().toLowerCase(), 'accueil']])
@@ -101,10 +103,6 @@ export function contentViolations({
     }
     checkPage(label, page)
     if (page.image) check(`${label} texte alternatif`, page.image.alt, noCityInTitle)
-    if (page.beforeAfter) {
-      check(`${label} texte alternatif avant`, page.beforeAfter.before.alt, noCityInTitle)
-      check(`${label} texte alternatif après`, page.beforeAfter.after.alt, noCityInTitle)
-    }
     check(`${label} résumé`, page.summary, noCityNumber)
     for (const [index, item] of (page.highlights ?? []).entries()) {
       check(`${label} point clé ${index + 1} titre`, item.title, noCityNumber)
@@ -132,6 +130,11 @@ export function contentViolations({
     }
   }
 
+  for (const { label, seo } of otherSeo) {
+    unique(label, seo.title, seenTitles, 'titre SEO')
+    unique(label, seo.description, seenDescriptions, 'méta-description')
+  }
+
   const knownPaths = new Set(['/', ...hubUnivers].map((p) => (p === '/' ? p : `/${p}`)))
   for (const slug of slugs) knownPaths.add(`/${slug}`)
   for (const href of internalHrefs) {
@@ -146,7 +149,12 @@ export function contentViolations({
 export function seoClashes(
   label: string,
   seo: { title: string; description: string },
-  { hubPages, servicePages, home }: Pick<Content, 'hubPages' | 'servicePages' | 'home'>,
+  {
+    hubPages,
+    servicePages,
+    home,
+    otherSeo,
+  }: Pick<Content, 'hubPages' | 'servicePages' | 'home' | 'otherSeo'>,
 ): string[] {
   const violations: string[] = []
   const titles: Seen = new Map([[home.title.trim().toLowerCase(), 'accueil']])
@@ -158,6 +166,10 @@ export function seoClashes(
   for (const page of servicePages) {
     titles.set(page.seo.title.trim().toLowerCase(), `service ${page.slug}`)
     descriptions.set(page.seo.description.trim().toLowerCase(), `service ${page.slug}`)
+  }
+  for (const other of otherSeo) {
+    titles.set(other.seo.title.trim().toLowerCase(), other.label)
+    descriptions.set(other.seo.description.trim().toLowerCase(), other.label)
   }
   registerUnique(violations, label, seo.title, titles, 'titre SEO')
   registerUnique(violations, label, seo.description, descriptions, 'méta-description')

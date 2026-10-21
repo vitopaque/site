@@ -33,3 +33,18 @@ export const faqPage = (items: readonly { question: string; answer: string }[]) 
     acceptedAnswer: { '@type': 'Answer', text: item.answer },
   })),
 })
+
+type VideoInput = {
+  name: string
+  description: string
+  thumbnailUrl: string
+  uploadDate: string
+  duration: string
+  contentUrl: string
+}
+
+export const videoObject = (video: VideoInput) => ({
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  ...video,
+})
