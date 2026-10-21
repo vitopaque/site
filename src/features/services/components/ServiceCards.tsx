@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { ordinal } from '@/shared/ui/ordinal'
 
+import { siloBySlug } from '../catalog'
 import type { ServicePageContent } from '../content/types'
 
 export function ServiceCards({ services }: { services: readonly ServicePageContent[] }) {
@@ -12,7 +13,7 @@ export function ServiceCards({ services }: { services: readonly ServicePageConte
           <span className="text-numeral font-heading text-accent">{ordinal(index)}</span>
           <h3 className="text-headline-sm uppercase">
             <Link href={`/${service.slug}`} className="hover:text-accent-700">
-              {service.h1}
+              {siloBySlug(service.slug)?.label ?? service.h1}
             </Link>
           </h3>
           <p className="text-neutral-700">{service.summary}</p>

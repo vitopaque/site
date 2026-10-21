@@ -1,5 +1,7 @@
 import { noCityInTitle, noCityNumber, type Rule } from '@/shared/content/city-rules.mjs'
 
+import { seoClashesWithPages } from '@/features/services'
+
 import type { ContactPageContent } from './contact-page'
 
 export function assertValidContactPage(page: ContactPageContent): void {
@@ -19,6 +21,8 @@ export function assertValidContactPage(page: ContactPageContent): void {
   for (const [index, item] of page.faq.entries()) {
     check(`contact FAQ ${index + 1}`, `${item.question} ${item.answer}`, noCityNumber)
   }
+
+  violations.push(...seoClashesWithPages('contact', page.seo))
 
   if (violations.length > 0)
     throw new Error(`Page contact invalide :\n- ${violations.join('\n- ')}`)

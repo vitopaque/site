@@ -7,7 +7,7 @@ import { PageHero } from '@/shared/ui/PageHero'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-import { labFilmsOf, quoteHref } from '../catalog'
+import { labFilmsOf, quoteUniversHref } from '../catalog'
 import { type HubEntry, servicesOf } from '../queries'
 import { pageCrumbs } from '../seo'
 import { LinkedRealisations } from './LinkedRealisations'
@@ -18,7 +18,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
   const { page } = entry
   const services = servicesOf(page.univers)
   const films = labFilmsOf(page.univers)
-  const href = quoteHref()
+  const href = quoteUniversHref(page.univers)
 
   return (
     <>
@@ -39,7 +39,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
             <SectionHeading
               id="prestations-titre"
               kicker={universLabel(page.univers)}
-              lines={['Nos prestations.']}
+              lines={[services.length > 1 ? 'Nos prestations.' : 'Notre prestation.']}
             />
           </div>
           <ServiceCards services={services} />

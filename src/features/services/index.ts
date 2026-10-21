@@ -1,3 +1,4 @@
+export { seoClashesWithPages } from './content'
 export { PageTemplate } from './components/PageTemplate'
 export { getPage, listSlugs } from './queries'
 export { pageMetadata } from './seo'
@@ -5,10 +6,10 @@ export {
   hubHref,
   labFilmsOf,
   QUOTE_SERVICE_PARAM,
-  quoteHref,
   QUOTE_UNIVERS_PARAM,
-  serviceSilos,
+  quoteHref,
   quoteUniversHref,
+  serviceSilos,
   siloBySlug,
   silosOfUnivers,
   siloOf,
