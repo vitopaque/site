@@ -1,8 +1,8 @@
+import { labFilmsOf } from '@/features/services'
+import { PROVISIONAL_ALT, provisionalPhoto } from '@/shared/assets/photos/provisional'
+import { FilmLab } from '@/shared/ui/FilmLab'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
-
-import { films } from '../content/films'
-import { FilmLab } from './FilmLab'
 
 export function LabSection() {
   return (
@@ -19,7 +19,10 @@ export function LabSection() {
         </p>
       </div>
       <div className="reveal mt-12">
-        <FilmLab films={films} />
+        <FilmLab
+          films={labFilmsOf('batiment')}
+          image={{ src: provisionalPhoto, alt: PROVISIONAL_ALT }}
+        />
       </div>
     </Section>
   )

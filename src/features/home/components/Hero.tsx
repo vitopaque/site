@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import grandMonogram from '@/shared/assets/brand/monogramme-v-grand.webp'
+import { provisionalPhoto } from '@/shared/assets/photos/provisional'
 import { ordinal } from '@/shared/ui/ordinal'
 
-import { provisionalPhoto } from '../content/media'
 import { HeroLens } from './HeroLens'
 
 const WORDS = ['Intimité', 'Lumière', 'Chaleur', 'Sécurité'] as const

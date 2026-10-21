@@ -1,5 +1,7 @@
-import type { ServiceKey } from '@/features/services'
+import type { ServiceKey, ServiceSilo } from '@/features/services'
 import type { Univers } from '@/shared/payload/univers'
+
+export type QuoteSilo = Pick<ServiceSilo, 'key' | 'slug' | 'univers' | 'label'>
 
 export const UNKNOWN_NEED = 'inconnu'
 

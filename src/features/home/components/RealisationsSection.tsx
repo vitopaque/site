@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { PROVISIONAL_ALT, provisionalPhoto } from '@/shared/assets/photos/provisional'
 import { ToIntegrateBadge } from '@/shared/ui/ToIntegrateBadge'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-import { PROVISIONAL_ALT, provisionalPhoto } from '../content/media'
 import { realisations } from '../content/realisations'
 
 export function RealisationsSection() {

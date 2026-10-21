@@ -1,13 +1,14 @@
 import { GuidesSection } from '@/features/articles'
 import { CaseStudiesSection } from '@/features/case-studies'
+import { ContactSection, QuoteForm } from '@/features/quote'
 import { ReviewsSection } from '@/features/reviews'
 
+import { homeContact } from '../content/contact'
 import {
   caseStudyPlaceholders,
   guidePlaceholders,
   reviewPlaceholders,
 } from '../content/placeholders'
-import { ContactSection } from './ContactSection'
 import { Hero } from './Hero'
 import { LabSection } from './LabSection'
 import { ManifestoSection } from './ManifestoSection'
@@ -27,7 +28,9 @@ export function HomePage() {
       <CaseStudiesSection items={caseStudyPlaceholders} />
       <ReviewsSection items={reviewPlaceholders} />
       <GuidesSection items={guidePlaceholders} />
-      <ContactSection />
+      <ContactSection id="contact" {...homeContact}>
+        <QuoteForm />
+      </ContactSection>
     </>
   )
 }
