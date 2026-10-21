@@ -5,7 +5,7 @@ import { UNIVERS_OPTIONS } from '@/shared/payload/univers'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-import { hubHref, silosOfUnivers } from '../catalog'
+import { hubHref, silosOfUnivers } from '@/shared/catalog'
 
 type Props = { current: Univers; tone?: 'light' | 'surface' }
 

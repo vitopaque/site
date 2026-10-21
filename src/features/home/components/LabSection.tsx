@@ -1,4 +1,4 @@
-import { labFilmsOf } from '@/features/services'
+import { labFilmsOf } from '@/shared/catalog'
 import { provisionalPhoto } from '@/shared/assets/photos/provisional'
 import { FilmLab } from '@/shared/ui/FilmLab'
 import { Section } from '@/shared/ui/Section'

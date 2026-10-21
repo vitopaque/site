@@ -1,4 +1,4 @@
-import { familyOf } from './catalog'
+import { familyOf } from '@/shared/catalog'
 import { hubPages, servicePages } from './content'
 import type { HubPageContent, ServicePageContent } from './content/types'
 import { isHubSlug } from './validators'
@@ -36,6 +36,3 @@ export const relatedServicesOf = (service: ServicePageContent): ServicePageConte
         candidate.slug !== service.slug && familyOf(service.univers).includes(candidate.univers),
     )
     .sort((a, b) => Number(b.univers === service.univers) - Number(a.univers === service.univers))
-
-export const beforeAfterOf = (univers: HubPageContent['univers']) =>
-  servicesOf(univers).find((service) => service.beforeAfter)?.beforeAfter

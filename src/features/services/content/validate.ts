@@ -1,10 +1,9 @@
-import { noCityInTitle, noCityNumber, type Rule } from '@/shared/content/city-rules.mjs'
+import { noCityInTitle, noCityNumber } from '@/shared/content/city-rules.mjs'
+import { checkSeoLengths, makeCheck, registerUnique, type Seen } from '@/shared/content/seo-rules'
 
 import { servicePageSlugRule } from '../validators'
 import type { HubPageContent, ServicePageContent } from './types'
 
-const RENDERED_TITLE_MAX = 70
-const DESCRIPTION_MAX = 160
 const TAGLINE_MAX = 160
 
 type Content = {
@@ -14,21 +13,7 @@ type Content = {
   home: { title: string; description: string }
   internalHrefs: string[]
   silos: readonly { slug: string; univers: string }[]
-}
-
-type Seen = Map<string, string>
-
-function registerUnique(
-  violations: string[],
-  label: string,
-  value: string,
-  seen: Seen,
-  field: string,
-) {
-  const key = value.trim().toLowerCase()
-  const previous = seen.get(key)
-  if (previous) violations.push(`${label} : ${field} déjà utilisé(e) par ${previous}`)
-  else seen.set(key, label)
+  otherSeo: readonly { label: string; seo: { title: string; description: string } }[]
 }
 
 export function contentViolations({
@@ -38,6 +23,7 @@ export function contentViolations({
   home,
   internalHrefs,
   silos,
+  otherSeo,
 }: Content): string[] {
   const violations: string[] = []
   const seenTitles = new Map<string, string>([[home.title.trim().toLowerCase(), 'accueil']])
@@ -45,14 +31,7 @@ export function contentViolations({
     [home.description.trim().toLowerCase(), 'accueil'],
   ])
 
-  const check = (label: string, value: string, rule: Rule) => {
-    if (!value.trim()) {
-      violations.push(`${label} : valeur vide`)
-      return
-    }
-    const result = rule(value)
-    if (result !== true) violations.push(`${label} : ${result}`)
-  }
+  const check = makeCheck(violations)
   const unique = (label: string, value: string, seen: Seen, field: string) =>
     registerUnique(violations, label, value, seen, field)
 
@@ -70,12 +49,7 @@ export function contentViolations({
       check(`${label} FAQ ${index + 1} question`, item.question, noCityNumber)
       check(`${label} FAQ ${index + 1} réponse`, item.answer, noCityNumber)
     }
-    if (titleTemplate.replace('%s', page.seo.title).length > RENDERED_TITLE_MAX) {
-      violations.push(`${label} : titre affiché > ${RENDERED_TITLE_MAX} caractères`)
-    }
-    if (page.seo.description.length > DESCRIPTION_MAX) {
-      violations.push(`${label} : méta-description > ${DESCRIPTION_MAX}`)
-    }
+    checkSeoLengths(violations, label, page.seo, titleTemplate)
     if (page.tagline.length > TAGLINE_MAX) violations.push(`${label} : accroche > ${TAGLINE_MAX}`)
     unique(label, page.seo.title, seenTitles, 'titre SEO')
     unique(label, page.seo.description, seenDescriptions, 'méta-description')
@@ -101,10 +75,6 @@ export function contentViolations({
     }
     checkPage(label, page)
     if (page.image) check(`${label} texte alternatif`, page.image.alt, noCityInTitle)
-    if (page.beforeAfter) {
-      check(`${label} texte alternatif avant`, page.beforeAfter.before.alt, noCityInTitle)
-      check(`${label} texte alternatif après`, page.beforeAfter.after.alt, noCityInTitle)
-    }
     check(`${label} résumé`, page.summary, noCityNumber)
     for (const [index, item] of (page.highlights ?? []).entries()) {
       check(`${label} point clé ${index + 1} titre`, item.title, noCityNumber)
@@ -132,6 +102,11 @@ export function contentViolations({
     }
   }
 
+  for (const { label, seo } of otherSeo) {
+    unique(label, seo.title, seenTitles, 'titre SEO')
+    unique(label, seo.description, seenDescriptions, 'méta-description')
+  }
+
   const knownPaths = new Set(['/', ...hubUnivers].map((p) => (p === '/' ? p : `/${p}`)))
   for (const slug of slugs) knownPaths.add(`/${slug}`)
   for (const href of internalHrefs) {
@@ -146,7 +121,12 @@ export function contentViolations({
 export function seoClashes(
   label: string,
   seo: { title: string; description: string },
-  { hubPages, servicePages, home }: Pick<Content, 'hubPages' | 'servicePages' | 'home'>,
+  {
+    hubPages,
+    servicePages,
+    home,
+    otherSeo,
+  }: Pick<Content, 'hubPages' | 'servicePages' | 'home' | 'otherSeo'>,
 ): string[] {
   const violations: string[] = []
   const titles: Seen = new Map([[home.title.trim().toLowerCase(), 'accueil']])
@@ -158,6 +138,10 @@ export function seoClashes(
   for (const page of servicePages) {
     titles.set(page.seo.title.trim().toLowerCase(), `service ${page.slug}`)
     descriptions.set(page.seo.description.trim().toLowerCase(), `service ${page.slug}`)
+  }
+  for (const other of otherSeo) {
+    titles.set(other.seo.title.trim().toLowerCase(), other.label)
+    descriptions.set(other.seo.description.trim().toLowerCase(), other.label)
   }
   registerUnique(violations, label, seo.title, titles, 'titre SEO')
   registerUnique(violations, label, seo.description, descriptions, 'méta-description')

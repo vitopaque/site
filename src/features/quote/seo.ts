@@ -1,4 +1,4 @@
-import { quoteHref } from '@/features/services'
+import { quoteHref } from '@/shared/catalog'
 import { siteConfig } from '@/features/site-settings'
 import type { Crumb } from '@/shared/seo/jsonld'
 import { buildMetadata } from '@/shared/seo/metadata'

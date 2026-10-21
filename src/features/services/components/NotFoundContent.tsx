@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { hubHref } from '../catalog'
+import { hubHref } from '@/shared/catalog'
 import { UNIVERS_OPTIONS } from '@/shared/payload/univers'
 import { Section } from '@/shared/ui/Section'
 

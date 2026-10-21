@@ -2,7 +2,7 @@ import { FilmMeters } from '@/shared/ui/FilmMeters'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading, type SectionTitle } from '@/shared/ui/SectionHeading'
 
-import type { FilmProfile } from '../catalog'
+import type { FilmProfile } from '@/shared/catalog'
 
 type Props = { name: string; film: FilmProfile; heading: SectionTitle }
 

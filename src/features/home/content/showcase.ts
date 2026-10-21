@@ -1,11 +1,5 @@
 import type { Guide } from '@/features/articles'
-import type { CaseStudy } from '@/features/case-studies'
 import type { Review } from '@/features/reviews'
-import type { Realisation } from '@/shared/ui/RealisationsSection'
-
-export const homeRealisations: Realisation[] = []
-
-export const homeCaseStudies: CaseStudy[] = []
 
 export const homeReviews: Review[] = []
 

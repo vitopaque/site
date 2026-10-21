@@ -1,23 +1,24 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { GuidesSection } from '@/features/articles'
+import { LISTING_PATH, pairOfSilo, realisationsOfSilo } from '@/features/realisations'
 import { ReviewsSection } from '@/features/reviews'
+import { hubHref, quoteHref, siloBySlug } from '@/shared/catalog'
 import { universLabel } from '@/shared/payload/univers'
+import { BeforeAfterSection } from '@/shared/ui/BeforeAfterSection'
 import { ButtonLink } from '@/shared/ui/ButtonLink'
 import { CtaBand } from '@/shared/ui/CtaBand'
 import { FaqSection } from '@/shared/ui/FaqSection'
+import { HeroFigure } from '@/shared/ui/HeroFigure'
 import { PageHero } from '@/shared/ui/PageHero'
 import { RealisationsSection } from '@/shared/ui/RealisationsSection'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-import { hubHref, quoteHref, siloBySlug } from '../catalog'
 import { sectionTitle } from '../content/section-titles'
-import { linkedGuides, linkedRealisations, linkedReviews } from '../content/showcase'
+import { linkedGuides, linkedReviews } from '../content/showcase'
 import { relatedServicesOf, type ServiceEntry } from '../queries'
 import { pageCrumbs } from '../seo'
-import { BeforeAfterSection } from './BeforeAfterSection'
 import { FilmDemo } from './FilmDemo'
 import { Highlights } from './Highlights'
 import { ServiceCards } from './ServiceCards'
@@ -28,6 +29,7 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
   const related = relatedServicesOf(page)
   const href = quoteHref(page.slug)
   const image = page.image
+  const beforeAfter = pairOfSilo(page.slug)
 
   return (
     <>
@@ -41,21 +43,7 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
             Devis gratuit
           </ButtonLink>
         }
-        aside={
-          image ? (
-            <figure className="blueprint">
-              <div className="duotone relative aspect-16/10 lg:aspect-4/5">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(min-width: 64rem) 36vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </figure>
-          ) : undefined
-        }
+        aside={image ? <HeroFigure image={image} /> : undefined}
       />
       <Section>
         <div className="max-w-prose">
@@ -67,16 +55,19 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
       ) : null}
       {silo?.film ? (
         <FilmDemo name={silo.label} film={silo.film} heading={sectionTitle(page, 'film')} />
-      ) : page.beforeAfter ? (
+      ) : beforeAfter ? (
         <BeforeAfterSection
           id="film-titre"
           heading={sectionTitle(page, 'lab')}
-          pair={page.beforeAfter}
+          pair={beforeAfter.pair}
+          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
+          link={{ href: beforeAfter.href, label: 'Voir la réalisation' }}
         />
       ) : null}
       <RealisationsSection
-        items={linkedRealisations}
+        items={realisationsOfSilo(page.slug)}
         heading={sectionTitle(page, 'realisations')}
+        href={LISTING_PATH}
         tone="surface"
       />
       <ReviewsSection items={linkedReviews} heading={sectionTitle(page, 'reviews')} />

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { ordinal } from '@/shared/ui/ordinal'
 
-import { siloBySlug } from '../catalog'
+import { siloBySlug } from '@/shared/catalog'
 import type { ServicePageContent } from '../content/types'
 
 export function ServiceCards({ services }: { services: readonly ServicePageContent[] }) {
