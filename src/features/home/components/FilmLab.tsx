@@ -38,7 +38,7 @@ export function FilmLab({ films }: { films: readonly Film[] }) {
                 src={provisionalPhoto}
                 alt={PROVISIONAL_ALT}
                 fill
-                quality={70}
+                quality={75}
                 sizes="(min-width: 64rem) 66vw, 100vw"
                 className="object-cover"
               />
