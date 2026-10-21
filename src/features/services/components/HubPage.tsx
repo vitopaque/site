@@ -12,8 +12,9 @@ import { SectionHeading } from '@/shared/ui/SectionHeading'
 import { labFilmsOf, quoteUniversHref } from '../catalog'
 import { sectionTitle } from '../content/section-titles'
 import { linkedRealisations } from '../content/showcase'
-import { type HubEntry, servicesOf } from '../queries'
+import { beforeAfterOf, type HubEntry, servicesOf } from '../queries'
 import { pageCrumbs } from '../seo'
+import { BeforeAfterSection } from './BeforeAfterSection'
 import { OtherUnivers } from './OtherUnivers'
 import { ServiceCards } from './ServiceCards'
 
@@ -21,6 +22,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
   const { page } = entry
   const services = servicesOf(page.univers)
   const films = labFilmsOf(page.univers)
+  const beforeAfter = beforeAfterOf(page.univers)
   const href = quoteUniversHref(page.univers)
 
   return (
@@ -72,6 +74,13 @@ export function HubPage({ entry }: { entry: HubEntry }) {
             <FilmLab films={films} image={{ src: provisionalPhoto, alt: '' }} />
           </div>
         </Section>
+      ) : beforeAfter ? (
+        <BeforeAfterSection
+          id="laboratoire-titre"
+          heading={sectionTitle(page, 'lab')}
+          pair={beforeAfter}
+          tone="surface"
+        />
       ) : null}
       <FaqSection items={page.faq ?? []} heading={sectionTitle(page, 'faq')} tone="light" />
       <OtherUnivers current={page.univers} tone="surface" />

@@ -18,9 +18,11 @@ export default defineConfig([
     '.vercel/**',
     '.remember/**',
     'migrations/**',
+    'playwright-report/**',
+    'test-results/**',
   ]),
   {
-    files: ['src/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}', 'mdx-components.tsx'],
     plugins: { boundaries },
     settings: {
       'boundaries/elements': [

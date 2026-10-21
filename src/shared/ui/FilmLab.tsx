@@ -2,24 +2,20 @@
 
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
-import { useState, type CSSProperties } from 'react'
+import { useState } from 'react'
 
 import type { LabFilm } from './film'
 import { FilmMeters } from './FilmMeters'
 import { ordinal } from './ordinal'
-
-const SPLIT_MIN = 2
-const SPLIT_MAX = 98
+import { SplitSlider } from './SplitSlider'
 
 type Props = { films: readonly LabFilm[]; image: { src: StaticImageData; alt: string } }
 
 export function FilmLab({ films, image }: Props) {
-  const [split, setSplit] = useState(50)
   const [selected, setSelected] = useState(0)
   const [flash, setFlash] = useState(0)
   const film = films[selected] ?? films[0]
   if (!film) return null
-  const frameVars = { '--split': `${split}%` } as CSSProperties
 
   const select = (index: number) => {
     setSelected(index)
@@ -29,72 +25,41 @@ export function FilmLab({ films, image }: Props) {
   return (
     <div className="flex flex-col gap-10">
       <div className="grid gap-10 lg:grid-cols-3">
-        <div
-          style={frameVars}
-          className="blueprint has-focus-visible:outline-accent aspect-16/10 min-h-115 w-full min-w-0 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 lg:col-span-2"
+        <SplitSlider
+          label="Comparer le verre sans film et le verre avec film"
+          valueText={(split) => `Film visible sur ${100 - split} % de la vitre`}
+          className="aspect-16/10 min-h-115 lg:col-span-2"
         >
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="duotone absolute inset-0">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                quality={75}
-                sizes="(min-width: 64rem) 66vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div
-              aria-hidden="true"
-              className={`film-clip pointer-events-none absolute inset-0 transition-[background,backdrop-filter] duration-(--duration-film) ${film.veil}`}
+          <div className="duotone absolute inset-0">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              quality={75}
+              sizes="(min-width: 64rem) 66vw, 100vw"
+              className="object-cover"
             />
-            {flash > 0 ? (
-              <div
-                key={flash}
-                aria-hidden="true"
-                className="film-clip pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen motion-reduce:hidden"
-              >
-                <div className="sweep-band animate-flash absolute -inset-x-3/10 -inset-y-1/5" />
-              </div>
-            ) : null}
-            <span className="label-sm bg-accent-900 text-background pointer-events-none absolute top-4 left-4 px-2.5 py-1.5">
-              Sans film
-            </span>
-            <span className="label-sm bg-background text-accent-900 pointer-events-none absolute top-4 right-4 px-2.5 py-1.5">
-              {film.name}
-            </span>
           </div>
-          <input
-            type="range"
-            min={SPLIT_MIN}
-            max={SPLIT_MAX}
-            step={1}
-            value={split}
-            onChange={(event) => setSplit(Number(event.target.value))}
-            aria-label="Comparer le verre sans film et le verre avec film"
-            aria-valuetext={`Film visible sur ${100 - split} % de la vitre`}
-            className="range-bare absolute inset-0 z-20 size-full cursor-ew-resize touch-pan-y opacity-0"
-          />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-(--split) z-10 -ml-5.5 flex w-11 items-center justify-center"
-          >
-            <span className="bg-background shadow-handle absolute inset-y-0 left-1/2 w-px" />
-            <span className="blueprint bg-accent border-accent text-background relative flex size-11 items-center justify-center">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path d="m9 18-6-6 6-6" />
-                <path d="m15 6 6 6-6 6" />
-              </svg>
-            </span>
-          </div>
-        </div>
+            className={`film-clip pointer-events-none absolute inset-0 transition-[background,backdrop-filter] duration-(--duration-film) ${film.veil}`}
+          />
+          {flash > 0 ? (
+            <div
+              key={flash}
+              aria-hidden="true"
+              className="film-clip pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen motion-reduce:hidden"
+            >
+              <div className="sweep-band animate-flash absolute -inset-x-3/10 -inset-y-1/5" />
+            </div>
+          ) : null}
+          <span className="label-sm bg-accent-900 text-background pointer-events-none absolute top-4 left-4 px-2.5 py-1.5">
+            Sans film
+          </span>
+          <span className="label-sm bg-background text-accent-900 pointer-events-none absolute top-4 right-4 px-2.5 py-1.5">
+            {film.name}
+          </span>
+        </SplitSlider>
 
         <div aria-live="polite" className="blueprint flex flex-col gap-5 p-8">
           <div className="border-divider flex items-baseline justify-between border-b pb-3.5">

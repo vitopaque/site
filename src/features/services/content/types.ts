@@ -2,6 +2,7 @@ import type { StaticImageData } from 'next/image'
 import type { ComponentType } from 'react'
 
 import type { Univers } from '@/shared/payload/univers'
+import type { BeforeAfterPair } from '@/shared/ui/BeforeAfter'
 import type { FaqItem } from '@/shared/ui/FaqList'
 import type { SectionTitle } from '@/shared/ui/SectionHeading'
 
@@ -40,6 +41,7 @@ export type ServicePageContent = PageBase & {
   slug: string
   summary: string
   image?: { src: StaticImageData; alt: string }
+  beforeAfter?: BeforeAfterPair
   highlights?: Highlight[]
   faq: FaqItem[]
   Body: ComponentType
