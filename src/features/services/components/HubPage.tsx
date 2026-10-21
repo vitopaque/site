@@ -16,6 +16,7 @@ import { sectionTitle } from '../content/section-titles'
 import { type HubEntry, servicesOf } from '../queries'
 import { pageCrumbs } from '../seo'
 import { OtherUnivers } from './OtherUnivers'
+import { HeroVisual } from './HeroVisual'
 import { ServiceCards } from './ServiceCards'
 
 export function HubPage({ entry }: { entry: HubEntry }) {
@@ -37,6 +38,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
             Devis gratuit
           </ButtonLink>
         }
+        aside={<HeroVisual page={page} />}
       />
       {services.length > 0 ? (
         <Section labelledBy="prestations-titre">
