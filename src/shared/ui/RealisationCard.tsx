@@ -21,7 +21,7 @@ export function RealisationCard({ item, layout = 'card' }: Props) {
   const { ratio, sizes } = LAYOUTS[layout]
   return (
     <figure className="blueprint relative flex flex-col">
-      <div className={`duotone relative ${ratio}`}>
+      <div className={`relative ${ratio}`}>
         <Image
           src={item.image.src}
           alt={item.image.alt}
