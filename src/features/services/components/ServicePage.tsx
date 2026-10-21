@@ -9,7 +9,6 @@ import { BeforeAfterSection } from '@/shared/ui/BeforeAfterSection'
 import { ButtonLink } from '@/shared/ui/ButtonLink'
 import { CtaBand } from '@/shared/ui/CtaBand'
 import { FaqSection } from '@/shared/ui/FaqSection'
-import { HeroFigure } from '@/shared/ui/HeroFigure'
 import { PageHero } from '@/shared/ui/PageHero'
 import { RealisationsSection } from '@/shared/ui/RealisationsSection'
 import { Section } from '@/shared/ui/Section'
@@ -20,7 +19,8 @@ import { linkedGuides, linkedReviews } from '../content/showcase'
 import { relatedServicesOf, type ServiceEntry } from '../queries'
 import { pageCrumbs } from '../seo'
 import { FilmDemo } from './FilmDemo'
-import { Highlights } from './Highlights'
+import { HeroVisual } from './HeroVisual'
+import { ServiceAside } from './ServiceAside'
 import { ServiceCards } from './ServiceCards'
 
 export function ServicePage({ entry }: { entry: ServiceEntry }) {
@@ -28,7 +28,6 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
   const silo = siloBySlug(page.slug)
   const related = relatedServicesOf(page)
   const href = quoteHref(page.slug)
-  const image = page.image
   const beforeAfter = pairOfSilo(page.slug)
 
   return (
@@ -43,16 +42,23 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
             Devis gratuit
           </ButtonLink>
         }
-        aside={image ? <HeroFigure image={image} /> : undefined}
+        aside={<HeroVisual page={page} />}
       />
       <Section>
-        <div className="max-w-prose">
-          <page.Body />
+        <div className="desktop:grid desktop:grid-cols-12 desktop:gap-x-12">
+          <div className="desktop:col-span-7 max-w-prose">
+            <page.Body />
+          </div>
+          <div className="desktop:col-span-4 desktop:col-start-9 desktop:mt-0 mt-12">
+            <ServiceAside
+              headings={page.headings}
+              highlights={page.highlights}
+              highlightsHeading={sectionTitle(page, 'highlights')}
+              quoteHref={href}
+            />
+          </div>
         </div>
       </Section>
-      {page.highlights?.length ? (
-        <Highlights items={page.highlights} heading={sectionTitle(page, 'highlights')} />
-      ) : null}
       {silo?.film ? (
         <FilmDemo name={silo.label} film={silo.film} heading={sectionTitle(page, 'film')} />
       ) : beforeAfter ? (
