@@ -21,6 +21,11 @@ export function assertValidSiteConfig(config: SiteConfig): void {
     for (const link of column.links) check(`lien ${link.href}`, link.label, noCityNumber)
   }
 
+  const { building, liquidCrystal } = config.serviceArea
+  if (building.departments.length === 0) violations.push('zone : aucun département bâtiment')
+  if (building.region.minSurfaceM2 <= 0) violations.push('zone : surface minimale invalide')
+  if (!liquidCrystal.country) violations.push('zone : pays du film à cristaux liquides manquant')
+
   if (violations.length > 0)
     throw new Error(`Configuration du site invalide :\n- ${violations.join('\n- ')}`)
 }

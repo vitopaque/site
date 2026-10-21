@@ -22,6 +22,14 @@ export const siteConfig: SiteConfig = {
       },
     ],
   },
+  serviceArea: {
+    automotive: { location: 'Vendargues' },
+    building: {
+      departments: ['Hérault', 'Gard', 'Aude'],
+      region: { name: 'Occitanie', minSurfaceM2: 30 },
+    },
+    liquidCrystal: { country: 'France' },
+  },
   social: [
     { network: 'facebook', url: 'https://www.facebook.com/vit.opaque' },
     { network: 'instagram', url: 'https://www.instagram.com/vit.opaque/' },
