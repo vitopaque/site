@@ -63,7 +63,7 @@ Les routes fixes (`/realisations`, `/conseils-expertises`, `/a-propos`, `/contac
 
 | Collection Payload | Champs clés | Brouillons |
 | --- | --- | --- |
-| Articles | Titre, slug, extrait, contenu, image, catégorie, auteur, page de service liée (obligatoire, pour le maillage interne), date de publication, SEO | Oui |
+| Articles | Titre, slug, extrait, contenu, image, auteur, page de service liée (obligatoire, pour le maillage interne ; la catégorie en est déduite : univers du service), date de publication, SEO | Oui |
 | Auteurs | Nom, photo, description | Non |
 | Médias | Fichier, texte alternatif (obligatoire, sans la ville), légende | Non |
 | Demandes de devis | Univers, type de besoin, surface ou modèle de véhicule, photos, coordonnées, consentement RGPD, date | Non, accès privé |
@@ -105,7 +105,7 @@ Le gabarit applique les règles du CDC v1.1 (§7) pour que le client ne puisse p
 | Un H1 par page | Le gabarit gère le H1 à partir du champ « H1 » ; les titres du contenu éditable commencent à H2 |
 | Ancrage local naturel | Une règle de validation refuse « Montpellier 34 » et « 34740 » dans les titres, les H1, les textes alternatifs et les noms de fichiers ; « Montpellier » reste autorisé dans l'introduction et la méta-description |
 | Plan du site | `app/sitemap.ts` génère le `sitemap.xml` à partir des seuls documents publiés ; `app/robots.ts` le déclare ; envoi dans la Search Console au lancement |
-| Données structurées | `LocalBusiness` (global Coordonnées), `Service` (pages de service), `FAQPage` (questions fréquentes), `Article` (blog), `BreadcrumbList` (toutes les pages) |
+| Données structurées | `LocalBusiness` (global Coordonnées), `Service` (pages de service), `FAQPage` (questions fréquentes), `BlogPosting` (blog), `BreadcrumbList` (toutes les pages) |
 | Redirections 301 | Liste versionnée dans `next.config.ts`, générée à partir du plan du CDC §7.4 (8 URLs, FAQ, blog et 11 articles). Une gestion depuis l'admin est possible plus tard, mais exigerait de recharger la liste sans redéploiement |
 | Images | `next/image` en AVIF et WebP, tailles déclarées, chargement différé sauf l'image principale de la page ; texte alternatif obligatoire et descriptif |
 | Domaine | Une seule version (avec ou sans `www`), l'autre redirigée en 301 ; HTTPS partout ; pas de slash final |
