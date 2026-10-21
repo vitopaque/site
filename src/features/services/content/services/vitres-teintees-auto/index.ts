@@ -40,8 +40,12 @@ export const vitresTeinteesAuto: ServicePageContent = {
     },
     {
       question: 'Les vitres teintées sont-elles autorisées ?',
+      // Source : service-public.gouv.fr, fiche F19459 « Équipements obligatoires en voiture » (vérifiée le 11 juin 2026),
+      // https://www.service-public.gouv.fr/particuliers/vosdroits/F19459, consultée le 21 octobre 2026 :
+      // transmission régulière de la lumière d'au moins 70 % pour le pare-brise et les vitres latérales avant,
+      // sauf exceptions liées à des raisons médicales. Légifrance inaccessible (403) : article du Code de la route à confirmer.
       answer:
-        'Oui, dans le cadre de la loi. Le pare-brise et les vitres latérales avant doivent laisser passer au moins 70 % de la lumière ; les vitres arrière ne sont pas concernées par ce seuil. Nous vous invitons par ailleurs à vérifier les textes en vigueur.',
+        'Oui, dans le cadre de la loi. Le pare-brise et les vitres latérales avant doivent laisser passer au moins 70 % de la lumière, sauf exceptions liées à des raisons médicales. Nous vous invitons par ailleurs à vérifier les textes en vigueur.',
     },
     {
       question: 'Peut-on teinter la lunette arrière ?',
