@@ -9,17 +9,18 @@ const HOVER = { light: 'hover:bg-surface', surface: 'hover:bg-background' } as c
 type Props = {
   items: readonly RealisationItem[]
   heading: SectionTitle
+  href: string
   tone?: keyof typeof HOVER
 }
 
-export function RealisationsSection({ items, heading, tone = 'light' }: Props) {
+export function RealisationsSection({ items, heading, href, tone = 'light' }: Props) {
   if (items.length === 0) return null
   return (
     <Section labelledBy="realisations-titre" tone={tone}>
       <div className="reveal flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="realisations-titre" {...heading} />
         <Link
-          href="/realisations"
+          href={href}
           className={`label-btn-lg border-accent-700 border px-5 py-3 ${HOVER[tone]}`}
         >
           Voir les réalisations

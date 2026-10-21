@@ -38,7 +38,7 @@ export function realisationJsonLd(item: Realisation): Record<string, unknown>[] 
       videoObject({
         name: item.title,
         description: item.seo.description,
-        thumbnailUrl: absoluteUrl(item.video.poster.src),
+        thumbnailUrl: absoluteUrl(item.video.thumbnail),
         uploadDate: item.video.uploadDate,
         duration: item.video.duration,
         contentUrl: item.video.url,

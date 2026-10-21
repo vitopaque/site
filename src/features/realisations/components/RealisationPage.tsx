@@ -14,6 +14,7 @@ import { SectionHeading } from '@/shared/ui/SectionHeading'
 import { realisationTitles } from '../content/sections'
 import { formatRealisationDate } from '../format'
 import { relatedRealisations } from '../queries'
+import { LISTING_PATH } from '../seo'
 import { realisationCrumbs, realisationJsonLd } from '../seo'
 import type { Realisation } from '../types'
 import { RealisationVideo } from './RealisationVideo'
@@ -72,6 +73,7 @@ export function RealisationPage({ item }: { item: Realisation }) {
           id="avant-apres-titre"
           heading={realisationTitles.beforeAfter}
           pair={item.beforeAfter}
+          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
           tone="surface"
         />
       ) : null}
@@ -110,6 +112,7 @@ export function RealisationPage({ item }: { item: Realisation }) {
       <RealisationsSection
         items={relatedRealisations(item)}
         heading={realisationTitles.related}
+        href={LISTING_PATH}
         tone="surface"
       />
       <CtaBand

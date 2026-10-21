@@ -5,6 +5,7 @@ import type { BeforeAfterPair } from '@/shared/ui/BeforeAfter'
 export type RealisationVideo = {
   url: string
   poster: StaticImageData
+  thumbnail: string
   duration: string
   uploadDate: string
 }

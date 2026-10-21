@@ -10,19 +10,18 @@ type Props = {
   id: string
   heading: SectionTitle
   pair: BeforeAfterPair
+  text: string
   tone?: keyof typeof HOVER
   link?: { href: string; label: string }
 }
 
-export function BeforeAfterSection({ id, heading, pair, tone = 'light', link }: Props) {
+export function BeforeAfterSection({ id, heading, pair, text, tone = 'light', link }: Props) {
   return (
     <Section labelledBy={id} tone={tone}>
       <div className="reveal grid items-center gap-12 lg:grid-cols-3">
         <div className="flex flex-col gap-6">
           <SectionHeading id={id} {...heading} />
-          <p className="text-body-lg max-w-prose text-pretty text-neutral-700">
-            Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées.
-          </p>
+          <p className="text-body-lg max-w-prose text-pretty text-neutral-700">{text}</p>
           {link ? (
             <Link
               href={link.href}

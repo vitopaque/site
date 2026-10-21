@@ -12,6 +12,7 @@ export {
   realisationsOfUnivers,
 } from './queries'
 export {
+  LISTING_PATH,
   listingMetadata,
   realisationMetadata,
   realisationPaths,

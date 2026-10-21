@@ -1,5 +1,10 @@
 import { GuidesSection } from '@/features/articles'
-import { CaseStudiesSection, caseStudies, homeRealisations } from '@/features/realisations'
+import {
+  CaseStudiesSection,
+  LISTING_PATH,
+  caseStudies,
+  homeRealisations,
+} from '@/features/realisations'
 import { ContactSection, QuoteForm } from '@/features/quote'
 import { ReviewsSection } from '@/features/reviews'
 import { FaqSection } from '@/shared/ui/FaqSection'
@@ -25,7 +30,11 @@ export function HomePage() {
       <MethodSection />
       <UniversSection />
       <GuaranteesBand />
-      <RealisationsSection items={homeRealisations()} heading={homeTitles.realisations} />
+      <RealisationsSection
+        items={homeRealisations()}
+        heading={homeTitles.realisations}
+        href={LISTING_PATH}
+      />
       <CaseStudiesSection items={caseStudies()} heading={homeTitles.caseStudies} />
       <ReviewsSection items={homeReviews} heading={homeTitles.reviews} />
       <GuidesSection items={homeGuides} heading={homeTitles.guides} />

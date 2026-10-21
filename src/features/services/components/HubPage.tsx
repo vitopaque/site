@@ -1,4 +1,4 @@
-import { pairOfUnivers, realisationsOfUnivers } from '@/features/realisations'
+import { LISTING_PATH, pairOfUnivers, realisationsOfUnivers } from '@/features/realisations'
 import { provisionalPhoto } from '@/shared/assets/photos/provisional'
 import { labFilmsOf, quoteUniversHref } from '@/shared/catalog'
 import { universLabel } from '@/shared/payload/univers'
@@ -60,6 +60,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
       <RealisationsSection
         items={realisationsOfUnivers(page.univers)}
         heading={sectionTitle(page, 'realisations')}
+        href={LISTING_PATH}
         tone="light"
       />
       {films.length > 0 ? (
@@ -79,6 +80,7 @@ export function HubPage({ entry }: { entry: HubEntry }) {
           id="laboratoire-titre"
           heading={sectionTitle(page, 'lab')}
           pair={beforeAfter.pair}
+          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
           tone="surface"
         />
       ) : null}

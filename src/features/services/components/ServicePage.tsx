@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { GuidesSection } from '@/features/articles'
-import { pairOfSilo, realisationsOfSilo } from '@/features/realisations'
+import { LISTING_PATH, pairOfSilo, realisationsOfSilo } from '@/features/realisations'
 import { ReviewsSection } from '@/features/reviews'
 import { hubHref, quoteHref, siloBySlug } from '@/shared/catalog'
 import { universLabel } from '@/shared/payload/univers'
@@ -60,12 +60,14 @@ export function ServicePage({ entry }: { entry: ServiceEntry }) {
           id="film-titre"
           heading={sectionTitle(page, 'lab')}
           pair={beforeAfter.pair}
+          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
           link={{ href: beforeAfter.href, label: 'Voir la réalisation' }}
         />
       ) : null}
       <RealisationsSection
         items={realisationsOfSilo(page.slug)}
         heading={sectionTitle(page, 'realisations')}
+        href={LISTING_PATH}
         tone="surface"
       />
       <ReviewsSection items={linkedReviews} heading={sectionTitle(page, 'reviews')} />
