@@ -1,3 +1,6 @@
+export const methodIntro =
+  'De la visite à la pose, chaque vitre est étudiée avant d’être traitée : voici comment nous travaillons.'
+
 export const methodSteps = [
   {
     title: 'Diagnostic',

@@ -2,17 +2,15 @@ import { ordinal } from '@/shared/ui/ordinal'
 import { Section } from '@/shared/ui/Section'
 import { SectionHeading } from '@/shared/ui/SectionHeading'
 
-import { methodSteps } from '../content/method'
+import { homeTitles } from '../content/sections'
+import { methodIntro, methodSteps } from '../content/method'
 
 export function MethodSection() {
   return (
     <Section id="methode" labelledBy="methode-titre">
       <div className="reveal">
-        <SectionHeading
-          id="methode-titre"
-          kicker="La méthode"
-          lines={['Quatre gestes,', 'une vitre transformée.']}
-        />
+        <SectionHeading id="methode-titre" {...homeTitles.method} />
+        <p className="text-body-lg mt-6 max-w-prose text-pretty text-neutral-700">{methodIntro}</p>
       </div>
       <ol className="reveal card-grid-narrow mt-12">
         {methodSteps.map((step, index) => (
