@@ -50,7 +50,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - **Montpellier** : une mention naturelle dans l'introduction, un H2 si pertinent et la méta-description de chaque page de service. **Jamais** « Montpellier 34 » ni « 34740 » dans les contenus (le code postal reste autorisé dans l'adresse postale : pied de page, données structurées `LocalBusiness`) ; jamais la ville dans les H1, titres de page, textes alternatifs ou noms de fichiers. Pas de pages « service + ville ».
 - Une requête principale par URL. Chaque article renvoie à sa page de service.
 - Texte alternatif obligatoire, descriptif et sobre. Noms de fichiers sobres.
-- Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `Article`, `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
+- Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `BlogPosting` (sous-type d'`Article`), `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
 - Redirections 301 versionnées dans `next.config.ts` d'après le plan du CDC §7.4. Blog repris de zéro : les 11 anciens articles et la FAQ ne sont que redirigés.
 - Coordonnées et horaires : **source unique** (module de configuration `site-settings`), pour supprimer les horaires contradictoires de l'ancien site.
 - Zone d'intervention : également issue de `site-settings` (source unique). Automobile : dans les locaux de Vendargues. Bâtiment : Hérault, Gard et Aude, et Occitanie à partir de 30 m². Film à cristaux liquides : toute la France.
@@ -92,4 +92,4 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 
 ## 6. Points ouverts (à ne pas trancher seul)
 
-URL de l'espace blog (`/conseils-expertises` proposée) · codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
+codes couleur à confirmer sur le logo vectoriel (SVG) · lecture des 11 anciens articles pour valider les redirections · points de départ manquants (devis, appels, itinéraires) · valeurs cibles des indicateurs.
