@@ -79,18 +79,27 @@ Les routes fixes (`/realisations`, `/conseils-expertises`, `/a-propos`, `/contac
 
 ## Rendu et publication
 
-Les pages du site (accueil, hubs, pages de service, réalisations, légales) sont statiques : le contenu est en code et la publication se fait par déploiement. Seuls les articles du blog sont prérendus en ISR et publiés depuis l'admin.
+Les pages du site sont prégénérées : le contenu est en code et sa publication se fait par déploiement. Celles qui affichent des articles (accueil, hubs, pages de service, index et articles du blog, `sitemap.xml`) sont en ISR : elles se régénèrent à la publication par revalidation à la demande, avec un filet d'une heure (`revalidate = 3600`). Les articles sont publiés depuis l'admin.
 
 1. Le client enregistre un brouillon ou publie un article dans `/admin`.
-2. Un hook Payload (`afterChange`) appelle `revalidatePath` ou `revalidateTag` pour les pages touchées.
-3. La page est régénérée à la requête suivante, puis remise en cache.
-4. Un appel de réchauffage vers l'URL publiée évite que le premier visiteur subisse la régénération.
+2. À la publication, au retrait de la publication ou à la suppression d'un article publié, le hook `afterChange` (ou `afterDelete`) appelle `revalidateTag` pour les tags touchés et `revalidatePath('/sitemap.xml')`. Un brouillon enregistré ne déclenche rien.
+3. Les pages portant ces tags sont régénérées à la requête suivante, puis remises en cache.
+
+Les lectures d'articles passent par `unstable_cache`, avec un filet de 3600 s. Une migration vers `use cache` est à prévoir.
+
+| Tag | Posé sur | Invalide |
+| --- | --- | --- |
+| `articles` | Index du blog, derniers articles (accueil), liste des slugs (sitemap) | Index du blog, accueil, `/sitemap.xml` |
+| `article:{slug}` | Lecture d'un article | Sa page |
+| `articles-service:{service}` | Guides d'une page de service | La page de service liée |
+| `articles-univers:{univers}` | Guides d'un hub | Le hub de l'univers du service lié |
 
 | Contenu publié | Pages invalidées |
 | --- | --- |
-| Article | Sa page, l'index du blog, `/sitemap.xml`, la page de service liée |
+| Article | Sa page, l'index du blog, l'accueil, `/sitemap.xml`, la page de service liée, le hub de son univers (l'ancien et le nouveau si le service ou le slug change) |
 | Contenu en code | Aucune : le déploiement reconstruit les pages |
 
+- **Repli au build :** si la base est injoignable ou son schéma absent pendant le build, les lectures d'articles renvoient un contenu vide (avec un avertissement) au lieu de faire échouer le build ; les pages concernées sont régénérées au prochain cycle de revalidation. Hors build, l'erreur est remontée.
 - **Aperçu :** pour le contenu en code, les déploiements d'aperçu par branche de Vercel. Pour les articles, le mode brouillon de Next.js avec un secret (le paramètre `draft` de l'API Payload renvoie les brouillons), à évaluer ensuite.
 - **Contrainte d'hébergement :** sur Vercel, la plateforme prend en charge l'ISR (la documentation Next.js indique un support propre à chaque plateforme) ; l'export statique est exclu.
 - **Publication planifiée :** Payload la propose, mais elle exige un traitement de tâches en arrière-plan d'après sa documentation. Hors périmètre de la première version.
@@ -104,6 +113,7 @@ Le gabarit applique les règles du CDC v1.1 (§7) pour que le client ne puisse p
 | Titres et méta-descriptions | `generateMetadata` lit les champs SEO de chaque document ; modèle de titre global ; balise canonique absolue sur chaque page |
 | Un H1 par page | Le gabarit gère le H1 à partir du champ « H1 » ; les titres du contenu éditable commencent à H2 |
 | Ancrage local naturel | Une règle de validation refuse « Montpellier 34 » et « 34740 » dans les titres, les H1, les textes alternatifs et les noms de fichiers ; « Montpellier » reste autorisé dans l'introduction et la méta-description |
+| Unicité des titres et méta-descriptions | Les pages en code sont contrôlées entre elles au build (`assertValidContent`). Les articles sont contrôlés entre eux par un validateur Payload (doublon refusé, brouillons compris). Limite : la comparaison d'un article avec les pages en code n'est pas faite, car la feature `articles` ne peut pas dépendre de `services` et la CLI Payload ne charge pas le MDX |
 | Plan du site | `app/sitemap.ts` génère le `sitemap.xml` à partir des seuls documents publiés ; `app/robots.ts` le déclare ; envoi dans la Search Console au lancement |
 | Données structurées | `LocalBusiness` (global Coordonnées), `Service` (pages de service), `FAQPage` (questions fréquentes), `BlogPosting` (blog), `BreadcrumbList` (toutes les pages) |
 | Redirections 301 | Liste versionnée dans `next.config.ts`, générée à partir du plan du CDC §7.4 (8 URLs, FAQ, blog et 11 articles). Une gestion depuis l'admin est possible plus tard, mais exigerait de recharger la liste sans redéploiement |
