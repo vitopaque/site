@@ -1,6 +1,5 @@
 import type { SectionTitle } from '@/shared/ui/SectionHeading'
 
-// BROUILLON À VALIDER PAR HERY
 export const realisationTitles = {
   study: {
     kicker: 'Étude de cas : du besoin au résultat',

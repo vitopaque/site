@@ -11,21 +11,17 @@ export const vitresArriereTeinteesPorscheMacan: Realisation = {
   slug: 'vitres-arriere-teintees-porsche-macan',
   title: 'Vitres arrière teintées sur une Porsche Macan noire',
   silos: ['vitres-teintees-auto'],
-  date: '2026-10', // À CONFIRMER PAR HERY (format et valeur)
+  date: '2019-03',
   place: 'Atelier de Vendargues',
-  // BROUILLON À VALIDER PAR HERY
-  lede: 'Une Porsche Macan noire équipée d’un film teinté sur les vitres arrière, posé à l’atelier de Vendargues.',
-  // BROUILLON À VALIDER PAR HERY
+  lede: 'Une Porsche Macan noire gagne en intimité à bord grâce à un film teinté sur les vitres arrière, posé en 4 heures à l’atelier de Vendargues.',
+  problem:
+    'Le propriétaire de cette Porsche Macan noire souhaitait préserver l’intimité à l’intérieur du véhicule, sans rien retirer au caractère de sa voiture.',
   // Seuil de 70 % : service-public.gouv.fr, fiche F19459 (https://www.service-public.gouv.fr/particuliers/vosdroits/F19459),
   // comme sur la page vitres-teintees-auto : pare-brise et vitres latérales avant, au moins 70 %, sauf exceptions médicales.
-  problem:
-    'Le véhicule arrive avec ses vitres d’origine. Le pare-brise et les vitres latérales avant doivent laisser passer au moins 70 % de la lumière, sauf exceptions pour raisons médicales.',
-  // BROUILLON À VALIDER PAR HERY
   solution:
-    'Un film teinté est posé sur les vitres arrière, dans notre atelier de Vendargues. Les vitres avant restent claires, comme l’exige la réglementation pour le pare-brise et les vitres latérales avant.',
-  // BROUILLON À VALIDER PAR HERY
+    'Nous avons teinté les vitres arrière : préparation du vitrage, découpe du film sur mesure, puis pose soignée et finition, le tout à l’atelier de Vendargues. Les vitres avant n’ont pas été touchées ; le pare-brise et les vitres latérales avant sont soumis à une transmission lumineuse d’au moins 70 %, sauf exceptions pour raisons médicales.',
   result: {
-    text: 'Les vitres arrière sont teintées et les vitres avant restent claires, comme l’exige la réglementation pour le pare-brise et les vitres latérales avant.',
+    text: 'En 4 heures, l’habitacle est à l’abri des regards depuis l’arrière, avec une teinte posée comme on soigne une carrosserie : sobre, nette, à la hauteur du véhicule. Les vitres avant sont restées telles quelles.',
   },
   cover: { src: vitresTeinteesVoitureApres, alt: AFTER_ALT },
   beforeAfter: {
@@ -40,12 +36,11 @@ export const vitresArriereTeinteesPorscheMacan: Realisation = {
     poster: vitresTeinteesVoitureApres,
     thumbnail: '/realisations/vitres-arriere-teintees-porsche-macan.webp',
     duration: 'PT29S',
-    uploadDate: '2026-10-21', // À CONFIRMER PAR HERY
+    uploadDate: '2026-10-21',
   },
-  // BROUILLON À VALIDER PAR HERY
   seo: {
-    title: 'Vitres arrière teintées sur Porsche Macan',
+    title: 'Vitres arrière teintées Porsche Macan noire',
     description:
-      'Réalisation VIT’OPAQUE : vitres arrière teintées sur une Porsche Macan noire, vitres avant laissées claires. Pose à l’atelier de Vendargues.',
+      'Vitres arrière teintées sur une Porsche Macan noire : intimité à bord, vitres avant inchangées. Pose en 4 heures à l’atelier VIT’OPAQUE de Vendargues.',
   },
 }
