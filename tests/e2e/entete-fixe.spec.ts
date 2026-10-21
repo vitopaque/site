@@ -109,7 +109,8 @@ test.describe('en-tête fixe', () => {
       return ids
     }
 
-    test('un clic sur le sommaire place le H2 sous l’en-tête', async ({ page }) => {
+    test('un clic sur le sommaire place le H2 sous l’en-tête', async ({ page }, testInfo) => {
+      test.skip(!isDesktop(testInfo.project.use.viewport?.width), 'sommaire masqué sous le desktop')
       await page.goto(PAGE)
       const id = (await h2Ids(page))[2] ?? ''
       await page
