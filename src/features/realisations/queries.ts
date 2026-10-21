@@ -6,7 +6,7 @@ import type { RealisationItem } from '@/shared/ui/RealisationCard'
 import { realisations } from './content'
 import type { CaseStudy, Realisation } from './types'
 
-export const SHOWCASE = { homeMin: 3, relatedMin: 2, shown: 3 } as const
+export const SHOWCASE = { homeMin: 3, relatedMin: 2, metricMin: 1, shown: 3 } as const
 
 export const realisationHref = (slug: string): string => `/realisations/${slug}`
 
@@ -90,5 +90,5 @@ export const caseStudies = (): CaseStudy[] => {
         ]
       : [],
   )
-  return withMetric.length >= SHOWCASE.homeMin ? withMetric : []
+  return withMetric.length >= SHOWCASE.metricMin ? withMetric : []
 }

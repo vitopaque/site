@@ -44,7 +44,7 @@ export function RealisationPage({ item }: { item: Realisation }) {
             Devis gratuit
           </ButtonLink>
         }
-        aside={<HeroFigure image={item.cover} />}
+        aside={<HeroFigure image={item.cover} landscape />}
       />
       <Section labelledBy="etude-titre">
         <div className="reveal">
