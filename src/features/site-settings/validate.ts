@@ -23,6 +23,10 @@ export function assertValidSiteConfig(config: SiteConfig): void {
 
   const { building, liquidCrystal } = config.serviceArea
   if (building.departments.length === 0) violations.push('zone : aucun département bâtiment')
+  if (building.departments.some((d) => !d.name || !d.label))
+    violations.push('zone : nom ou libellé de département manquant')
+  if (!building.region.name || !building.region.label)
+    violations.push('zone : nom ou libellé de région manquant')
   if (building.region.minSurfaceM2 <= 0) violations.push('zone : surface minimale invalide')
   if (!liquidCrystal.country) violations.push('zone : pays du film à cristaux liquides manquant')
 

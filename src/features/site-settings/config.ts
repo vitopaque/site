@@ -25,8 +25,12 @@ export const siteConfig: SiteConfig = {
   serviceArea: {
     automotive: { location: 'Vendargues' },
     building: {
-      departments: ['Hérault', 'Gard', 'Aude'],
-      region: { name: 'Occitanie', minSurfaceM2: 30 },
+      departments: [
+        { name: 'Hérault', label: 'l’Hérault' },
+        { name: 'Gard', label: 'le Gard' },
+        { name: 'Aude', label: 'l’Aude' },
+      ],
+      region: { name: 'Occitanie', label: 'l’Occitanie', minSurfaceM2: 30 },
     },
     liquidCrystal: { country: 'France' },
   },
