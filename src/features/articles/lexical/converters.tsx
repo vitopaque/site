@@ -34,8 +34,21 @@ const FALLBACK_SIZE = { width: 1600, height: 900 }
 
 const isInternalPath = (href: string): boolean => href.startsWith('/') && !href.startsWith('//')
 
+const SAFE_PROTOCOLS: ReadonlySet<string> = new Set(['http:', 'https:', 'mailto:', 'tel:'])
+
+export function safeHref(url: string | null | undefined): string | null {
+  const href = url?.trim()
+  if (!href) return null
+  if (href.startsWith('#') || isInternalPath(href)) return href
+  try {
+    return SAFE_PROTOCOLS.has(new URL(href).protocol) ? href : null
+  } catch {
+    return /^[^\s:]*([/?#]|$)/.test(href) && !href.startsWith('//') ? href : null
+  }
+}
+
 function hrefOf({ linkType, url, doc }: LinkFields): string | null {
-  if (linkType !== 'internal') return url || null
+  if (linkType !== 'internal') return safeHref(url)
   const target = doc?.value
   if (doc?.relationTo !== 'articles' || typeof target !== 'object' || target === null) return null
   const { slug } = target as { slug?: string | null }

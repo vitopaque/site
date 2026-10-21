@@ -1,33 +1,16 @@
-import type {
-  CollectionConfig,
-  TextFieldSingleValidation,
-  UploadFieldSingleValidation,
-} from 'payload'
-import { text, upload } from 'payload/shared'
+import type { CollectionConfig } from 'payload'
 
 import { isAdminOrEditor } from '@/features/access'
 import { serviceSilos } from '@/shared/catalog'
 import { noCityInTitle, noCityNumber } from '@/shared/content/city-rules.mjs'
 import { seoFields } from '@/shared/payload/seo-fields'
-import { richTextRule, textareaRule, textRule } from '@/shared/payload/validators'
+import { textareaRule, textRule } from '@/shared/payload/validators'
 import { TITLE_TEMPLATE } from '@/shared/seo/title-template'
+import { articleAccess } from './access'
 import { articleEditor } from './editor'
 import { captureLiveState, revalidateOnChange, revalidateOnDelete, stampPublishedAt } from './hooks'
-import { articleSlugRule, slugify } from './slug'
-
-const validateSlug: TextFieldSingleValidation = (value, options) => {
-  const base = text(value, options)
-  if (base !== true || typeof value !== 'string' || !value) return base
-  return articleSlugRule(value)
-}
-
-const validateImage: UploadFieldSingleValidation = (value, options) => {
-  const base = upload(value, options)
-  if (base !== true) return base
-  return (options.data as { _status?: string } | undefined)?._status === 'published' && !value
-    ? 'Une image est obligatoire pour publier.'
-    : true
-}
+import { slugify } from './slug'
+import { validateContent, validateImage, validateSlug } from './validators'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -35,13 +18,7 @@ export const Articles: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'service', 'publishedAt', '_status'],
   },
-  access: {
-    read: ({ req }) => (isAdminOrEditor({ req }) ? true : { _status: { equals: 'published' } }),
-    readVersions: isAdminOrEditor,
-    create: isAdminOrEditor,
-    update: isAdminOrEditor,
-    delete: isAdminOrEditor,
-  },
+  access: articleAccess,
   versions: { drafts: { validate: true } },
   hooks: {
     beforeChange: [stampPublishedAt, captureLiveState],
@@ -78,7 +55,7 @@ export const Articles: CollectionConfig = {
       name: 'content',
       type: 'richText',
       editor: articleEditor,
-      validate: richTextRule(noCityNumber),
+      validate: validateContent,
     },
     {
       name: 'image',
@@ -103,7 +80,7 @@ export const Articles: CollectionConfig = {
         description: 'À renseigner seulement pour une mise à jour réelle du contenu.',
       },
     },
-    seoFields({ titleTemplate: TITLE_TEMPLATE }),
+    seoFields({ titleTemplate: TITLE_TEMPLATE, collection: 'articles' }),
     {
       name: 'createdBy',
       type: 'relationship',
