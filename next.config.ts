@@ -9,6 +9,7 @@ import { NOINDEX_DIRECTIVE, noindexHeaderSources } from './src/shared/seo/indexi
 const blobHostname = blobImageHostname()
 
 const nextConfig: NextConfig = {
+  experimental: { globalNotFound: true },
   images: {
     remotePatterns: blobHostname ? [{ protocol: 'https', hostname: blobHostname }] : [],
   },
