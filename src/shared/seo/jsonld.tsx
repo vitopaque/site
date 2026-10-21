@@ -23,3 +23,13 @@ export const breadcrumbList = (crumbs: Crumb[]) => ({
     item: absoluteUrl(crumb.path),
   })),
 })
+
+export const faqPage = (items: readonly { question: string; answer: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+})

@@ -1,5 +1,3 @@
-import type { Placeholder } from '@/shared/ui/PlaceholderCard'
-
 export type CaseStudy = {
   id: string
   context: string
@@ -7,5 +5,3 @@ export type CaseStudy = {
   metric: { value: string; label: string }
   href: string
 }
-
-export type CaseStudyItem = CaseStudy | Placeholder

@@ -1,36 +1,30 @@
 import Link from 'next/link'
 
-import { PlaceholderCard } from '@/shared/ui/PlaceholderCard'
 import { Section } from '@/shared/ui/Section'
-import { SectionHeading } from '@/shared/ui/SectionHeading'
+import { SectionHeading, type SectionTitle } from '@/shared/ui/SectionHeading'
 
-import type { GuideItem } from '../types'
+import type { Guide } from '../types'
 
-export function GuidesSection({ items }: { items: readonly GuideItem[] }) {
+type Props = { items: readonly Guide[]; heading: SectionTitle }
+
+export function GuidesSection({ items, heading }: Props) {
+  if (items.length === 0) return null
   return (
     <Section labelledBy="guides-titre" tone="surface">
       <div className="reveal">
-        <SectionHeading
-          id="guides-titre"
-          kicker="Conseils & expertises"
-          lines={['Comprendre', 'avant de choisir.']}
-        />
+        <SectionHeading id="guides-titre" {...heading} />
       </div>
       <ul className="reveal card-grid mt-12">
         {items.map((item) => (
           <li key={item.id}>
-            {'placeholder' in item ? (
-              <PlaceholderCard hint={item.hint} />
-            ) : (
-              <article className="blueprint flex h-full flex-col gap-4 p-7">
-                <h3 className="text-headline-sm uppercase">
-                  <Link href={item.href} className="hover:text-accent-700">
-                    {item.title}
-                  </Link>
-                </h3>
-                <p className="text-neutral-700">{item.excerpt}</p>
-              </article>
-            )}
+            <article className="blueprint flex h-full flex-col gap-4 p-7">
+              <h3 className="text-headline-sm uppercase">
+                <Link href={item.href} className="hover:text-accent-700">
+                  {item.title}
+                </Link>
+              </h3>
+              <p className="text-neutral-700">{item.excerpt}</p>
+            </article>
           </li>
         ))}
       </ul>
