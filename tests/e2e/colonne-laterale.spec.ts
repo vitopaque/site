@@ -49,7 +49,7 @@ for (const slug of SLUGS) {
         expect(href).toBe(expected)
       }
       await expect(
-        page.locator('section[aria-labelledby="points-cles-titre"] + div a'),
+        page.locator('section[aria-labelledby="points-cles-titre"] + div > a'),
       ).toHaveAttribute('href', expected)
     })
 
