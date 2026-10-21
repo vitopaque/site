@@ -1,4 +1,4 @@
-import { familyOf } from './catalog'
+import { familyOf } from '@/shared/catalog'
 import { hubPages, servicePages } from './content'
 import type { HubPageContent, ServicePageContent } from './content/types'
 import { isHubSlug } from './validators'

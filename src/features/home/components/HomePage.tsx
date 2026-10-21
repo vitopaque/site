@@ -1,5 +1,5 @@
 import { GuidesSection } from '@/features/articles'
-import { CaseStudiesSection } from '@/features/case-studies'
+import { CaseStudiesSection } from '@/features/realisations'
 import { ContactSection, QuoteForm } from '@/features/quote'
 import { ReviewsSection } from '@/features/reviews'
 import { FaqSection } from '@/shared/ui/FaqSection'

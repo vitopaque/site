@@ -1,5 +1,5 @@
 import type { Guide } from '@/features/articles'
-import type { CaseStudy } from '@/features/case-studies'
+import type { CaseStudy } from '@/features/realisations'
 import type { Review } from '@/features/reviews'
 import type { Realisation } from '@/shared/ui/RealisationsSection'
 

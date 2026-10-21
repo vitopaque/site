@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { hubHref, silosOfUnivers } from '@/features/services'
+import { hubHref, silosOfUnivers } from '@/shared/catalog'
 import { formatServiceArea, siteConfig } from '@/features/site-settings'
 import { UNIVERS_OPTIONS } from '@/shared/payload/univers'
 import { ordinal } from '@/shared/ui/ordinal'

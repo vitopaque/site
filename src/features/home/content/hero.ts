@@ -1,4 +1,4 @@
-import { siloOf } from '@/features/services'
+import { siloOf } from '@/shared/catalog'
 import type { ProseSegment } from '@/shared/ui/Prose'
 
 export const homeHero = {

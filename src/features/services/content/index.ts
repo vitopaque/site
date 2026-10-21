@@ -1,6 +1,6 @@
 import { siteConfig } from '@/features/site-settings'
 
-import { serviceSilos } from '../catalog'
+import { serviceSilos } from '@/shared/catalog'
 import { batimentHub } from './hubs/batiment'
 import { bateauHub } from './hubs/bateau'
 import { voitureHub } from './hubs/voiture'

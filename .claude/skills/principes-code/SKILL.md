@@ -11,7 +11,7 @@ src/
   app/            routage seul : pages minces qui appellent les features
   features/
     services/       pages de service + hubs (contenu en code : TypeScript + MDX, contrôlé au build)
-    case-studies/   réalisations
+    realisations/   réalisations (mini-études de cas)
     articles/       Conseils & Expertises
     quote/          devis (collection, formulaire, route serveur, client n8n)
     reviews/        avis Google (API Places + cache)

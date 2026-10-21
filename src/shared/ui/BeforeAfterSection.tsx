@@ -1,6 +1,6 @@
-import { BeforeAfter, type BeforeAfterPair } from '@/shared/ui/BeforeAfter'
-import { Section } from '@/shared/ui/Section'
-import { SectionHeading, type SectionTitle } from '@/shared/ui/SectionHeading'
+import { BeforeAfter, type BeforeAfterPair } from './BeforeAfter'
+import { Section } from './Section'
+import { SectionHeading, type SectionTitle } from './SectionHeading'
 
 type Props = {
   id: string

@@ -1,4 +1,4 @@
-import { QUOTE_SERVICE_PARAM, QUOTE_UNIVERS_PARAM, serviceSilos } from '@/features/services'
+import { QUOTE_SERVICE_PARAM, QUOTE_UNIVERS_PARAM, serviceSilos } from '@/shared/catalog'
 
 import type { QuoteSilo } from '../types'
 import { QuoteFormClient } from './QuoteFormClient'
