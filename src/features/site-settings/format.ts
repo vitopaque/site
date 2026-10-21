@@ -63,4 +63,4 @@ const joinList = (items: readonly string[]): string =>
     : (items[0] ?? '')
 
 export const formatServiceArea = ({ automotive, building, liquidCrystal }: ServiceArea): string =>
-  `Bâtiment : ${joinList(building.departments)}, et toute l’${building.region.name} à partir de ${building.region.minSurfaceM2}\u00A0m². Automobile : à l’atelier de ${automotive.location}. Film PDLC : partout en ${liquidCrystal.country}.`
+  `Bâtiment : ${joinList(building.departments)}, et toute l’${building.region.name} dès ${building.region.minSurfaceM2}\u00A0m². Automobile : à l’atelier de ${automotive.location}. Vitrage opacifiant électrique (film PDLC) : partout en ${liquidCrystal.country}.`
