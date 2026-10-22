@@ -285,7 +285,7 @@ Les titres sont en **capitales**, graisse 600, interlettrage -0,015 à -0,02 em.
 | `label-btn` / `label-btn-lg` | Barlow Condensed 600, 14 px / 16 px : boutons |
 | `wordmark` | Barlow Condensed 400, 20 px, 0,24 em : logotype |
 
-Un H1 et un seul par page, géré par le gabarit. Les mots longs se coupent (`wrap-break-word`, `hyphens-auto`) sur mobile.
+Un H1 et un seul par page, géré par le gabarit. Pas de césure automatique dans les titres (H1 à H3, classes `text-display-*` et `text-headline-*` : `hyphens: manual`) ; un mot trop long pour la ligne se coupe en dernier recours (`overflow-wrap: break-word`), donc seulement sur mobile.
 
 ## Mise en page et espacement
 
@@ -331,7 +331,7 @@ Pas d'ombres portées (`--shadow-*` vidé). La profondeur vient des filets, des 
 ### Cartes et figures
 - Cartes : cadre `blueprint` (gabarit `blueprint-card`), fond transparent, 1 px, rayon 0. Chiffres en `accent` (`text-numeral`, 64 px), titre en `headline-sm`.
 - Figures de réalisations : cadre `blueprint`, légende `body-sm`, catégorie en `accent-700`.
-- Visuels : photographies traitées en **bichromie `accent`** (mélange en mode `color`), cadrage 4:5 ou 16:10.
+- Visuels : les photographies réelles (véhicules, chantiers, réalisations, articles) s'affichent **telles quelles**, cadrage 4:5 ou 16:10. La bichromie `accent` (utilitaire `duotone`, mélange en mode `color`) est réservée aux visuels décoratifs : photo provisoire du hero de l'accueil et du laboratoire de films.
 
 ### Champs de formulaire
 - Sur fond clair : fond `surface`, bordure 1 px `accent-700`, hauteur 44 px, rayon 0, `body-md`.
@@ -359,7 +359,7 @@ Avis Google (API Places), guides experts, études de cas chiffrées : mêmes car
 ## Iconographie et photographie
 
 - **Icônes** : linéaires, trait 1,5 px, `currentColor`. Aucun pictogramme illustratif lourd.
-- **Photographie** : intérieurs, bureaux, commerces, véhicules et bateaux, vus à travers une vitre. Traitement bichromie `accent`. Reportages sur chantiers réels de VIT'OPAQUE. Aucune image de banque d'images. Textes alternatifs descriptifs et sobres, sans ville.
+- **Photographie** : intérieurs, bureaux, commerces, véhicules et bateaux, vus à travers une vitre. Photos réelles sans filtre ; bichromie `accent` réservée aux visuels décoratifs (hero de l'accueil, laboratoire). Reportages sur chantiers réels de VIT'OPAQUE. Aucune image de banque d'images. Textes alternatifs descriptifs et sobres, sans ville.
 
 ## Animations
 

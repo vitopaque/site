@@ -25,6 +25,15 @@
     @apply font-heading font-semibold;
   }
 
+  h1,
+  h2,
+  h3,
+  [class*='text-display-'],
+  [class*='text-headline-'] {
+    hyphens: manual;
+    overflow-wrap: break-word;
+  }
+
   :focus-visible {
     outline: var(--focus-ring-width) solid var(--color-accent);
     outline-offset: var(--focus-ring-offset);
