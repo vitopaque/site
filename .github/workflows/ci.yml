@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm exec next typegen
+      - run: pnpm typecheck
+      # Valeurs factices, base injoignable volontaire : repli au build (architecture-technique.md)
+      - run: pnpm build
+        env:
+          DATABASE_URI: postgres://ci-placeholder:ci-placeholder@127.0.0.1:1/ci-placeholder
+          PAYLOAD_SECRET: ci-placeholder
+          SITE_URL: http://localhost:3000
