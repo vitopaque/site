@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
+import { WCAG_TAGS } from './helpers/a11y'
 
-const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']
 const LIST = '/realisations'
 const ITEM = '/realisations/vitres-arriere-teintees-porsche-macan'
 const SHOTS = process.env.SHOTS_DIR

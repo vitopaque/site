@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
+import { WCAG_TAGS } from './helpers/a11y'
 
-const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']
 const DESKTOP_MIN_WIDTH = 1200
 const SLUGS = [
   'film-solaire-batiment',
