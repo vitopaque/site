@@ -3,10 +3,12 @@ import type { CollectionConfig } from 'payload'
 import { adminOrCreator, isAdminOrEditor } from '@/features/access'
 import { validateFilename } from './hooks'
 import { noCityInTitle } from '@/shared/content/city-rules.mjs'
+import { createdByField } from '@/shared/payload/created-by-field'
 import { textRule } from '@/shared/payload/validators'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: { singular: 'Média', plural: 'Médias' },
   access: {
     read: () => true,
     create: isAdminOrEditor,
@@ -16,18 +18,13 @@ export const Media: CollectionConfig = {
   hooks: { beforeValidate: [validateFilename] },
   upload: { mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'] },
   fields: [
-    { name: 'alt', type: 'text', required: true, validate: textRule(noCityInTitle) },
     {
-      name: 'createdBy',
-      type: 'relationship',
-      relationTo: 'users',
-      admin: { readOnly: true, position: 'sidebar' },
-      access: { read: isAdminOrEditor, update: () => false },
-      hooks: {
-        beforeChange: [
-          ({ operation, req, value }) => (operation === 'create' ? req.user?.id : value),
-        ],
-      },
+      name: 'alt',
+      type: 'text',
+      label: 'Texte alternatif',
+      required: true,
+      validate: textRule(noCityInTitle),
     },
+    createdByField(isAdminOrEditor),
   ],
 }

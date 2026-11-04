@@ -17,6 +17,7 @@ const httpUrlRule = textRule((value) => {
 
 export const Authors: CollectionConfig = {
   slug: 'authors',
+  labels: { singular: 'Auteur', plural: 'Auteurs' },
   admin: {
     useAsTitle: 'name',
     hidden: ({ user }) => !hasRole(user, 'admin'),
@@ -28,15 +29,22 @@ export const Authors: CollectionConfig = {
     delete: isAdmin,
   },
   fields: [
-    { name: 'name', type: 'text', required: true },
-    { name: 'role', type: 'text', required: true, validate: textRule(noCityNumber) },
-    { name: 'photo', type: 'upload', relationTo: 'media' },
+    { name: 'name', type: 'text', label: 'Nom', required: true },
+    {
+      name: 'role',
+      type: 'text',
+      label: 'Fonction',
+      required: true,
+      validate: textRule(noCityNumber),
+    },
+    { name: 'photo', type: 'upload', label: 'Photo', relationTo: 'media' },
     {
       name: 'bio',
+      label: 'Biographie',
       type: 'textarea',
       maxLength: BIO_MAX,
       validate: textareaRule(noCityNumber),
     },
-    { name: 'url', type: 'text', validate: httpUrlRule },
+    { name: 'url', type: 'text', label: 'Site web', validate: httpUrlRule },
   ],
 }

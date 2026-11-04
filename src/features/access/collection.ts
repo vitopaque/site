@@ -12,6 +12,7 @@ import { ROLE_OPTIONS } from './roles'
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: { singular: 'Utilisateur', plural: 'Utilisateurs' },
   admin: {
     useAsTitle: 'email',
     hidden: ({ user }) => !hasRole(user, 'admin'),
@@ -35,6 +36,7 @@ export const Users: CollectionConfig = {
   fields: [
     {
       name: 'role',
+      label: 'Rôle',
       type: 'select',
       options: [...ROLE_OPTIONS],
       required: true,

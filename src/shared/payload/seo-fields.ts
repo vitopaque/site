@@ -38,16 +38,19 @@ export const seoFields = ({ titleTemplate, collection }: SeoFieldsOptions): Fiel
   }
   return {
     name: 'seo',
+    label: 'Référencement (SEO)',
     type: 'group',
     fields: [
       {
         name: 'title',
+        label: 'Titre SEO',
         type: 'text',
         required: true,
         validate: validateTitle,
       },
       {
         name: 'description',
+        label: 'Méta-description',
         type: 'textarea',
         required: true,
         maxLength: DESCRIPTION_MAX,
