@@ -272,20 +272,20 @@ Le nouveau site garde le nom de domaine vitopaque.com, qui porte la notoriété 
 | /foire-aux-questions | /film-solaire-batiment (les 8 questions portent sur les films solaires) |
 | /blog | /conseils-expertises (URL à fixer) |
 
-Les 11 articles actuels (`/blog/…`) sont redirigés vers la page la plus proche. Le tableau ci-dessous est une proposition fondée sur les titres, à valider après lecture des articles.
+Les 11 articles actuels (`/blog/…`) sont redirigés vers la page la plus proche. Le tableau ci-dessous est une proposition fondée sur les titres, validée après lecture des articles (2026-11-04).
 
 | Article actuel | Redirection proposée |
 | --- | --- |
 | vitrophanie-dentreprise | /vitrophanie-signaletique |
 | protection-des-locaux | /film-securite-anti-effraction |
-| proprete-et-securite-des-commerces | /film-securite-anti-effraction |
-| automobile-securite | /vitres-teintees-auto |
+| proprete-et-securite-des-commerces | /film-securite-anti-effraction, puis l'article repris à sa publication : /conseils-expertises/film-anti-graffiti-vitrine |
+| automobile-securite | /vitres-teintees-auto, puis l'article repris à sa publication : /conseils-expertises/vitre-teintee-loi |
 | technologie-innovation | /film-pdlc-cristaux-liquides |
 | batiment-bureaux | /film-solaire-batiment |
-| questions-frequentes-installation-entretien | /conseils-expertises |
-| diy-vs-pro | /conseils-expertises |
-| 3-quels-sont-les-differents-types-de-films-solaires | /film-solaire-batiment |
-| le-film-solaire-ideal | /film-solaire-batiment |
+| questions-frequentes-installation-entretien | /film-solaire-batiment |
+| diy-vs-pro | /film-solaire-batiment |
+| 3-quels-sont-les-differents-types-de-films-solaires | /film-solaire-batiment, puis l'article repris à sa publication : /conseils-expertises/choisir-film-solaire-fenetre |
+| le-film-solaire-ideal | /film-solaire-batiment, puis l'article repris à sa publication : /conseils-expertises/choisir-film-solaire-fenetre |
 | films-solaires-sur-vitrages | /film-solaire-batiment |
 
 - **Plan du site :** le nouveau site fournit un `sitemap.xml` (absent aujourd'hui), déclaré dans le `robots.txt` et dans la Search Console.

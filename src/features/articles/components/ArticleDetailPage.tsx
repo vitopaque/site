@@ -53,6 +53,7 @@ export async function ArticleDetailPage({
               alt={article.image.alt}
               fill
               priority
+              fetchPriority="high"
               sizes="(min-width: 90rem) 81rem, 100vw"
               className="object-cover"
             />

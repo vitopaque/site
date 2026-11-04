@@ -51,7 +51,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - Une requête principale par URL. Chaque article renvoie à sa page de service.
 - Texte alternatif obligatoire, descriptif et sobre. Noms de fichiers sobres.
 - Données structurées : `LocalBusiness`, `Service`, `FAQPage`, `BlogPosting` (sous-type d'`Article`), `BreadcrumbList`. `sitemap.xml` et `robots.txt` générés ; une seule version du domaine ; HTTPS ; pas de slash final.
-- Redirections 301 versionnées dans `next.config.ts` d'après le plan du CDC §7.4. Blog repris de zéro : les 11 anciens articles et la FAQ ne sont que redirigés.
+- Redirections 301 versionnées dans `next.config.ts` d'après le plan du CDC §7.4. Blog : 4 anciens articles repris et réécrits en 3 (anti-graffiti, vitres teintées et réglementation, choix du film solaire), les 7 autres et la FAQ redirigés (décision du 2026-11-04).
 - Coordonnées et horaires : **source unique** (module de configuration `site-settings`), pour supprimer les horaires contradictoires de l'ancien site.
 - Zone d'intervention : également issue de `site-settings` (source unique). Automobile : dans les locaux de Vendargues. Bâtiment : Hérault, Gard et Aude, et Occitanie à partir de 30 m². Film à cristaux liquides : toute la France.
 

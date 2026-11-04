@@ -4,10 +4,15 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { createArticleConverters } from '../../src/features/articles/lexical/converters'
 import { articleOutline } from '../../src/features/articles/lexical/outline'
-import { MIN_INDEXABLE_ARTICLES, parsePageNumber } from '../../src/features/articles/paths'
+import {
+  ARTICLES_PER_PAGE,
+  MIN_INDEXABLE_ARTICLES,
+  parsePageNumber,
+} from '../../src/features/articles/paths'
 import { readingMinutes } from '../../src/features/articles/reading-time'
 import { articleJsonLd, blogSitemapPaths, indexMetadata } from '../../src/features/articles/seo'
 import type { ArticleDetail } from '../../src/features/articles/types'
+import { isIndexable } from '../../src/shared/seo/indexing'
 import { sitemapFor } from '../../src/shared/seo/sitemap'
 import { node, text } from './helpers/lexical'
 
@@ -190,25 +195,37 @@ test.describe('SEO des articles', () => {
   })
 })
 
-test.describe('/conseils-expertises (sous le seuil d’articles publiés)', () => {
+test.describe('/conseils-expertises (index, 404 et pagination)', () => {
+  // La page compte tous les articles publiés, e2e-article inclus (queries.ts : seul le filtre _status).
+  let publishedCount = 0
+
   test.beforeAll(async ({ request }) => {
-    const response = await request.get('/api/articles', {
-      params: { where: JSON.stringify({ slug: { not_equals: 'e2e-article' } }), limit: '0' },
-    })
-    const { totalDocs } = (await response.json()) as { totalDocs: number }
+    const response = await request.get('/api/articles', { params: { limit: '0' } })
+    publishedCount = ((await response.json()) as { totalDocs: number }).totalDocs
     expect(
-      totalDocs,
-      `Base de test invalide : ${totalDocs} article(s) publié(s) hors e2e-article, ces assertions supposent moins de ${MIN_INDEXABLE_ARTICLES - 1} article(s) hors e2e.`,
-    ).toBeLessThan(MIN_INDEXABLE_ARTICLES - 1)
+      publishedCount,
+      `Le test « pagination hors limites » suppose au plus ${ARTICLES_PER_PAGE} articles publiés (/page/2 en 404) ; la base en compte ${publishedCount}.`,
+    ).toBeLessThanOrEqual(ARTICLES_PER_PAGE)
   })
 
-  test('répond 200, un seul H1, noindex, hors sitemap', async ({ page, request }) => {
+  test('répond 200, un seul H1, indexation conforme au seuil et à l’environnement', async ({
+    page,
+    request,
+  }) => {
     const response = await page.goto('/conseils-expertises')
     expect(response?.status()).toBe(200)
     await expect(page.locator('h1')).toHaveCount(1)
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/)
+    const robots = page.locator('meta[name="robots"]')
     const sitemap = await (await request.get('/sitemap.xml')).text()
-    expect(sitemap).not.toContain('conseils-expertises')
+    // Le serveur de test hérite de l'environnement de ce processus : préproduction, donc non indexable.
+    const indexable = isIndexable()
+    if (!indexable || publishedCount < MIN_INDEXABLE_ARTICLES) {
+      await expect(robots).toHaveAttribute('content', /noindex/)
+      expect(sitemap).not.toContain('conseils-expertises')
+    } else {
+      expect((await robots.getAttribute('content').catch(() => null)) ?? '').not.toMatch(/noindex/)
+      expect(sitemap).toContain('/conseils-expertises<')
+    }
   })
 
   test('slug inconnu : 404', async ({ request }) => {

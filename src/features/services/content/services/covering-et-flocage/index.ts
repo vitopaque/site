@@ -1,11 +1,14 @@
+import { coveringFilmCarrosserie } from '../../../assets/hero-photos'
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
-// alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
-// « Voiture partiellement recouverte d’un film adhésif de couleur, détail du capot »
 export const coveringEtFlocage: ServicePageContent = {
   univers: 'voiture',
   slug: 'covering-et-flocage',
+  image: {
+    src: coveringFilmCarrosserie,
+    alt: 'Pose d’un film de covering vert mat sur la carrosserie d’une voiture, à la raclette',
+  },
   h1: 'Covering voiture et flocage : une carrosserie à votre image',
   tagline: 'Personnalisation',
   intro:

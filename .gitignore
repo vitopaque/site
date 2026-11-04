@@ -17,3 +17,6 @@ next-env.d.ts
 
 # Dossiers de travail des agents
 /.claude/worktrees/
+# Archives locales (hors dépôt)
+.archives/
+
