@@ -6,7 +6,7 @@ Refonte et rebranding de vitopaque.com (VIT'OPAQUE, films adhésifs pour vitrage
 
 - Next.js 16.4.0 (App Router) avec Payload 3.90.2 dans la même application, sans monorepo
 - Supabase (Postgres) via `@payloadcms/db-postgres`, par le pooler en mode transaction (port 6543)
-- Vercel (formule Pro, fonctions en région européenne)
+- Vercel (formule Hobby, choix du client ; fonctions en région européenne)
 - Vercel Blob via `@payloadcms/storage-vercel-blob`, envoi direct navigateur vers stockage
 - Tailwind 4.3.3, tokens issus de `DESIGN.md`
 - Barlow et Barlow Condensed auto-hébergées (`next/font/local`)

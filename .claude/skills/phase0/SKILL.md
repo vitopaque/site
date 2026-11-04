@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 Lis `CLAUDE.md` et `architecture-technique.md` (section Phase 0). Étapes, dans cet ordre ; **après chacune, présente le résultat à Hery et attends sa validation** (AskUserQuestion) avant la suivante. Si `$ARGUMENTS` est renseigné, reprends à cette étape.
 
-1. Prérequis côté client : dépôt GitHub privé (Hery collaborateur), Vercel Pro (région UE), 2 projets Supabase (prod, préprod). Vérifie ce qui existe, liste ce qui manque, ne crée rien au nom du client sans son accord.
+1. Prérequis côté client : dépôt GitHub privé (Hery collaborateur), Vercel Hobby, choix du client (région UE), 2 projets Supabase (prod, préprod). Vérifie ce qui existe, liste ce qui manque, ne crée rien au nom du client sans son accord.
 2. Squelette : app Next.js unique avec Payload, pnpm, TypeScript strict, arborescence feature-first de `principes-code`, lint de la règle de dépendance (outil à valider avec Hery), migrations Payload versionnées. Délégué à `infra-data` puis `cms-payload`.
 3. Test du pooler Supabase (port 6543, sans prepared statements) : lecture, écriture, migration. Délégué à `infra-data`.
 4. Test d'upload Blob direct navigateur > 4,5 Mo. Délégué à `infra-data`.
