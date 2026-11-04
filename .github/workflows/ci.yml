@@ -29,3 +29,9 @@ jobs:
       - run: pnpm format:check
       - run: pnpm exec next typegen
       - run: pnpm typecheck
+      # Valeurs factices, base injoignable volontaire : repli au build (architecture-technique.md)
+      - run: pnpm build
+        env:
+          DATABASE_URI: postgres://ci-placeholder:ci-placeholder@127.0.0.1:1/ci-placeholder
+          PAYLOAD_SECRET: ci-placeholder
+          SITE_URL: http://localhost:3000
