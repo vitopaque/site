@@ -80,6 +80,7 @@ Aucune synchronisation automatique du schéma, ni en local ni en production.
 - Variables requises au build Vercel : `PAYLOAD_SECRET`, `DATABASE_URI`, `BLOB_READ_WRITE_TOKEN`, `SITE_URL`.
 - En préproduction, `SITE_URL` est l'URL `*.vercel.app` du déploiement (CSRF Payload), jamais le domaine de production.
 - Un store Vercel Blob (public) par environnement ; deux projets Supabase (production, préproduction).
+- Je rédéploie
 
 ## Contribution
 
