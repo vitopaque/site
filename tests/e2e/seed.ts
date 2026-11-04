@@ -4,6 +4,7 @@ import path from 'node:path'
 import type { Payload, Where } from 'payload'
 
 import type { Article } from '../../src/shared/payload-types'
+import { assertAllowedTarget, assertNotProduction } from '../../src/shared/script-guards'
 import { node, text } from './helpers/lexical'
 
 const AUTHOR_NAME = 'e2e-auteur'
@@ -11,38 +12,6 @@ const ARTICLE_SLUG = 'e2e-article'
 const MEDIA_ALT = 'e2e : vitres arrière teintées d’un véhicule'
 const MEDIA_FILENAME = 'e2e-image.webp'
 const MEDIA_SOURCE = 'public/realisations/vitres-arriere-teintees-porsche-macan.webp'
-const PRODUCTION_HOSTS = ['vitopaque.com', 'www.vitopaque.com']
-
-function assertAllowedTarget(): void {
-  const allowedRef = process.env.E2E_ALLOWED_DB_REF?.trim()
-  if (!allowedRef) {
-    throw new Error('Seed e2e refusé : E2E_ALLOWED_DB_REF absente.')
-  }
-  const databaseUri = process.env.DATABASE_URI?.trim()
-  if (!databaseUri) {
-    throw new Error('Seed e2e refusé : DATABASE_URI absente.')
-  }
-  if (!databaseUri.includes(allowedRef)) {
-    throw new Error('Seed e2e refusé : DATABASE_URI ne correspond pas à E2E_ALLOWED_DB_REF.')
-  }
-}
-
-function assertNotProduction(): void {
-  if (process.env.VERCEL_ENV === 'production') {
-    throw new Error('Seed e2e refusé : VERCEL_ENV=production.')
-  }
-  const raw = process.env.SITE_URL?.trim()
-  if (!raw) return
-  let hostname: string
-  try {
-    hostname = new URL(raw).hostname.toLowerCase()
-  } catch {
-    throw new Error('Seed e2e refusé : SITE_URL illisible, environnement non vérifiable.')
-  }
-  if (PRODUCTION_HOSTS.includes(hostname)) {
-    throw new Error(`Seed e2e refusé : SITE_URL pointe sur la production (${hostname}).`)
-  }
-}
 
 const block = (type: string, children: object[], extra: object = {}) =>
   node(type, children, { direction: 'ltr', format: '', indent: 0, ...extra })
@@ -135,8 +104,8 @@ async function clean(payload: Payload): Promise<void> {
   await payload.delete({ collection: 'media', where: { alt: { equals: MEDIA_ALT } } })
 }
 
-assertAllowedTarget()
-assertNotProduction()
+assertAllowedTarget('Seed e2e', 'E2E_ALLOWED_DB_REF')
+assertNotProduction('Seed e2e')
 const { getPayload } = await import('payload')
 const { default: config } = await import('../../payload.config')
 const payload = await getPayload({ config })
