@@ -162,7 +162,7 @@ Choix validé : Vercel pour l'application, Supabase pour la base Postgres. Cinq 
 | Connexion à la base | Pooler Supabase en mode transaction (port 6543), sans prepared statements | Recommandé par Supabase pour le serverless ; à valider avec l'adaptateur Payload |
 | Envoi de fichiers | Directement du navigateur vers le stockage objet | Limite de 4,5 Mo par requête de fonction Vercel, rappelée par la documentation Payload |
 | Stockage des médias | Vercel Blob, via l'adaptateur officiel Payload (choix validé) | Le disque n'est pas durable en serverless |
-| Formule Vercel | Pro obligatoire : la documentation Vercel réserve l'offre gratuite Hobby à un usage non commercial et classe comme commercial tout site qui promeut un service ou rémunère celui qui le crée ou l'héberge | Site d'une entreprise |
+| Formule Vercel | Hobby, choix du client : la documentation Vercel réserve Hobby à un usage non commercial et classe comme commercial tout site qui promeut un service ou rémunère celui qui le crée ou l'héberge. Le client en assume le risque (suspension possible sans préavis). Pro à réévaluer en cas de suspension ou de dépassement des quotas. | Site d'une entreprise |
 
 Exploitation : les déploiements d'aperçu de Vercel servent de préproduction (à vérifier qu'ils sont bien en `noindex`), sauvegardes de la base côté Supabase et des médias côté stockage, mises à jour planifiées de Next.js et de Payload, supervision de la disponibilité.
 
@@ -179,8 +179,8 @@ Les phases suivent celles du CDC v1.1 (§10.1).
 
 ### Points à valider
 
-- [x] Hébergement : Vercel, formule Pro (usage commercial).
-- [x] Compte Vercel : celui du client, qui porte l'abonnement Pro ; tu y es invité comme membre (coût de ton siège à vérifier).
+- [x] Hébergement : Vercel, formule Hobby (choix du client, risque contractuel assumé ; voir CLAUDE.md §3).
+- [x] Compte Vercel : celui du client ; tu y es invité comme membre.
 - [x] Pages hub : `/batiment`, `/voiture` et `/bateau`.
 - [x] Base de données : Supabase, sur le compte du client.
 - [x] Stockage des médias : Vercel Blob.
