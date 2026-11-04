@@ -1,7 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
-
-const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']
+import { WCAG_TAGS } from './helpers/a11y'
 
 test.describe('Contact et devis', () => {
   test('un seul H1, fil d’Ariane et canonique', async ({ page }) => {

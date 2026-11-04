@@ -4,19 +4,12 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { createArticleConverters } from '../../src/features/articles/lexical/converters'
 import { articleOutline } from '../../src/features/articles/lexical/outline'
-import { parsePageNumber } from '../../src/features/articles/paths'
+import { MIN_INDEXABLE_ARTICLES, parsePageNumber } from '../../src/features/articles/paths'
 import { readingMinutes } from '../../src/features/articles/reading-time'
 import { articleJsonLd, blogSitemapPaths, indexMetadata } from '../../src/features/articles/seo'
 import type { ArticleDetail } from '../../src/features/articles/types'
 import { sitemapFor } from '../../src/shared/seo/sitemap'
-
-const text = (value: string, format = 0) => ({ type: 'text', text: value, format, version: 1 })
-const node = (type: string, children: object[], extra: object = {}) => ({
-  type,
-  children,
-  version: 1,
-  ...extra,
-})
+import { node, text } from './helpers/lexical'
 
 const content = {
   root: node(
@@ -197,13 +190,25 @@ test.describe('SEO des articles', () => {
   })
 })
 
-test.describe('/conseils-expertises (aucun article publié)', () => {
+test.describe('/conseils-expertises (sous le seuil d’articles publiés)', () => {
+  test.beforeAll(async ({ request }) => {
+    const response = await request.get('/api/articles', {
+      params: { where: JSON.stringify({ slug: { not_equals: 'e2e-article' } }), limit: '0' },
+    })
+    const { totalDocs } = (await response.json()) as { totalDocs: number }
+    expect(
+      totalDocs,
+      `Base de test invalide : ${totalDocs} article(s) publié(s) hors e2e-article, ces assertions supposent moins de ${MIN_INDEXABLE_ARTICLES - 1} article(s) hors e2e.`,
+    ).toBeLessThan(MIN_INDEXABLE_ARTICLES - 1)
+  })
+
   test('répond 200, un seul H1, noindex, hors sitemap', async ({ page, request }) => {
     const response = await page.goto('/conseils-expertises')
     expect(response?.status()).toBe(200)
     await expect(page.locator('h1')).toHaveCount(1)
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/)
-    expect(await (await request.get('/sitemap.xml')).text()).not.toContain('conseils-expertises')
+    const sitemap = await (await request.get('/sitemap.xml')).text()
+    expect(sitemap).not.toContain('conseils-expertises')
   })
 
   test('slug inconnu : 404', async ({ request }) => {
@@ -211,9 +216,16 @@ test.describe('/conseils-expertises (aucun article publié)', () => {
     expect((await request.get('/conseils-expertises/Slug_Invalide')).status()).toBe(404)
   })
 
+  test('page 404 : un seul H1', async ({ page }) => {
+    const response = await page.goto('/conseils-expertises/article-inconnu')
+    expect(response?.status()).toBe(404)
+    await expect(page.locator('h1')).toHaveCount(1)
+  })
+
   test('pagination hors limites : 404 ; page 1 redirigée vers l’index', async ({ request }) => {
     expect((await request.get('/conseils-expertises/page/2')).status()).toBe(404)
     expect((await request.get('/conseils-expertises/page/abc')).status()).toBe(404)
+    expect((await request.get('/conseils-expertises/page')).status()).toBe(404)
     const redirect = await request.get('/conseils-expertises/page/1', { maxRedirects: 0 })
     expect(redirect.status()).toBe(301)
     expect(redirect.headers()['location']).toMatch(/\/conseils-expertises$/)

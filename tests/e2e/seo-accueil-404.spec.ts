@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
+import { WCAG_TAGS } from './helpers/a11y'
 
-const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']
 const FORBIDDEN = /Montpellier 34|34740/i
 const NOT_FOUND_PATHS = ['/inexistant', '/a/b/c']
 

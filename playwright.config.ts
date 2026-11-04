@@ -5,14 +5,17 @@ const baseURL = `http://localhost:${port}`
 
 export default defineConfig({
   testDir: './tests/e2e',
+  globalTeardown: './tests/e2e/global-teardown.ts',
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: { baseURL, trace: 'retain-on-failure' },
+  // Chaque lancement enchaîne seed, build et écriture en préproduction ; si le build échoue, le teardown ne passe pas
+  // et le seed suivant met à jour. reuseExistingServer: false exige un port libre.
   webServer: {
-    command: `pnpm build && pnpm exec next start -p ${port}`,
+    command: `pnpm payload run tests/e2e/seed.ts && pnpm build && pnpm exec next start -p ${port}`,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 600_000,
   },
   projects: [
