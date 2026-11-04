@@ -10,7 +10,6 @@ export {
   pairOfUnivers,
   realisationsOfSilo,
   realisationsOfUnivers,
-  vehicleAfterPhoto,
 } from './queries'
 export {
   LISTING_PATH,
