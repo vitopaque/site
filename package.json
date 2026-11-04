@@ -21,6 +21,7 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "import:articles": "NODE_OPTIONS=--no-deprecation payload run src/features/articles/imports/run.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {
