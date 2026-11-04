@@ -14,3 +14,6 @@ next-env.d.ts
 
 # Généré par Next.js en développement
 /AGENTS.md
+
+# Dossiers de travail des agents
+/.claude/worktrees/
