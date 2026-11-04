@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { fr } from '@payloadcms/translations/languages/fr'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
@@ -22,6 +23,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Authors, Articles],
   editor: lexicalEditor(),
+  i18n: { supportedLanguages: { fr }, fallbackLanguage: 'fr' },
   serverURL: resolveSiteUrl().origin,
   secret: requireEnv('PAYLOAD_SECRET'),
   db: postgresAdapter({
