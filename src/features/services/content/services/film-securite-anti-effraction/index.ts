@@ -1,11 +1,14 @@
+import { baieVitreeFilmAntiEffractionImpact } from '../../../assets/hero-photos'
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
-// alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
-// « Vitrine de commerce équipée d’un film de sécurité transparent »
 export const filmSecuriteAntiEffraction: ServicePageContent = {
   univers: 'batiment',
   slug: 'film-securite-anti-effraction',
+  image: {
+    src: baieVitreeFilmAntiEffractionImpact,
+    alt: 'Baie vitrée fissurée par un impact, éclats retenus par le film de sécurité, de nuit',
+  },
   h1: 'Film anti-effraction vitre : un vitrage renforcé, sans le voir',
   tagline: 'Sécurité',
   intro:

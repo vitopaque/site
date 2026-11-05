@@ -1,13 +1,16 @@
 import { formatServiceAreaFor } from '@/features/site-settings'
 
+import { filmSolaireBureauBaieVitree } from '../../../assets/hero-photos'
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
-// alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
-// « Baie vitrée de bureaux équipée d’un film solaire, vue sur l’extérieur »
 export const filmSolaireBatiment: ServicePageContent = {
   univers: 'batiment',
   slug: 'film-solaire-batiment',
+  image: {
+    src: filmSolaireBureauBaieVitree,
+    alt: 'Baie vitrée de bureau équipée d’un film solaire, avec vue dégagée sur l’extérieur',
+  },
   h1: 'Film solaire fenêtre : maîtrisez la chaleur et l’éblouissement',
   tagline: 'Confort thermique',
   intro:

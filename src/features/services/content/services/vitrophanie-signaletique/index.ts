@@ -1,11 +1,14 @@
+import { vitrineVitrophanieDepoliLettrage } from '../../../assets/hero-photos'
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
-// alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
-// « Vitrine de commerce habillée d’un film adhésif dépoli avec logo découpé »
 export const vitrophanieSignaletique: ServicePageContent = {
   univers: 'batiment',
   slug: 'vitrophanie-signaletique',
+  image: {
+    src: vitrineVitrophanieDepoliLettrage,
+    alt: 'Vitrine de commerce habillée d’un film dépoli avec lettrage et logo découpés',
+  },
   h1: 'Vitrophanie et signalétique : habillez vos vitrines à votre image',
   tagline: 'Image de marque',
   intro:

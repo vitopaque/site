@@ -10,18 +10,27 @@ export type BeforeAfterPair = {
   before: BeforeAfterImage
   after: BeforeAfterImage
   caption?: string
+  labels?: { before: string; after: string }
 }
 
 type Props = { pair: BeforeAfterPair }
 
+const DEFAULT_LABELS = { before: 'Avant', after: 'Après' }
+
 const SIZES = '(min-width: 64rem) 66vw, 100vw'
 
-export function BeforeAfter({ pair: { before, after, caption } }: Props) {
+export function BeforeAfter({ pair: { before, after, caption, labels } }: Props) {
+  const text = labels ?? DEFAULT_LABELS
+
   return (
     <figure className="flex flex-col gap-4">
       <SplitSlider
-        label="Comparer avant et après la pose"
-        valueText={(split) => `Avant / Après, ${split} %`}
+        label={
+          labels
+            ? `Comparer : ${labels.before} et ${labels.after}`
+            : 'Comparer avant et après la pose'
+        }
+        valueText={(split) => `${text.before} / ${text.after}, ${split} %`}
         className="aspect-16/9"
       >
         <Image
@@ -43,10 +52,10 @@ export function BeforeAfter({ pair: { before, after, caption } }: Props) {
           />
         </div>
         <span className="label-sm bg-accent-900 text-background pointer-events-none absolute top-4 left-4 px-2.5 py-1.5">
-          Avant
+          {text.before}
         </span>
         <span className="label-sm bg-background text-accent-900 pointer-events-none absolute top-4 right-4 px-2.5 py-1.5">
-          Après
+          {text.after}
         </span>
       </SplitSlider>
       {caption ? (
