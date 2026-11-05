@@ -1,5 +1,6 @@
 import { formatServiceAreaFor } from '@/features/site-settings'
 
+import { cloisonVitreePdlcOpaque, cloisonVitreePdlcTransparente } from '../../../assets/hero-photos'
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
@@ -8,6 +9,20 @@ import Body, { headings } from './body.mdx'
 export const filmPdlcCristauxLiquides: ServicePageContent = {
   univers: 'batiment',
   slug: 'film-pdlc-cristaux-liquides',
+  beforeAfter: {
+    pair: {
+      before: {
+        src: cloisonVitreePdlcTransparente,
+        alt: 'Cloison vitrée de salle de réunion, vitre transparente : on voit les personnes à l’intérieur',
+      },
+      after: {
+        src: cloisonVitreePdlcOpaque,
+        alt: 'Même cloison vitrée, vitre opacifiée : les silhouettes sont floutées, la lumière passe',
+      },
+      labels: { before: 'Vitre transparente', after: 'Vitre opacifiée' },
+    },
+    text: 'Déplacez la ligne pour comparer la vitre transparente et la vitre opacifiée.',
+  },
   h1: 'Vitrage opacifiant électrique : l’intimité à la demande',
   tagline: 'Intimité à la demande',
   intro:

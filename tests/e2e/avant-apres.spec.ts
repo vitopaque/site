@@ -75,3 +75,38 @@ test('le curseur du laboratoire bâtiment reste fonctionnel', async ({ page }) =
     .evaluate((el) => getComputedStyle(el).getPropertyValue('--split'))
   expect(split.trim()).toBe('51%')
 })
+
+test('le curseur PDLC a ses libellés, se manipule au clavier et reste sans doublon de titre', async ({
+  page,
+}) => {
+  await page.goto('/film-pdlc-cristaux-liquides')
+  const slider = page.getByRole('slider', {
+    name: 'Comparer : Vitre transparente et Vitre opacifiée',
+  })
+  await slider.scrollIntoViewIfNeeded()
+  await expect(slider).toHaveAttribute(
+    'aria-valuetext',
+    'Vitre transparente / Vitre opacifiée, 50 %',
+  )
+
+  const figure = page.locator('figure', { has: slider })
+  await expect(figure.getByText('Vitre transparente', { exact: true })).toBeVisible()
+  await expect(figure.getByText('Vitre opacifiée', { exact: true })).toBeVisible()
+  const alts = await figure
+    .locator('img')
+    .evaluateAll((imgs) => imgs.map((i) => i.getAttribute('alt') ?? ''))
+  expect(alts).toHaveLength(2)
+  for (const alt of alts) expect(alt.trim()).not.toBe('')
+  expect(alts.join(' ')).not.toMatch(/montpellier/i)
+
+  await slider.focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(slider).toHaveAttribute(
+    'aria-valuetext',
+    'Vitre transparente / Vitre opacifiée, 51 %',
+  )
+
+  const titles = await page.locator('h2').allInnerTexts()
+  expect(new Set(titles).size).toBe(titles.length)
+  await expect(page.locator('h1')).toHaveCount(1)
+})

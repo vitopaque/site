@@ -60,6 +60,15 @@ export async function ServicePage({ entry }: { entry: ServiceEntry }) {
           </div>
         </div>
       </Section>
+      {page.beforeAfter ? (
+        <BeforeAfterSection
+          id="avant-apres-titre"
+          heading={sectionTitle(page, 'lab')}
+          pair={page.beforeAfter.pair}
+          text={page.beforeAfter.text}
+          tone="surface"
+        />
+      ) : null}
       {silo?.film ? (
         <FilmDemo name={silo.label} film={silo.film} heading={sectionTitle(page, 'film')} />
       ) : beforeAfter ? (

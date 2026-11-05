@@ -13,7 +13,7 @@ export default defineConfig({
   // Chaque lancement enchaîne seed, build et écriture en préproduction ; si le build échoue, le teardown ne passe pas
   // et le seed suivant met à jour. reuseExistingServer: false exige un port libre.
   webServer: {
-    command: `pnpm payload run tests/e2e/seed.ts && pnpm build && pnpm exec next start -p ${port}`,
+    command: `pnpm payload run tests/e2e/seed.ts && rm -rf .next/cache/fetch-cache && pnpm build && pnpm exec next start -p ${port}`,
     url: baseURL,
     reuseExistingServer: false,
     timeout: 600_000,

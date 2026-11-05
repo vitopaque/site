@@ -2,3 +2,8 @@ export { default as poseFilmTeinteVitreVoiture } from './pose-film-teinte-vitre-
 export { default as yachtBaieVitreeFilmSolaire } from './yacht-baie-vitree-film-solaire.webp'
 export { default as coveringFilmCarrosserie } from './covering-film-carrosserie.webp'
 export { default as bureauFilmSolaireAvantApres } from './bureau-film-solaire-avant-apres.webp'
+export { default as filmSolaireBureauBaieVitree } from './film-solaire-bureau-baie-vitree.webp'
+export { default as baieVitreeFilmAntiEffractionImpact } from './baie-vitree-film-anti-effraction-impact.webp'
+export { default as vitrineVitrophanieDepoliLettrage } from './vitrine-vitrophanie-depoli-lettrage.webp'
+export { default as cloisonVitreePdlcTransparente } from './cloison-vitree-pdlc-transparente.webp'
+export { default as cloisonVitreePdlcOpaque } from './cloison-vitree-pdlc-opaque.webp'
