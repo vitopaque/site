@@ -4,11 +4,13 @@ import { cloisonVitreePdlcOpaque, cloisonVitreePdlcTransparente } from '../../..
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
-// alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
-// « Cloison vitrée de salle de réunion équipée d’un film PDLC, état translucide »
 export const filmPdlcCristauxLiquides: ServicePageContent = {
   univers: 'batiment',
   slug: 'film-pdlc-cristaux-liquides',
+  image: {
+    src: cloisonVitreePdlcOpaque,
+    alt: 'Cloison vitrée de salle de réunion équipée d’un film PDLC, état opacifié',
+  },
   beforeAfter: {
     pair: {
       before: {
@@ -21,7 +23,7 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
       },
       labels: { before: 'Vitre transparente', after: 'Vitre opacifiée' },
     },
-    text: 'Déplacez la ligne pour comparer la vitre transparente et la vitre opacifiée.',
+    text: 'Basculez entre la vitre transparente et la vitre opacifiée.',
   },
   h1: 'Vitrage opacifiant électrique : l’intimité à la demande',
   tagline: 'Intimité à la demande',

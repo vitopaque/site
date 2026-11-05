@@ -82,15 +82,16 @@ test.describe('Page de réalisation', () => {
     expect(mediaRequests).toEqual([])
   })
 
-  test('curseur avant/après fonctionnel', async ({ page }) => {
+  test('bascule avant/après fonctionnelle', async ({ page }) => {
     await page.goto(ITEM)
-    const slider = page.getByRole('slider', { name: 'Comparer avant et après la pose' })
-    await slider.scrollIntoViewIfNeeded()
-    await expect(slider).toHaveAttribute('aria-valuetext', 'Avant / Après, 50 %')
-    await slider.focus()
-    await page.keyboard.press('ArrowRight')
-    await expect(slider).toHaveValue('51')
-    await expect(slider).toHaveAttribute('aria-valuetext', 'Avant / Après, 51 %')
+    const group = page.getByRole('group', {
+      name: 'Comparer : Vitres d’origine et Vitres teintées',
+    })
+    await group.scrollIntoViewIfNeeded()
+    const after = group.getByRole('button', { name: 'Vitres teintées', exact: true })
+    await expect(after).toHaveAttribute('aria-pressed', 'false')
+    await after.click()
+    await expect(after).toHaveAttribute('aria-pressed', 'true')
   })
 
   test('une seule réalisation : pas de section « autres réalisations »', async ({ page }) => {
@@ -102,8 +103,10 @@ test.describe('Page de réalisation', () => {
 test.describe('Page de service : lien vers la réalisation', () => {
   test('/vitres-teintees-auto renvoie vers la réalisation', async ({ page }) => {
     await page.goto('/vitres-teintees-auto')
-    const slider = page.getByRole('slider', { name: 'Comparer avant et après la pose' })
-    const section = page.locator('section', { has: slider })
+    const group = page.getByRole('group', {
+      name: 'Comparer : Vitres d’origine et Vitres teintées',
+    })
+    const section = page.locator('section', { has: group })
     await expect(section.getByRole('link', { name: 'Voir la réalisation' })).toHaveAttribute(
       'href',
       ITEM,

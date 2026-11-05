@@ -310,7 +310,7 @@ Pas d'ombres portées (`--shadow-*` vidé). La profondeur vient des filets, des 
 3. **Verre** : voile du hero (`glass-veil`) : `accent-900` à 86 % avec `backdrop-filter: blur(26px) saturate(0.6)`, percé par la lentille. Le laboratoire de films emploie le même principe (flou 2 à 18 px, saturation 0,4 à 0,8) pour chaque film (dépoli, solaire, miroir, occultant, décoratif).
 4. **Voiles des films** (`film-veil-solaire`, `film-veil-securite`, `film-veil-pdlc`, `film-veil-vitrophanie`) : solaire = `accent-900` à 42 % avec luminosité 0,62 et saturation 0,8 ; sécurité = `accent-900` à 10 % avec luminosité 0,94 et saturation 0,9 ; PDLC = `background` à 30 % avec flou 18 px, saturation 0,4 et luminosité 1,15 ; vitrophanie = bandes verticales `background` (62 % puis 8 %, pas de 22 px) avec flou 5 px et saturation 0,5.
 5. **Lentille et hero** : hauteur minimale `hero.min-height`, diamètre de la lentille `lens-size`, position par défaut 72 % / 46 % (70 % en vertical sous 640 px), ouverture `lens-hole` (62 %), logo plafonné à `logo-max` (440 px).
-6. **Poignée du comparateur** : halo `accent-200` de 18 px, seule lueur autorisée.
+6. **Poignée du curseur du laboratoire de films** : halo `accent-200` de 18 px, seule lueur autorisée.
 
 ## Formes
 
@@ -338,6 +338,14 @@ Pas d'ombres portées (`--shadow-*` vidé). La profondeur vient des filets, des 
 - Sur fond sombre (contact) : fond transparent, bordure `outline-inverse`, texte `background`, étiquette `accent-200`.
 - Focus : anneau 2 px `accent` (fond clair) ou `accent-300` (fond sombre), décalage 2 px. Placeholder en `neutral-700` (fond clair) ou `accent-200` (fond sombre).
 - Choix segmenté du projet : contour 1 px, option active en inversion de couleur.
+
+### Bascule avant/après
+- Remplace le curseur de comparaison (pages PDLC et vitres teintées, hub Voiture, réalisations). Le curseur ne subsiste que dans le laboratoire de films.
+- Image en pleine largeur (16:9) dans un cadre `blueprint`, deux boutons sous l'image. L'état « avant » est affiché par défaut.
+- Les deux images sont superposées : un clic affiche l'état choisi en fondu d'opacité (`duration-film`), sans changement de hauteur ni décalage de mise en page. Avec `prefers-reduced-motion`, le fondu d'opacité est conservé (règle globale).
+- Boutons : `aria-pressed`, regroupés dans un groupe nommé (ex. « Comparer : Vitre transparente et Vitre opacifiée »), `label-btn-lg`, hauteur minimale 44 px, rayon 0, contour 1 px `accent-700`. Option active en inversion de couleur (`accent-700` avec libellé `background`) ; survol `accent-100` ; focus visible 2 px `accent`.
+- L'image masquée est retirée de l'arbre d'accessibilité (`aria-hidden`) ; l'image visible garde son texte alternatif.
+- Libellés : « Vitres d'origine » / « Vitres teintées » par défaut, « Vitre transparente » / « Vitre opacifiée » pour le PDLC.
 
 ### Étiquettes
 `label-sm`, rayon 0. Fond `accent-100`, texte `accent-700` (5,9:1), ou contour 1 px `accent-700`.
@@ -373,6 +381,7 @@ Sobres et signifiantes : toute animation illustre le passage **opaque → transp
 | Changement de film (voile) | 900 ms | `ease` |
 | Apparition des sections (opacité, translation de `reveal-shift` 28 px, flou de `reveal-blur` 14 px vers 0) | liée au défilement (`animation-timeline: view()`, plage `reveal-range` : `entry 0 %` à `entry 40 %`), sans durée ; uniquement si JavaScript est actif (`@media (scripting: enabled)`), sinon les blocs restent visibles | linéaire |
 | Éclair au changement de film | 1200 ms | `ease-flash` |
+| Fondu de la bascule avant/après (opacité) | 900 ms | par défaut |
 | Mots du manifeste (flou, opacité) | 250 ms | linéaire, pilotée par le défilement |
 | Fond de l'en-tête d'accueil (transparent vers `accent-900`) | liée au défilement (`animation-timeline: scroll(root)`, 0 à `header-fill-distance`), sans durée ; uniquement si `animation-timeline` est pris en charge et mouvement non réduit | linéaire |
 | Reflet balayant (hero) | 8 s, boucle | `ease-in-out` |
@@ -387,10 +396,11 @@ Les durées vivent uniquement dans `tokens.css` (`--duration-*`). Les durées `r
 - Respect de `prefers-reduced-motion`. Lentille du hero : repli tactile (position fixe, pas de suivi du pointeur). Manifeste : sans JavaScript ou avec mouvement réduit, les mots restent nets et opaques ; l'effet n'existe que si le script l'active.
 - Images en WebP/AVIF avec chargement différé. Pas de vidéo d'en-tête.
 - Polices auto-hébergées, une seule requête par fichier, `font-display: swap`.
-- JavaScript client limité : lentille d'en-tête, laboratoire de films, manifeste, curseur, carrousel, formulaire, menu mobile.
+- JavaScript client limité : lentille d'en-tête, laboratoire de films, manifeste, bascule avant/après, carrousel, formulaire, menu mobile.
 
 ## Historique
 
+- 2026-11-05 : la bascule avant/après remplace le curseur de comparaison (validé par Hery) ; le laboratoire de films garde son curseur.
 - 2026-10-21 : en-tête fixe (desktop et mobile, tokens `header-height`, `header-fill-distance`, `anchor-gap`, `anchor-offset`), fond de l'accueil piloté par le défilement, lien « Accueil » en tête de navigation.
 - 2026-10-20 : version 3.0, tirée de la maquette d'accueil `maquette-v3.html` : thème clair bleu acier, Barlow / Barlow Condensed, rayon 0, repères d'angle, grille 12 colonnes, lentille de verre dépoli. Abandon du dégradé cuivre → bleu.
 - 2026-10-13 : (v2.0) précisions validées : libellé du CTA dégradé, espacements tablette et grand écran, `space-3xl` par palier.

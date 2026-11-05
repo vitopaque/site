@@ -84,7 +84,7 @@ export async function HubPage({ entry }: { entry: HubEntry }) {
           id="laboratoire-titre"
           heading={sectionTitle(page, 'lab')}
           pair={beforeAfter.pair}
-          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
+          text="Basculez entre les vitres d’origine et les vitres teintées."
           tone="surface"
         />
       ) : null}

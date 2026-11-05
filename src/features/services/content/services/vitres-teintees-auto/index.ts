@@ -25,7 +25,7 @@ export const vitresTeinteesAuto: ServicePageContent = {
     film: { kicker: 'Le film teinté en détail', lines: ['Le film teinté', 'en un coup d’œil.'] },
     lab: {
       kicker: 'Laboratoire : film teinté sur vitrage',
-      lines: ['Faites glisser,', 'voyez la différence.'],
+      lines: ['D’origine ou teintée,', 'comparez la vitre.'],
     },
     realisations: {
       kicker: 'Réalisations de vitres teintées automobiles',

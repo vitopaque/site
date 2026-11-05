@@ -1,45 +1,59 @@
 import AxeBuilder from '@axe-core/playwright'
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 import { WCAG_TAGS } from './helpers/a11y'
 
 const SHOTS = process.env.SHOTS_DIR
 
+const TINTED = { before: 'Vitres d’origine', after: 'Vitres teintées' }
+const PDLC = { before: 'Vitre transparente', after: 'Vitre opacifiée' }
+
+async function checkToggle(page: Page, labels: { before: string; after: string }) {
+  const group = page.getByRole('group', {
+    name: `Comparer : ${labels.before} et ${labels.after}`,
+  })
+  await group.scrollIntoViewIfNeeded()
+  const before = group.getByRole('button', { name: labels.before, exact: true })
+  const after = group.getByRole('button', { name: labels.after, exact: true })
+  const figure = page.locator('figure', { has: group })
+  await expect(before).toHaveAttribute('aria-pressed', 'true')
+  await expect(after).toHaveAttribute('aria-pressed', 'false')
+
+  const hidden = figure.locator('[aria-hidden="true"] img')
+  const visible = figure.locator('div:not([aria-hidden="true"]) > img')
+  await expect(hidden).toHaveCount(1)
+  await expect(visible).toHaveCount(1)
+  const beforeAlt = await visible.getAttribute('alt')
+  expect(beforeAlt?.trim()).toBeTruthy()
+  expect(beforeAlt).not.toMatch(/montpellier/i)
+
+  await after.click()
+  await expect(after).toHaveAttribute('aria-pressed', 'true')
+  await expect(before).toHaveAttribute('aria-pressed', 'false')
+  const afterAlt = await visible.getAttribute('alt')
+  expect(afterAlt?.trim()).toBeTruthy()
+  expect(afterAlt).not.toBe(beforeAlt)
+
+  await before.focus()
+  await page.keyboard.press('Enter')
+  await expect(before).toHaveAttribute('aria-pressed', 'true')
+  await after.focus()
+  await page.keyboard.press('Space')
+  await expect(after).toHaveAttribute('aria-pressed', 'true')
+  await expect(visible.getAttribute('alt')).resolves.toBe(afterAlt)
+  await before.click()
+  return { group, figure }
+}
+
 for (const path of ['/vitres-teintees-auto', '/voiture']) {
-  test.describe(`Curseur avant/après ${path}`, () => {
+  test.describe(`Bascule avant/après ${path}`, () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(path)
     })
 
-    test('deux images avec alt, curseur accessible et utilisable au clavier', async ({
+    test('deux boutons, image visible avec alt, image masquée en aria-hidden, clavier', async ({
       page,
     }, testInfo) => {
-      const slider = page.getByRole('slider', { name: 'Comparer avant et après la pose' })
-      await slider.scrollIntoViewIfNeeded()
-      await expect(slider).toHaveAttribute('aria-valuetext', 'Avant / Après, 50 %')
-
-      const figure = page.locator('figure', { has: slider })
-      await expect(figure.getByText('Avant', { exact: true })).toBeVisible()
-      await expect(figure.getByText('Après', { exact: true })).toBeVisible()
-      const alts = await figure
-        .locator('img')
-        .evaluateAll((imgs) => imgs.map((i) => i.getAttribute('alt') ?? ''))
-      expect(alts).toHaveLength(2)
-      for (const alt of alts) expect(alt.trim()).not.toBe('')
-      expect(alts.join(' ')).not.toMatch(/montpellier/i)
-
-      await slider.focus()
-      await page.keyboard.press('ArrowRight')
-      await expect(slider).toHaveValue('51')
-      await expect(slider).toHaveAttribute('aria-valuetext', 'Avant / Après, 51 %')
-      await page.keyboard.press('Home')
-      await expect(slider).toHaveValue('2')
-      await page.keyboard.press('ArrowRight')
-      await expect(slider).toHaveValue('3')
-      await page.keyboard.press('End')
-      await expect(slider).toHaveValue('98')
-      await page.keyboard.press('Home')
-      await slider.fill('50')
-
+      const { figure } = await checkToggle(page, TINTED)
       if (SHOTS) {
         await figure.scrollIntoViewIfNeeded()
         await figure.screenshot({
@@ -49,11 +63,9 @@ for (const path of ['/vitres-teintees-auto', '/voiture']) {
     })
 
     test('aucune violation axe', async ({ page }) => {
-      await page
-        .getByRole('slider', { name: 'Comparer avant et après la pose' })
-        .scrollIntoViewIfNeeded()
+      await page.getByRole('group', { name: /^Comparer :/ }).scrollIntoViewIfNeeded()
       const { violations } = await new AxeBuilder({ page })
-        .include('section:has(input[type="range"])')
+        .include('section:has([aria-pressed]):has(figure)')
         .withTags(WCAG_TAGS)
         .analyze()
       expect(violations).toEqual([])
@@ -76,35 +88,11 @@ test('le curseur du laboratoire bâtiment reste fonctionnel', async ({ page }) =
   expect(split.trim()).toBe('51%')
 })
 
-test('le curseur PDLC a ses libellés, se manipule au clavier et reste sans doublon de titre', async ({
+test('la bascule PDLC a ses libellés, se manipule au clavier et reste sans doublon de titre', async ({
   page,
 }) => {
   await page.goto('/film-pdlc-cristaux-liquides')
-  const slider = page.getByRole('slider', {
-    name: 'Comparer : Vitre transparente et Vitre opacifiée',
-  })
-  await slider.scrollIntoViewIfNeeded()
-  await expect(slider).toHaveAttribute(
-    'aria-valuetext',
-    'Vitre transparente / Vitre opacifiée, 50 %',
-  )
-
-  const figure = page.locator('figure', { has: slider })
-  await expect(figure.getByText('Vitre transparente', { exact: true })).toBeVisible()
-  await expect(figure.getByText('Vitre opacifiée', { exact: true })).toBeVisible()
-  const alts = await figure
-    .locator('img')
-    .evaluateAll((imgs) => imgs.map((i) => i.getAttribute('alt') ?? ''))
-  expect(alts).toHaveLength(2)
-  for (const alt of alts) expect(alt.trim()).not.toBe('')
-  expect(alts.join(' ')).not.toMatch(/montpellier/i)
-
-  await slider.focus()
-  await page.keyboard.press('ArrowRight')
-  await expect(slider).toHaveAttribute(
-    'aria-valuetext',
-    'Vitre transparente / Vitre opacifiée, 51 %',
-  )
+  await checkToggle(page, PDLC)
 
   const titles = await page.locator('h2').allInnerTexts()
   expect(new Set(titles).size).toBe(titles.length)

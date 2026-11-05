@@ -18,8 +18,8 @@ type Props = {
 export function BeforeAfterSection({ id, heading, pair, text, tone = 'light', link }: Props) {
   return (
     <Section labelledBy={id} tone={tone}>
-      <div className="reveal grid items-center gap-12 lg:grid-cols-3">
-        <div className="flex flex-col gap-6">
+      <div className="reveal grid items-center gap-12 lg:grid-cols-5">
+        <div className="flex flex-col gap-6 lg:col-span-2">
           <SectionHeading id={id} {...heading} />
           <p className="text-body-lg max-w-prose text-pretty text-neutral-700">{text}</p>
           {link ? (
@@ -31,7 +31,7 @@ export function BeforeAfterSection({ id, heading, pair, text, tone = 'light', li
             </Link>
           ) : null}
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3">
           <BeforeAfter pair={pair} />
         </div>
       </div>
