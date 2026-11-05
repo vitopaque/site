@@ -11,6 +11,7 @@ export function HeroFigure({ image, landscape = false }: Props) {
           src={image.src}
           alt={image.alt}
           fill
+          loading="eager"
           sizes="(min-width: 64rem) 36vw, 100vw"
           className="object-cover"
         />
