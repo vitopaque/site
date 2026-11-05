@@ -25,8 +25,8 @@ export const articleSources: readonly ArticleSource[] = [
     seoDescription:
       'Vitre teintée loi : ce que la réglementation autorise à l’avant comme à l’arrière, et comment rester en règle. Conseils VIT’OPAQUE, près de Montpellier.',
     image: {
-      file: 'vitres-teintees-bmw-x3.webp',
-      alt: 'BMW X3 blanc dont les vitres arrière sont teintées et les vitres avant restées claires',
+      file: 'vitres-avant-claires-arriere-teintees.webp',
+      alt: 'SUV blanc aux vitres avant claires et aux vitres arrière teintées, garé en bord de route',
     },
   },
   {
@@ -40,8 +40,8 @@ export const articleSources: readonly ArticleSource[] = [
     seoDescription:
       'Quel film solaire choisir ? Types de films, exposition, vitrage et intimité : les critères pour décider. Conseils VIT’OPAQUE, près de Montpellier.',
     image: {
-      file: 'film-solaire-villa.webp',
-      alt: 'Villa contemporaine dont les grandes baies de l’étage sont équipées d’un film solaire à effet miroir',
+      file: 'villa-baies-film-solaire.webp',
+      alt: 'Villa contemporaine aux larges baies vitrées équipées d’un film solaire réfléchissant',
     },
   },
   {

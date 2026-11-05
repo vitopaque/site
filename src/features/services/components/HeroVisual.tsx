@@ -1,9 +1,12 @@
 import type { StaticImageData } from 'next/image'
 
-import { HeroEmblem } from '@/shared/ui/HeroEmblem'
 import { HeroFigure } from '@/shared/ui/HeroFigure'
 
-import { poseFilmTeinteVitreVoiture, yachtBaieVitreeFilmSolaire } from '../assets/hero-photos'
+import {
+  bureauFilmSolaireAvantApres,
+  poseFilmTeinteVitreVoiture,
+  yachtBaieVitreeFilmSolaire,
+} from '../assets/hero-photos'
 import type { ServicePageContent } from '../content/types'
 
 type HeroVisualPage = Pick<ServicePageContent, 'univers'> &
@@ -11,7 +14,11 @@ type HeroVisualPage = Pick<ServicePageContent, 'univers'> &
 
 type HeroImage = { src: StaticImageData; alt: string }
 
-const UNIVERS_IMAGE: Partial<Record<ServicePageContent['univers'], HeroImage>> = {
+const UNIVERS_IMAGE: Record<ServicePageContent['univers'], HeroImage> = {
+  batiment: {
+    src: bureauFilmSolaireAvantApres,
+    alt: 'Bureau avant et après la pose d’un film solaire : stores fermés d’un côté, vue dégagée de l’autre',
+  },
   voiture: {
     src: poseFilmTeinteVitreVoiture,
     alt: 'Pose d’un film teinté sur une vitre de voiture à la raclette, en atelier',
@@ -24,6 +31,5 @@ const UNIVERS_IMAGE: Partial<Record<ServicePageContent['univers'], HeroImage>> =
 
 export function HeroVisual({ page }: { page: HeroVisualPage }) {
   if (page.image) return <HeroFigure image={page.image} landscape />
-  const image = UNIVERS_IMAGE[page.univers]
-  return image ? <HeroFigure image={image} landscape /> : <HeroEmblem />
+  return <HeroFigure image={UNIVERS_IMAGE[page.univers]} landscape />
 }

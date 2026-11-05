@@ -75,7 +75,6 @@ async function upsertArticle(payload: Payload, source: ArticleSource, authorId: 
     author: authorId,
     service: source.service,
     seo: { title: source.seoTitle, description: source.seoDescription },
-    _status: 'draft' as const,
   }
   const { docs } = await payload.find({
     collection: 'articles',
@@ -87,7 +86,12 @@ async function upsertArticle(payload: Payload, source: ArticleSource, authorId: 
   })
   const existing = docs[0]
   if (existing) {
-    await payload.update({ collection: 'articles', id: existing.id, data, draft: true })
+    await payload.update({
+      collection: 'articles',
+      id: existing.id,
+      data,
+      draft: existing._status !== 'published',
+    })
   } else {
     await payload.create({ collection: 'articles', data, draft: true })
   }
