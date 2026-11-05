@@ -4,11 +4,13 @@ import { cloisonVitreePdlcOpaque, cloisonVitreePdlcTransparente } from '../../..
 import type { ServicePageContent } from '../../types'
 import Body, { headings } from './body.mdx'
 
-// alt prévu pour la photo (champ `image` à renseigner quand elle existe) :
-// « Cloison vitrée de salle de réunion équipée d’un film PDLC, état translucide »
 export const filmPdlcCristauxLiquides: ServicePageContent = {
   univers: 'batiment',
   slug: 'film-pdlc-cristaux-liquides',
+  image: {
+    src: cloisonVitreePdlcOpaque,
+    alt: 'Cloison vitrée de salle de réunion équipée d’un film PDLC, état opacifié',
+  },
   beforeAfter: {
     pair: {
       before: {
