@@ -1,3 +1,5 @@
+export const SKIP_REVALIDATE_CONTEXT = { skipRevalidate: true }
+
 const PRODUCTION_HOSTS = ['vitopaque.com', 'www.vitopaque.com']
 
 export function assertAllowedTarget(label: string, refVariable: string): void {
