@@ -4,7 +4,11 @@ import path from 'node:path'
 import type { Payload } from 'payload'
 
 import type { Article } from '@/shared/payload-types'
-import { assertAllowedTarget, assertNotProduction } from '@/shared/script-guards'
+import {
+  assertAllowedTarget,
+  assertNotProduction,
+  SKIP_REVALIDATE_CONTEXT,
+} from '@/shared/script-guards'
 import { markdownToLexical } from './markdown'
 import { AUTHOR, articleSources, type ArticleSource } from './sources'
 
@@ -91,9 +95,15 @@ async function upsertArticle(payload: Payload, source: ArticleSource, authorId: 
       id: existing.id,
       data,
       draft: existing._status !== 'published',
+      context: SKIP_REVALIDATE_CONTEXT,
     })
   } else {
-    await payload.create({ collection: 'articles', data, draft: true })
+    await payload.create({
+      collection: 'articles',
+      data,
+      draft: true,
+      context: SKIP_REVALIDATE_CONTEXT,
+    })
   }
   console.log(`${existing ? 'Mis à jour' : 'Créé'} : ${source.slug}`)
 }

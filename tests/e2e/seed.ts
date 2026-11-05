@@ -4,7 +4,11 @@ import path from 'node:path'
 import type { Payload, Where } from 'payload'
 
 import type { Article } from '../../src/shared/payload-types'
-import { assertAllowedTarget, assertNotProduction } from '../../src/shared/script-guards'
+import {
+  assertAllowedTarget,
+  assertNotProduction,
+  SKIP_REVALIDATE_CONTEXT,
+} from '../../src/shared/script-guards'
 import { node, text } from './helpers/lexical'
 
 const AUTHOR_NAME = 'e2e-auteur'
@@ -92,14 +96,24 @@ async function seed(payload: Payload): Promise<void> {
       id: docs[0].id,
       data: articleData,
       draft: false,
+      context: SKIP_REVALIDATE_CONTEXT,
     })
   } else {
-    await payload.create({ collection: 'articles', data: articleData, draft: false })
+    await payload.create({
+      collection: 'articles',
+      data: articleData,
+      draft: false,
+      context: SKIP_REVALIDATE_CONTEXT,
+    })
   }
 }
 
 async function clean(payload: Payload): Promise<void> {
-  await payload.delete({ collection: 'articles', where: { slug: { equals: ARTICLE_SLUG } } })
+  await payload.delete({
+    collection: 'articles',
+    where: { slug: { equals: ARTICLE_SLUG } },
+    context: SKIP_REVALIDATE_CONTEXT,
+  })
   await payload.delete({ collection: 'authors', where: { name: { equals: AUTHOR_NAME } } })
   await payload.delete({ collection: 'media', where: { alt: { equals: MEDIA_ALT } } })
 }

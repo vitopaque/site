@@ -4,6 +4,7 @@ import type {
   CollectionAfterDeleteHook,
   CollectionBeforeChangeHook,
   PayloadRequest,
+  RequestContext,
 } from 'payload'
 
 import type { Article } from '@/shared/payload-types'
@@ -24,6 +25,8 @@ const readLive = async (req: PayloadRequest, id: number): Promise<ArticleSnapsho
   })
   return live?._status === 'published' ? { slug: live.slug, service: live.service } : null
 }
+
+const skipsRevalidation = (context: RequestContext): boolean => context.skipRevalidate === true
 
 const revalidateArticles = (req: PayloadRequest, tags: string[]): void => {
   try {
@@ -58,13 +61,15 @@ export const revalidateOnChange: CollectionAfterChangeHook<Article> = async ({
   doc,
   req,
 }) => {
+  if (skipsRevalidation(context)) return doc
   const before = (context[LIVE_KEY] as ArticleSnapshot | null | undefined) ?? null
   if (doc._status === 'published') revalidateArticles(req, tagsFor(doc, before))
   else if (before && !(await readLive(req, doc.id))) revalidateArticles(req, tagsFor(before))
   return doc
 }
 
-export const revalidateOnDelete: CollectionAfterDeleteHook<Article> = ({ doc, req }) => {
+export const revalidateOnDelete: CollectionAfterDeleteHook<Article> = ({ context, doc, req }) => {
+  if (skipsRevalidation(context)) return doc
   if (doc._status === 'published') revalidateArticles(req, tagsFor(doc))
   return doc
 }
