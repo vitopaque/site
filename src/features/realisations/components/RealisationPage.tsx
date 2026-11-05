@@ -73,7 +73,7 @@ export function RealisationPage({ item }: { item: Realisation }) {
           id="avant-apres-titre"
           heading={realisationTitles.beforeAfter}
           pair={item.beforeAfter}
-          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
+          text="Basculez entre les vitres d’origine et les vitres teintées."
           tone="surface"
         />
       ) : null}

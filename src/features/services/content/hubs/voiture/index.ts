@@ -19,7 +19,7 @@ export const voitureHub: HubPageContent = {
     },
     lab: {
       kicker: 'Laboratoire de films pour voiture',
-      lines: ['Faites glisser,', 'voyez la teinte.'],
+      lines: ['Basculez,', 'voyez la teinte.'],
     },
     faq: {
       kicker: 'Films pour voiture : vos questions',

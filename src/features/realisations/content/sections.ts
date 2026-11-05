@@ -7,7 +7,7 @@ export const realisationTitles = {
   },
   beforeAfter: {
     kicker: 'Avant et après la pose du film',
-    lines: ['Faites glisser,', 'voyez la différence.'],
+    lines: ['Avant, après :', 'comparez la pose.'],
   },
   video: { kicker: 'La pose en vidéo', lines: ['La pose,', 'en mouvement.'] },
   gallery: { kicker: 'Galerie de la réalisation', lines: ['La pose,', 'en détail.'] },

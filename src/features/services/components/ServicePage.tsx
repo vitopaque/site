@@ -76,7 +76,7 @@ export async function ServicePage({ entry }: { entry: ServiceEntry }) {
           id="film-titre"
           heading={sectionTitle(page, 'lab')}
           pair={beforeAfter.pair}
-          text="Déplacez la ligne pour comparer les vitres d’origine et les vitres teintées."
+          text="Basculez entre les vitres d’origine et les vitres teintées."
           link={{ href: beforeAfter.href, label: 'Voir la réalisation' }}
         />
       ) : null}

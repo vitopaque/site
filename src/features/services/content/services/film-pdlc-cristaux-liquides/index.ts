@@ -23,7 +23,7 @@ export const filmPdlcCristauxLiquides: ServicePageContent = {
       },
       labels: { before: 'Vitre transparente', after: 'Vitre opacifiée' },
     },
-    text: 'Déplacez la ligne pour comparer la vitre transparente et la vitre opacifiée.',
+    text: 'Basculez entre la vitre transparente et la vitre opacifiée.',
   },
   h1: 'Vitrage opacifiant électrique : l’intimité à la demande',
   tagline: 'Intimité à la demande',
