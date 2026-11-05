@@ -70,7 +70,7 @@ Ne charger que la section utile d'un document. Les documents prévalent sur tout
 - Ton éditorial : confiant, épuré, rassurant ; du technique au bénéfice client.
 
 ### Performance et conformité
-- Core Web Vitals au vert (mobile et desktop). Composants serveur par défaut ; JavaScript client limité à la lentille d'en-tête, au laboratoire de films, au manifeste, au curseur avant/après, au carrousel, au formulaire et au menu mobile. Le texte de l'accroche ou une image légère sert de LCP.
+- Core Web Vitals au vert (mobile et desktop). Composants serveur par défaut ; JavaScript client limité à la lentille d'en-tête, au laboratoire de films, au manifeste, à la bascule avant/après, au carrousel, au formulaire et au menu mobile. Le texte de l'accroche ou une image légère sert de LCP.
 - RGPD : consentement avant tout traceur GA4, consentement enregistré avec chaque demande de devis, polices auto-hébergées.
 
 ### Principes de code (SOLID, DRY, feature-first)
