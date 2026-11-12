@@ -109,7 +109,7 @@ export const vitresTeinteesAuto: ServicePageContent = {
     {
       question: 'Quelle garantie sur un film teinté pour voiture ?',
       answer:
-        'Nos films sont garantis 10 ans. Nous vous détaillons ce que couvre la garantie avec le devis.',
+        'Les films Hexis Majestik que nous posons sont garantis 10 ans contre le décollement, le craquellement et le jaunissement.',
     },
     {
       question: 'Combien de temps faut-il attendre avant de nettoyer les vitres ?',

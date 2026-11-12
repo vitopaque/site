@@ -72,6 +72,7 @@ export const coveringEtFlocage: ServicePageContent = {
       title: 'Pose précise',
       text: 'Découpe, jonctions et raccords travaillés pour un rendu net.',
     },
+    { title: 'Garanti 1 à 3 ans', text: 'Une garantie sur le covering et le flocage.' },
   ],
   faq: [
     {
@@ -98,6 +99,10 @@ export const coveringEtFlocage: ServicePageContent = {
       question: 'Un changement de couleur doit-il être déclaré ?',
       answer:
         'Un changement de couleur complet peut avoir des conséquences administratives. Nous vous recommandons de vous renseigner auprès des organismes concernés avant de décider.',
+    },
+    {
+      question: 'Quelle garantie sur un covering ou un flocage ?',
+      answer: 'Le covering et le flocage sont garantis de 1 à 3 ans.',
     },
     {
       question: 'Que fournir pour chiffrer un covering ou un flocage ?',

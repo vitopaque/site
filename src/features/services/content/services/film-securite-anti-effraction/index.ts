@@ -106,7 +106,7 @@ export const filmSecuriteAntiEffraction: ServicePageContent = {
     {
       question: 'Quelle garantie sur un film de sécurité ?',
       answer:
-        'Nos films de sécurité sont garantis 10 ans. Nous vous détaillons ce que couvre la garantie avec le devis.',
+        'Nos films de sécurité sont garantis 10 ans : décollement, défauts du film ou de pose, jaunissement, craquellement, décoloration et casse du vitrage par choc thermique due au film.',
     },
     {
       question: 'Que faut-il pour chiffrer la protection de mes vitrages ?',

@@ -69,7 +69,10 @@ export const filmSolaireBatiment: ServicePageContent = {
       title: 'Vitrage conservé',
       text: 'Le film se pose sur vos fenêtres existantes, sans travaux lourds.',
     },
-    { title: 'Garanti 10 ans', text: 'Une garantie de 10 ans sur nos films solaires.' },
+    {
+      title: 'Garanti 10 ans',
+      text: 'Une garantie de 10 ans, y compris sur l’efficacité solaire du film.',
+    },
   ],
   faq: [
     {
@@ -95,7 +98,7 @@ export const filmSolaireBatiment: ServicePageContent = {
     {
       question: 'Combien de temps dure un film solaire ?',
       answer:
-        'Nos films solaires sont garantis 10 ans. Nous vous détaillons ce que couvre la garantie avec le devis.',
+        'Nos films solaires sont garantis 10 ans : décollement, défauts du film ou de pose, jaunissement, craquellement, décoloration et casse du vitrage par choc thermique due au film. La garantie porte aussi sur la même efficacité solaire pendant 10 ans.',
     },
     {
       question: 'Comment entretenir des vitres équipées d’un film ?',
