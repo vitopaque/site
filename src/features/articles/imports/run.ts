@@ -9,6 +9,7 @@ import {
   assertNotProduction,
   SKIP_REVALIDATE_CONTEXT,
 } from '@/shared/script-guards'
+import { findWorkMarkers } from '../work-markers'
 import { markdownToLexical } from './markdown'
 import { AUTHOR, articleSources, type ArticleSource } from './sources'
 
@@ -65,7 +66,7 @@ async function upsertMedia(payload: Payload, image: NonNullable<ArticleSource['i
 
 async function upsertArticle(payload: Payload, source: ArticleSource, authorId: number) {
   const imageId = source.image ? await upsertMedia(payload, source.image) : undefined
-  const markdown = await readFile(path.join(IMPORTS_DIR, `${source.slug}.md`), 'utf8')
+  const markdown = await readMarkdown(source)
   const content = (await markdownToLexical(
     payload.config,
     markdown,
@@ -108,13 +109,43 @@ async function upsertArticle(payload: Payload, source: ArticleSource, authorId: 
   console.log(`${existing ? 'Mis à jour' : 'Créé'} : ${source.slug}`)
 }
 
+async function readMarkdown(source: ArticleSource): Promise<string> {
+  return readFile(path.join(IMPORTS_DIR, `${source.slug}.md`), 'utf8')
+}
+
+async function assertNoWorkMarkers(sources: readonly ArticleSource[]): Promise<void> {
+  const problems: string[] = []
+  for (const source of sources) {
+    const body = await readMarkdown(source)
+    const found = findWorkMarkers({
+      title: source.title,
+      excerpt: source.excerpt,
+      seoDescription: source.seoDescription,
+      body,
+    })
+    for (const { field, marker, line } of found) {
+      const where =
+        field === 'body' ? `${source.slug}.md ligne ${line}` : `${source.slug} (${field})`
+      problems.push(`  - ${where} : ${marker}`)
+    }
+  }
+  if (problems.length > 0) {
+    throw new Error(
+      `${LABEL} refusé : marqueurs de travail à résoudre avant import (aucune écriture effectuée).\n${problems.join('\n')}`,
+    )
+  }
+}
+
+const enabledSources = articleSources.filter(({ enabled }) => enabled)
+
+await assertNoWorkMarkers(enabledSources)
 assertPreprod()
 const { getPayload } = await import('payload')
 const { default: config } = await import('../../../../payload.config')
 const payload = await getPayload({ config })
 try {
   const authorId = await upsertAuthor(payload)
-  for (const source of articleSources.filter(({ enabled }) => enabled)) {
+  for (const source of enabledSources) {
     await upsertArticle(payload, source, authorId)
   }
 } finally {
