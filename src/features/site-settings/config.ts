@@ -9,7 +9,12 @@ export const siteConfig: SiteConfig = {
   contact: {
     phone: '06 12 44 14 42',
     email: 'contact@vitopaque.com',
-    address: { street: null, postalCode: '34740', city: 'Vendargues' },
+    address: {
+      street: '202 route de Sommières',
+      landmark: 'M610, parking station Esso',
+      postalCode: '34740',
+      city: 'Vendargues',
+    },
     hours: [
       {
         days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -22,6 +27,15 @@ export const siteConfig: SiteConfig = {
         closes: '18:00',
       },
     ],
+  },
+  legal: {
+    companyName: "SAS VIT'OPAQUE",
+    capital: '1 000 €',
+    siret: '91111459300013',
+    rcsCity: 'Montpellier',
+    president: 'Jérôme Pariente',
+    headquarters: { street: '3 rue de l’Industrie', postalCode: '34880', city: 'Lavérune' },
+    dataEmail: 'contact@vitopaque.com',
   },
   serviceArea: {
     automotive: { location: 'Vendargues' },
@@ -60,6 +74,11 @@ export const siteConfig: SiteConfig = {
     cta: { label: 'Devis gratuit', href: '/contact-devis' },
   },
   footerColumns: [],
+  footerLinks: [
+    { label: 'À propos', href: '/a-propos' },
+    { label: 'Mentions légales', href: '/mentions-legales' },
+    { label: 'Politique de confidentialité', href: '/politique-de-confidentialite' },
+  ],
 }
 
 assertValidSiteConfig(siteConfig)

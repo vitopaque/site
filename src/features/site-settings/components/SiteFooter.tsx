@@ -13,7 +13,7 @@ const NETWORK_LABELS: Record<SocialNetwork, string> = {
 }
 
 export function SiteFooter() {
-  const { name, baseline, locationNote, contact, social, footerColumns } = siteConfig
+  const { name, baseline, locationNote, contact, social, footerColumns, footerLinks } = siteConfig
   const { address } = contact
   const postal = [address.postalCode, address.city].filter(Boolean).join(' ')
 
@@ -72,14 +72,28 @@ export function SiteFooter() {
                 </li>
                 {address.street ? <li>{address.street}</li> : null}
                 <li>{postal}</li>
+                {address.street && address.landmark ? <li>{address.landmark}</li> : null}
                 {locationNote ? <li>{locationNote}</li> : null}
               </ul>
             </div>
           </div>
         </div>
-        <p className="border-divider-inverse text-body-sm mt-12 border-t pt-6">
-          © {new Date().getFullYear()} {name}
-        </p>
+        <div className="border-divider-inverse text-body-sm mt-12 flex flex-wrap justify-between gap-x-8 gap-y-4 border-t pt-6">
+          <p>
+            © {new Date().getFullYear()} {name}
+          </p>
+          <nav aria-label="Informations légales">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-background">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
     </footer>
   )
