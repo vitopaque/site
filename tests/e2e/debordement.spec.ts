@@ -13,6 +13,9 @@ const PATHS = [
   '/vitres-teintees-bateau',
   '/covering-et-flocage',
   '/contact-devis',
+  '/a-propos',
+  '/mentions-legales',
+  '/politique-de-confidentialite',
   '/realisations',
   '/realisations/vitres-arriere-teintees-porsche-macan',
 ]
