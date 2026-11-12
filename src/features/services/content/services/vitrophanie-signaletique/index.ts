@@ -74,6 +74,10 @@ export const vitrophanieSignaletique: ServicePageContent = {
       title: 'Changeable',
       text: 'Un film adhésif se renouvelle plus facilement qu’une peinture ou une gravure.',
     },
+    {
+      title: 'Garanti 5 à 10 ans',
+      text: 'Selon l’emplacement, l’exposition et la couleur du film.',
+    },
   ],
   faq: [
     {
@@ -100,6 +104,11 @@ export const vitrophanieSignaletique: ServicePageContent = {
       question: 'Un film dépoli laisse-t-il passer la lumière ?',
       answer:
         'Oui, un film dépoli préserve la lumière naturelle tout en brouillant la vue. Le niveau de transparence varie selon le modèle.',
+    },
+    {
+      question: 'Quelle garantie sur un film de vitrophanie ?',
+      answer:
+        'Les films de vitrophanie sont garantis de 5 à 10 ans, selon l’emplacement, l’exposition et la couleur du film.',
     },
     {
       question: 'Comment entretenir une vitrine habillée d’un film ?',

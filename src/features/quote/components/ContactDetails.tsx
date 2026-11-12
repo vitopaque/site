@@ -38,6 +38,9 @@ export function ContactDetails() {
           <dd className="text-body-lg">
             {address.street ? <span className="block">{address.street}</span> : null}
             <span className="block">{postal}</span>
+            {address.street && address.landmark ? (
+              <span className="block text-neutral-700">{address.landmark}</span>
+            ) : null}
             {siteConfig.locationNote ? (
               <span className="block text-neutral-700">{siteConfig.locationNote}</span>
             ) : null}

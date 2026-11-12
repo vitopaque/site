@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { ABOUT_PATH } from '@/features/about'
 import { articleSitemapPaths } from '@/features/articles'
 import { realisationPaths } from '@/features/realisations'
 import { listSlugs } from '@/features/services'
@@ -14,5 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...realisationPaths(),
     ...(await articleSitemapPaths()),
     quoteHref(),
+    ABOUT_PATH,
   ])
 }

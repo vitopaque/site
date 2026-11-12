@@ -3,6 +3,7 @@ import { noCityInTitle, noCityNumber } from '../../src/shared/content/city-rules
 import { lexicalTexts } from '../../src/shared/payload/lexical-text'
 import { createBuildFallback } from '../../src/features/articles/build-fallback'
 import { articleSlugRule, slugify } from '../../src/features/articles/slug'
+import { findWorkMarkers } from '../../src/features/articles/work-markers'
 import {
   ARTICLES_TAG,
   articleTag,
@@ -160,5 +161,45 @@ test.describe('repli de lecture au build', () => {
   test('une lecture réussie est renvoyée telle quelle', async () => {
     const withFallback = createBuildFallback(() => true, logger().logger)
     expect(await withFallback('a', () => Promise.resolve(['lu']), [])).toEqual(['lu'])
+  })
+})
+
+test.describe('marqueurs de travail des articles', () => {
+  const fields = { title: 'Titre', excerpt: 'Extrait', seoDescription: 'Méta', body: '' }
+
+  test('« À propos » et un « à » ordinaire ne déclenchent pas la garde', () => {
+    expect(
+      findWorkMarkers({ ...fields, body: 'À propos de nous.\nÀ titre indicatif, à voir.' }),
+    ).toEqual([])
+  })
+
+  test('un marqueur est localisé par champ et par ligne', () => {
+    expect(
+      findWorkMarkers({
+        title: 'Titre [À CONFIRMER : nom]',
+        excerpt: 'Extrait',
+        seoDescription: 'Méta',
+        body: 'Ligne 1\nSeuil [À VÉRIFIER SUR LÉGIFRANCE] ici.',
+      }),
+    ).toEqual([
+      { field: 'title', marker: '[À CONFIRMER : nom]', line: 1 },
+      { field: 'body', marker: '[À VÉRIFIER SUR LÉGIFRANCE]', line: 2 },
+    ])
+  })
+
+  test('un marqueur en minuscules est détecté', () => {
+    expect(findWorkMarkers({ ...fields, body: 'Seuil [à confirmer] ici.' })).toEqual([
+      { field: 'body', marker: '[à confirmer]', line: 1 },
+    ])
+  })
+
+  test('un « À » décomposé (A + U+0300) est détecté, sans faux positif sur « À propos »', () => {
+    const decomposed = 'A\u0300'
+    expect(
+      findWorkMarkers({
+        ...fields,
+        body: `Ligne 1\n[${decomposed} CONFIRMER]\n${decomposed} propos`,
+      }),
+    ).toEqual([{ field: 'body', marker: '[À CONFIRMER]', line: 2 }])
   })
 })

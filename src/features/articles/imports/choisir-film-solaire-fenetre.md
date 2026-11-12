@@ -6,10 +6,12 @@ Quel film solaire choisir pour ses fenêtres ? La réponse dépend de quatre cho
 
 C'est le premier point à vérifier, car tous les vitrages ne supportent pas tous les films.
 
-- **Simple vitrage** : le film peut généralement se poser à l'intérieur comme à l'extérieur [À CONFIRMER : validation technique].
-- **Double ou triple vitrage récent, vitrage feuilleté** : une pose extérieure est généralement préférable pour éviter un risque de choc thermique, c'est-à-dire un éclatement du verre sous l'effet de la chaleur [À CONFIRMER : règle de pose à valider par VIT'OPAQUE selon le vitrage et le film].
+- **Simple vitrage** : le film peut généralement se poser à l'intérieur comme à l'extérieur.
+- **Double ou triple vitrage récent, vitrage feuilleté** : une pose extérieure est généralement préférable pour éviter un risque de choc thermique, c'est-à-dire un éclatement du verre sous l'effet de la chaleur.
 
-En cas de doute sur la nature de votre vitrage, ne choisissez pas seul : nous le vérifions avant de proposer un film.
+Cette règle n'est qu'une première base : certains films peuvent eux aussi provoquer un choc thermique. Chaque film utilise des métaux différents (argent, inox, bronze), et tous ne sont pas compatibles avec tous les vitrages. En cas de doute, VIT'OPAQUE fait réaliser par son fournisseur une étude thermique, qui prend en compte les menuiseries, l'orientation des vitrages, les ombres portées et les métaux du film.
+
+Si vous hésitez sur la nature de votre vitrage, ne choisissez pas seul : nous le vérifions avant de proposer un film.
 
 ### 2. L'exposition de la pièce
 
@@ -22,7 +24,7 @@ Si le vis-à-vis vous gêne, un film à effet miroir « sans tain » protège de
 
 ### 4. L'esthétique du bâtiment
 
-Finition argentée à effet miroir, teinte fumée ou film quasi invisible : le rendu extérieur compte, surtout en copropriété ou sur une façade soumise à des contraintes architecturales. Nous vous montrons les finitions disponibles avant de décider [À CONFIRMER : échantillons et gamme disponibles].
+Finition argentée à effet miroir, teinte fumée ou film quasi invisible : le rendu extérieur compte, surtout en copropriété ou sur une façade soumise à des contraintes architecturales. Nous vous présentons les finitions disponibles avant de décider.
 
 ## Les grandes familles de films solaires
 
@@ -40,9 +42,9 @@ Il offre une protection solaire discrète et conserve l'aspect d'origine du vitr
 
 ### Film « 4 saisons » et films à faible émissivité (Low-E)
 
-Un film à faible émissivité laisse passer la lumière naturelle, mais renvoie le rayonnement infrarouge, c'est-à-dire la chaleur. En été, il limite la chaleur qui entre ; en hiver, il aide à retenir celle de l'intérieur [À CONFIRMER : principe et performances à valider sur les fiches du fournisseur].
+Un film à faible émissivité laisse passer la lumière naturelle, mais renvoie le rayonnement infrarouge, c'est-à-dire la chaleur. En été, il limite la chaleur qui entre ; en hiver, il aide à retenir celle de l'intérieur.
 
-Ses atouts annoncés : un meilleur confort près des fenêtres, une température plus stable, et une alternative au remplacement des vitrages dans une rénovation [À CONFIRMER : aucun chiffre ni équivalence avec un double vitrage ne sera publié sans fiche technique].
+Ses atouts : un meilleur confort près des fenêtres, une température plus stable, et une alternative au remplacement des vitrages dans une rénovation. Nous disposons des fiches techniques de chaque film et pouvons réaliser une pré-étude du vitrage, avant et après la pose du film.
 
 ### Film de sécurité solaire
 
@@ -60,6 +62,6 @@ Cette liste oriente votre réflexion ; il ne remplace pas l'avis d'un profession
 
 ## Se faire conseiller avant de choisir
 
-Le plus sûr est de faire examiner votre vitrage avant de choisir un film [À CONFIRMER : l'ancien article parlait d'un diagnostic gratuit, à valider]. Pour comprendre ce que peut apporter un film posé par un professionnel, découvrez notre page [film solaire pour bâtiment](/film-solaire-batiment).
+Le plus sûr est de faire examiner votre vitrage avant de choisir un film : le diagnostic est gratuit. Pour comprendre ce que peut apporter un film posé par un professionnel, découvrez notre page [film solaire pour bâtiment](/film-solaire-batiment).
 
 Décrivez-nous vos vitrages depuis la page [Contact et devis](/contact-devis) : nombre de baies, orientation, usage des pièces. Quelques photos aident beaucoup. Nous revenons vers vous avec un conseil adapté.

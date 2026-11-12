@@ -69,6 +69,7 @@ export const vitresTeinteesBateau: ServicePageContent = {
       title: 'Allure soignée',
       text: 'Une teinte homogène qui s’intègre aux lignes du bateau.',
     },
+    { title: 'Garanti 10 ans', text: 'Les mêmes garanties que le film solaire, sur 10 ans.' },
   ],
   faq: [
     {
@@ -90,6 +91,11 @@ export const vitresTeinteesBateau: ServicePageContent = {
       question: 'Le film résiste-t-il au milieu marin ?',
       answer:
         'Le milieu marin est exigeant. Nous vous indiquons ce que le film retenu peut supporter et les précautions d’entretien à respecter.',
+    },
+    {
+      question: 'Quelle garantie sur des vitres teintées de bateau ?',
+      answer:
+        'Les mêmes garanties que le film solaire : 10 ans contre le décollement, les défauts du film ou de pose, le jaunissement, le craquellement, la décoloration et la casse du vitrage par choc thermique due au film, ainsi que la même efficacité solaire pendant 10 ans.',
     },
     {
       question: 'Que décrire pour obtenir un devis de vitres teintées ?',

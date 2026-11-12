@@ -6,13 +6,13 @@ Le film se pose sur la face extérieure de la vitrine. On le dit « sacrificiel 
 
 ### Ce qu'il protège
 
-Selon la gamme choisie, le film résiste aux atteintes les plus courantes en ville :
+Le film que nous posons résiste aux atteintes les plus courantes en ville :
 
-- les tags à la bombe et aux marqueurs indélébiles ;
-- les traces d'acide, utilisé pour graver le verre ;
-- les rayures, y compris celles faites avec un objet métallique.
+- la peinture et les marqueurs ;
+- l'acide, utilisé pour graver le verre ;
+- les rayures, légères comme profondes.
 
-La liste exacte des agressions couvertes dépend du film posé [À CONFIRMER]. Nous vous indiquons ce que la gamme retenue encaisse, sans promesse irréaliste.
+Nous travaillons avec la référence Graffiti Gard [À CONFIRMER : orthographe], de la marque Solar Gard [À CONFIRMER : orthographe], du groupe Saint-Gobain.
 
 ### Un remplacement qui n'interrompt pas votre activité
 
@@ -20,27 +20,30 @@ Changer un vitrage de magasin mobilise du temps, parfois plusieurs jours de ferm
 
 ## Pourquoi protéger plutôt que remplacer
 
-Pour un commerçant, une grande baie dégradée pèse sur trois fronts.
+Pour un commerçant, une grande baie dégradée pèse sur deux fronts.
 
-- **Le coût.** Remplacer un grand vitrage coûte nettement plus cher que de remplacer un film [À CONFIRMER : aucun chiffre ne figure dans cet article tant que le client n'a pas validé un ordre de grandeur].
-- **L'assurance.** Les sinistres répétés peuvent peser sur la franchise et sur la prime [À CONFIRMER : à vérifier avec un assureur avant de maintenir cette phrase].
+- **L'immobilisation.** Un vitrage à remplacer demande de la préparation et des délais ; un film se remplace en une intervention courte.
 - **L'image.** Une vitrine abîmée se remarque tout de suite, et donne le sentiment d'un lieu peu surveillé.
+
+## Quel budget prévoir ?
+
+À titre indicatif, la pose d'un film anti-graffiti se situe entre 1 200 et 1 800 € [À CONFIRMER : HT ou TTC] pour 20 à 25 m² de vitrine. Le montant exact dépend de votre devanture et de l'épaisseur retenue : nous vous remettons un devis précis après étude.
 
 ## Une protection que vos clients ne voient pas
 
 Un bon film anti-graffiti est un film clair : il ne modifie ni les couleurs de vos produits, ni la lumière qui entre dans le commerce. Vos clients regardent votre vitrine, pas le film.
 
-Certains films filtrent aussi une partie des ultraviolets, ce qui ménage les produits exposés (textile, maroquinerie, emballages) [À CONFIRMER : taux de filtrage UV à reprendre de la fiche technique du fournisseur, l'ancien article annonçait 99 %]. À la dépose, l'adhésif est prévu pour partir proprement, sans laisser de trace sur le verre [À CONFIRMER : propre à la gamme posée].
+Il filtre aussi 99 % des ultraviolets, ce qui ménage les produits exposés (textile, maroquinerie, emballages). À la dépose, il peut subsister un peu de colle sur le verre ; elle se nettoie facilement.
 
 ## Une pose soignée, faite pour durer
 
 La protection ne vaut que si la pose est irréprochable : un film posé avec des bulles ou des poussières se voit pendant des années. Chez VIT'OPAQUE, la vitrine est nettoyée et préparée, puis le film est appliqué en une pièce, avec précision.
 
-Nous choisissons avec vous l'épaisseur du film selon l'exposition de votre devanture et le niveau de risque [À CONFIRMER : gamme et épaisseurs proposées]. Une vitrine en centre-ville, passante le soir, n'appelle pas la même réponse qu'un commerce en retrait.
+Nous choisissons avec vous l'épaisseur du film selon l'exposition de votre devanture et le niveau de risque : 4 mil (115 microns) ou 7 mil (environ 200 microns). Une vitrine en centre-ville, passante le soir, n'appelle pas la même réponse qu'un commerce en retrait.
 
 ## Quels vitrages protéger ?
 
-Au-delà de la vitrine principale, le film peut protéger d'autres surfaces exposées : parois vitrées de l'entrée, guichets, comptoirs d'accueil, enseignes vitrées [À CONFIRMER : surfaces effectivement posées par VIT'OPAQUE selon la gamme].
+Au-delà de la vitrine principale, le film protège toute surface vitrée exposée : parois vitrées de l'entrée, guichets, comptoirs d'accueil, enseignes vitrées, mais aussi tables ou sols en verre.
 
 ## Anti-graffiti ou film de sécurité ?
 

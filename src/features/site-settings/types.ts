@@ -5,6 +5,16 @@ export type SocialNetwork = 'facebook' | 'instagram' | 'linkedin'
 export type Weekday =
   'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
 
+export type LegalIdentity = {
+  companyName: string
+  capital: string
+  siret: string
+  rcsCity: string
+  president: string
+  headquarters: { street: string; postalCode: string; city: string }
+  dataEmail: string
+}
+
 export type ServiceArea = {
   automotive: { location: string }
   building: {
@@ -23,12 +33,19 @@ export type SiteConfig = {
   contact: {
     phone: string
     email: string | null
-    address: { street: string | null; postalCode: string | null; city: string }
+    address: {
+      street: string | null
+      landmark: string | null
+      postalCode: string | null
+      city: string
+    }
     hours: { days: Weekday[]; opens: string; closes: string }[]
   }
+  legal: LegalIdentity
   serviceArea: ServiceArea
   social: { network: SocialNetwork; url: string }[]
   seo: { titleTemplate: string; home: { title: string; description: string } }
   navigation: { links: NavLink[]; cta: NavLink }
   footerColumns: { title: string; links: NavLink[] }[]
+  footerLinks: NavLink[]
 }
